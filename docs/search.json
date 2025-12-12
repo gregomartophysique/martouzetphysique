@@ -4,20 +4,76 @@
     "href": "projects.html#project-2",
     "title": "Projects",
     "section": "Project 2",
-    "text": "Project 2"
+    "text": "Project 2",
+    "crumbs": [
+      "Test section",
+      "Projects"
+    ]
   },
   {
     "objectID": "projects.html#project-3",
     "href": "projects.html#project-3",
     "title": "Projects",
     "section": "Project 3",
-    "text": "Project 3"
+    "text": "Project 3",
+    "crumbs": [
+      "Test section",
+      "Projects"
+    ]
+  },
+  {
+    "objectID": "notebook/intro_graphique.html",
+    "href": "notebook/intro_graphique.html",
+    "title": "Martouzet Physique",
+    "section": "",
+    "text": "import matplotlib.pyplot as plt",
+    "crumbs": [
+      "Test section",
+      "intro_graphique.html"
+    ]
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "About Me",
     "section": "",
-    "text": "Thanks for checking out my web site!"
+    "text": "Thanks for checking out my web site!",
+    "crumbs": [
+      "Test section",
+      "Home"
+    ]
+  },
+  {
+    "objectID": "notebook/these.html",
+    "href": "notebook/these.html",
+    "title": "These",
+    "section": "",
+    "text": "J’ai effectué un doctorat sous la direction de Anne-Laure Biance et Catherine Barentin à l’Institut Lumière Matière - Lyon (iLM - UCBL) entre 2019 et 2022.\n\nmots clefs: impact, mouillage, super-hydrophobie\n\n\n\n\nDe la goutte de pluie sur un textile au gel hydroalcoolique sur nos mains, comprendre l’étalement de gouttes de fluides sur divers types de surfaces est un enjeu majeur. Nous nous sommes intéressés à ce phénomène dans plusieurs situations. Premièrement, nous avons étudié l’étalement spontané d’un fluide complexe à seuil (des gels de Carbopol) sur une surface lisse hydrophile. Pour un tel fluide, la forme de la goutte à la fin d’un étalement spontané sur une surface hydrophile ne vérifie plus la loi de Young-Dupré. Nous avons montré que la goutte se fige dans un état final qui ne dépend plus seulement des paramètres thermodynamiques mais aussi de la taille initiale de la goutte, de sa contrainte seuil et des conditions aux limites hydrodynamiques. Dans un second temps, nous avons étudié l’étalement forcé (lors d’un impact) de fluide simple sur une surface micro-texturée super-hydrophobe. Ces surfaces ont la propriété d’avoir une friction plus faible qu’une surface lisse, c’est-à-dire que le fluide glisse à l’interface liquide-solide. Nous avons ainsi observé que l’étalement est plus long que sur une surface lisse. Cette étude a permis d’étudier l’influence du glissement sur un phénomène non stationnaire. Cependant, lorsque la vitesse d’impact devient trop importante, une transition entre un état de mouillage de Cassie à un état Wenzel peut être observée et le caractère super-hydrophobe perdu. Dans la dernière partie, nous avons cherché à fabriquer des surfaces qui résistent à une telle transition. Pour cela, nous avons fabriqué des membranes flexibles, micro-texturées et super-hydrophobes. Nous avons observé qu’elles sont bien plus robustes à l’empalement : une vitesse d’impact supérieure est nécessaire pour observer un empalement par rapport à un substrat non déformable. Ce retard à l’empalement est le résultat d’au moins deux effets. La vitesse relative de la membrane réduit la vitesse d’impact. La courbure de la membrane flexible pendant l’impact augmente la fraction solide, les textures deviennent plus proches ce qui évite la pénétration du fluide.\n\n\n\n\n\n\nMes travaux ont conduit à la rédaction de deux articles.\n\n\nGrégoire Martouzet, Choongyeop Lee, Christophe Pirat, Christophe Ybert et Anne-Laure Biance Consulter\n\n\nConsulter sur le site de l’éditeur (version finale)\n\n\nConsulter sur archives-ouvertes.fr (pré-version)\n\n\n\n    @article{martouzet2020drag,\n      title={Drag reduction on drop during impact on multiscale superhydrophobic surfaces},\n      author={Martouzet, Gr{\\'e}goire and Lee, Choongyeop and Pirat, Christophe and Ybert, Christophe and Biance, Anne-Laure},\n      journal={Journal of Fluid Mechanics},\n      volume={892},\n      year={2020},\n      publisher={Cambridge University Press}\n    }\n\n\n\n\n\n\nGrégoire Martouzet, Loren Jørgensen, Yoann Pelet, Anne-Laure Biance, et Catherine Barentin\n\n\n\nConsulter sur le site de l’éditeur (version finale)\n\n\nConsulter sur archives-ouvertes.fr (pré-version)\n\n\n\n    @article{martouzet2021dynamic,\n      title={Dynamic arrest during the spreading of a yield stress fluid drop},\n      author={Martouzet, Gr{\\'e}goire and J{\\o}rgensen, Loren and Pelet, Yoann and Biance, Anne-Laure and Barentin, Catherine},\n      journal={Physical Review Fluids},\n      volume={6},\n      number={4},\n      pages={044006},\n      year={2021},\n      publisher={APS}\n    }\n\n\nLorsqu’une goutte de liquide est déposée doucement sur une surface mouillante, elle s’étale à cause des forces capillaires jusqu’à atteindre un équilibre thermodynamique défini par les tensions de surface du système. Nous étudions ici expérimentalement l’étalement d’une goutte faite de fluide complexe à seuil. Un tel fluide ne coule que si la contrainte appliquée est supérieure à une valeur donnée. Dans ce cas, après la phase d’étalement, le mouvement s’arrête et un angle de contact bien défini peut être mesuré. Cet angle de contact dépend des propriétées rhéologiques du fluide (en particulier de sa contrainte seuil), de son rayon et de la condition hydrodynamique à la surface. Ce résultat est comparé quantitativement à une analyse montrant que à cause à la contrainte seuil, un équilibre mécanique est atteind et il ne correspond pas à l’équilibre thermodynamique.",
+    "crumbs": [
+      "Test section",
+      "These"
+    ]
+  },
+  {
+    "objectID": "notebook/these.html#résumé",
+    "href": "notebook/these.html#résumé",
+    "title": "These",
+    "section": "",
+    "text": "De la goutte de pluie sur un textile au gel hydroalcoolique sur nos mains, comprendre l’étalement de gouttes de fluides sur divers types de surfaces est un enjeu majeur. Nous nous sommes intéressés à ce phénomène dans plusieurs situations. Premièrement, nous avons étudié l’étalement spontané d’un fluide complexe à seuil (des gels de Carbopol) sur une surface lisse hydrophile. Pour un tel fluide, la forme de la goutte à la fin d’un étalement spontané sur une surface hydrophile ne vérifie plus la loi de Young-Dupré. Nous avons montré que la goutte se fige dans un état final qui ne dépend plus seulement des paramètres thermodynamiques mais aussi de la taille initiale de la goutte, de sa contrainte seuil et des conditions aux limites hydrodynamiques. Dans un second temps, nous avons étudié l’étalement forcé (lors d’un impact) de fluide simple sur une surface micro-texturée super-hydrophobe. Ces surfaces ont la propriété d’avoir une friction plus faible qu’une surface lisse, c’est-à-dire que le fluide glisse à l’interface liquide-solide. Nous avons ainsi observé que l’étalement est plus long que sur une surface lisse. Cette étude a permis d’étudier l’influence du glissement sur un phénomène non stationnaire. Cependant, lorsque la vitesse d’impact devient trop importante, une transition entre un état de mouillage de Cassie à un état Wenzel peut être observée et le caractère super-hydrophobe perdu. Dans la dernière partie, nous avons cherché à fabriquer des surfaces qui résistent à une telle transition. Pour cela, nous avons fabriqué des membranes flexibles, micro-texturées et super-hydrophobes. Nous avons observé qu’elles sont bien plus robustes à l’empalement : une vitesse d’impact supérieure est nécessaire pour observer un empalement par rapport à un substrat non déformable. Ce retard à l’empalement est le résultat d’au moins deux effets. La vitesse relative de la membrane réduit la vitesse d’impact. La courbure de la membrane flexible pendant l’impact augmente la fraction solide, les textures deviennent plus proches ce qui évite la pénétration du fluide.",
+    "crumbs": [
+      "Test section",
+      "These"
+    ]
+  },
+  {
+    "objectID": "notebook/these.html#articles",
+    "href": "notebook/these.html#articles",
+    "title": "These",
+    "section": "",
+    "text": "Mes travaux ont conduit à la rédaction de deux articles.\n\n\nGrégoire Martouzet, Choongyeop Lee, Christophe Pirat, Christophe Ybert et Anne-Laure Biance Consulter\n\n\nConsulter sur le site de l’éditeur (version finale)\n\n\nConsulter sur archives-ouvertes.fr (pré-version)\n\n\n\n    @article{martouzet2020drag,\n      title={Drag reduction on drop during impact on multiscale superhydrophobic surfaces},\n      author={Martouzet, Gr{\\'e}goire and Lee, Choongyeop and Pirat, Christophe and Ybert, Christophe and Biance, Anne-Laure},\n      journal={Journal of Fluid Mechanics},\n      volume={892},\n      year={2020},\n      publisher={Cambridge University Press}\n    }\n\n\n\n\n\n\nGrégoire Martouzet, Loren Jørgensen, Yoann Pelet, Anne-Laure Biance, et Catherine Barentin\n\n\n\nConsulter sur le site de l’éditeur (version finale)\n\n\nConsulter sur archives-ouvertes.fr (pré-version)\n\n\n\n    @article{martouzet2021dynamic,\n      title={Dynamic arrest during the spreading of a yield stress fluid drop},\n      author={Martouzet, Gr{\\'e}goire and J{\\o}rgensen, Loren and Pelet, Yoann and Biance, Anne-Laure and Barentin, Catherine},\n      journal={Physical Review Fluids},\n      volume={6},\n      number={4},\n      pages={044006},\n      year={2021},\n      publisher={APS}\n    }\n\n\nLorsqu’une goutte de liquide est déposée doucement sur une surface mouillante, elle s’étale à cause des forces capillaires jusqu’à atteindre un équilibre thermodynamique défini par les tensions de surface du système. Nous étudions ici expérimentalement l’étalement d’une goutte faite de fluide complexe à seuil. Un tel fluide ne coule que si la contrainte appliquée est supérieure à une valeur donnée. Dans ce cas, après la phase d’étalement, le mouvement s’arrête et un angle de contact bien défini peut être mesuré. Cet angle de contact dépend des propriétées rhéologiques du fluide (en particulier de sa contrainte seuil), de son rayon et de la condition hydrodynamique à la surface. Ce résultat est comparé quantitativement à une analyse montrant que à cause à la contrainte seuil, un équilibre mécanique est atteind et il ne correspond pas à l’équilibre thermodynamique.",
+    "crumbs": [
+      "Test section",
+      "These"
+    ]
   }
 ]

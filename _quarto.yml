@@ -3,12 +3,20 @@ project:
   output-dir: docs
   
 website:
-  title: "MY WEB SITE"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - projects.qmd
+  title: "Martouzet Physique"
+  sidebar:
+    background: "#D9E3E4"
+    pinned: true
+    align: center
+    style: "docked"
+    contents:
+      - section: "Test section"
+        contents:
+          - href: index.qmd
+            text: Home
+          - projects.qmd
+          - notebook/these.ipynb
+          - notebook/intro_graphique.ipynb 
     tools:
       - icon: twitter
         href: https://twitter.com/
@@ -16,12 +24,16 @@ website:
         href: https://github.com/YOURUSERNAME/YOURREPO
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"
-    left: "&copy; Copyright 2023, YOUR NAME"
+    left: "&copy; Copyright 2025, Martouzet G."
 
 format:
   html:
-    theme: cerulean
-    toc: true
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme-dark.scss]
+    toc: false
+
+freeze: auto
 
 editor: source
 
