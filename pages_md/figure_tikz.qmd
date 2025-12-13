@@ -1,0 +1,17 @@
+---
+title: "Figures tikz"
+---
+
+
+Lien vers des sites pas mal :
+
+
+
+![Lac gelé](figures_tikz/lac_gelée.pdf)
+
+<details>
+<summary>Cliquez sur l'image pour voir le texte</summary>
+```{include} lac_gele.tex
+```
+</details>
+

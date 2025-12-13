@@ -1,0 +1,12 @@
+{
+  "hash": "bcac209482ebf2459ac45f8e4129dc0d",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Figures tikz\"\n---\n\n<style>\n    .container {\n      display: flex;\n      gap: 10px;\n      padding: 20px;\n    }\n\n    .box {\n      flex: 1;\n      padding: 15px;\n      height: 280px;\n      color: white;\n      text-align: justify;\n      box-sizing: border-box;\n    }\n\n    .red { background-color: red; }\n    .green { background-color: green; }\n    .blue { background-color: blue; }\n\n    h1 {\n      text-align: center;\n      color: green;\n    }\n  </style>\n  \n<div class=\"container\">\n    <div class=\"box red\"><h2>Learn:</h2> Access tutorials, articles, and videos on programming and computer science topics.</div>\n    <div class=\"box green\"><h2>Practice:</h2> Sharpen your skills with coding problems, quizzes, and interview questions.</div>\n    <div class=\"box blue\"><h2>Contribute:</h2> Join the GFG community by submitting articles and helping others grow.</div>\n  </div>\n\nLien vers des sites pas mal :\n\n\n\n![Lac gelé](figures_tikz/lac_gelée.pdf)\n\n<details>\n<summary>Cliquez sur l'image pour voir le texte</summary>\n```{tex}\n\\begin{tikzpicture}\n\t\\fill[gray!20] (-0.5, 0) rectangle (4, -1) node[black, midway] {glace};\n\t\\fill[blue!20] (-0.5, -1) rectangle (4, -2.3) node[black, midway] {eau} node[above left, black] {$T_e$};\n\t\\node[above] at (1.75, 0) {air};\n\t\\draw (0, 0) node[above left] {$0$} -- (4, 0) node[above left] {$T_a$};\n\t\\draw (0, -1) -- (4, -1) ;\n\t\\draw[dashed] (-0.5, 0) -- (0,0) (-0.5, -1) -- (0, -1);\n\t\\draw[->] (0, 0.5) -- (0, -2.5) node[below] {$z$};\n\t\\draw[<->] (4.2, 0) -- (4.2, -1) node[midway, right] {$h(t)$};\n\\end{tikzpicture}\n```\n</details>\n\n",
+    "supporting": [
+      "figure_tikz_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

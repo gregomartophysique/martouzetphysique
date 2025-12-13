@@ -10,18 +10,19 @@ website:
     align: center
     style: "docked"
     contents:
+      - href: index.qmd
+        text: Accueil
       - section: "Test section"
         contents:
-          - href: index.qmd
-            text: Home
-          - projects.qmd
           - notebook/these.ipynb
           - notebook/intro_graphique.ipynb 
+          - pages_md/figure_tikz.qmd
+          - notebook/Article_Pédagogique.ipynb
     tools:
-      - icon: twitter
-        href: https://twitter.com/
+      - icon: linkedin
+        href: https://www.linkedin.com/in/gr%C3%A9goire-martouzet-a61786129/
       - icon: github
-        href: https://github.com/YOURUSERNAME/YOURREPO
+        href: https://github.com/gregomartophysique/martouzetphysique/
   page-footer:
     right: "Built with [Quarto](https://quarto.org/)"
     left: "&copy; Copyright 2025, Martouzet G."
@@ -30,7 +31,6 @@ format:
   html:
     theme:
       light: [cosmo, theme.scss]
-      dark: [cosmo, theme-dark.scss]
     toc: false
 
 freeze: auto
