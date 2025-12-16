@@ -4,6 +4,7 @@ project:
   
 website:
   title: "Martouzet Physique"
+  bread-crumbs: false
   sidebar:
     background: "#D9E3E4"
     pinned: true
@@ -12,12 +13,30 @@ website:
     contents:
       - href: index.qmd
         text: Accueil
-      - section: "Test section"
+      - section: "Physique PCSI/PSI"
+        contents: 
+          - notebook/intro_graphique.ipynb 
+      - section: "Autres enseignements"
+        contents: 
+          - section: "ITC PSI"
+            contents:
+              - notebook/intro_graphique.ipynb 
+          - section: "Terminale ES"
+            contents:
+              - notebook/intro_graphique.ipynb 
+          - section: "DNL première anglais"
+            contents:
+              - notebook/intro_graphique.ipynb 
+          - section: "Approfondissement terminale"
+            contents:
+              - notebook/intro_graphique.ipynb 
+      - section: "Mes publications"
         contents:
           - notebook/these.ipynb
-          - notebook/intro_graphique.ipynb 
-          - pages_md/figure_tikz.qmd
           - notebook/Article_Pédagogique.ipynb
+      - section: "Outils"
+        contents: 
+          - pages_md/figure_tikz.qmd 
     tools:
       - icon: linkedin
         href: https://www.linkedin.com/in/gr%C3%A9goire-martouzet-a61786129/
@@ -32,6 +51,9 @@ format:
     theme:
       light: [cosmo, theme.scss]
     toc: false
+    
+filters:
+  - include-tex.lua
 
 freeze: auto
 

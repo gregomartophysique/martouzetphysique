@@ -1,0 +1,29 @@
+.figuretikz {
+  color: red;
+  margin: 20px auto;
+  padding: 0 20px;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  gap: 15px;
+  justify-content: center;
+}
+
+.item_figure {
+    min-height: 200px;
+    max-height: 200px;
+    width: 200px;
+    /* background: rgb(220, 220, 220); */
+    /* color: #f1f1f1; */
+    border: 1px solid gray;
+    border-color: gray;
+    /* padding: 10px; */
+    display: grid;
+    gap: 10px;
+    grid-template-rows: 1fr 65px 1fr;
+    grid-template-columns: auto;
+    grid-template-areas:
+        "item-figuretikz-titre"
+        "item-figuretikz-image"
+        "item-figuretikz-code";
+}
