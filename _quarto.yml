@@ -16,6 +16,7 @@ website:
       - section: "Physique PCSI/PSI"
         contents: 
           - notebook/intro_graphique.ipynb 
+          - pages_md/_site/test_graph.qmd
       - section: "Autres enseignements"
         contents: 
           - section: "ITC PSI"
