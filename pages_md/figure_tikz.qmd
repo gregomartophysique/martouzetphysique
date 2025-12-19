@@ -43,8 +43,6 @@ code
 <!--#include file="lac_gele.tex" -->
 </code></pre>
 
-```{{<.include-tex file="lac_gele.tex">}}```
-
 
 <html lang="en">
   <head>
