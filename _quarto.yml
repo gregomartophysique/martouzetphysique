@@ -15,29 +15,29 @@ website:
         text: Accueil
       - section: "Physique PCSI/PSI"
         contents: 
-          - notebook/intro_graphique.ipynb 
-          - pages_md/_site/test_graph.qmd
+          - pages/intro_graphique.ipynb
       - section: "Autres enseignements"
         contents: 
           - section: "ITC PSI"
             contents:
-              - notebook/intro_graphique.ipynb 
+              - pages/intro_graphique.ipynb 
           - section: "Terminale ES"
             contents:
-              - notebook/intro_graphique.ipynb 
+              - pages/intro_graphique.ipynb 
           - section: "DNL première anglais"
             contents:
-              - notebook/intro_graphique.ipynb 
+              - pages/intro_graphique.ipynb 
           - section: "Approfondissement terminale"
             contents:
-              - notebook/intro_graphique.ipynb 
+              - pages/intro_graphique.ipynb 
       - section: "Mes publications"
         contents:
-          - notebook/these.ipynb
-          - notebook/Article_Pédagogique.ipynb
+          - pages/these.ipynb
+          - pages/Article_Pédagogique.ipynb
       - section: "Outils"
         contents: 
-          - pages_md/figure_tikz.qmd 
+          - pages/figure_tikz.qmd
+          - pages/applications_python.qmd
     tools:
       - icon: linkedin
         href: https://www.linkedin.com/in/gr%C3%A9goire-martouzet-a61786129/
@@ -55,6 +55,8 @@ format:
     
 filters:
   - include-tex.lua
+  - shinylive.lua
+
 
 freeze: auto
 

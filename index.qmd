@@ -3,7 +3,7 @@ title: ""
 title-block: false
 ---
 
-![Auxerre](img/skyline_auxerre.png)
+![Auxerre](resources/skyline_auxerre.png)
 
 # Bonjour et bienvenue sur mon site !
 
