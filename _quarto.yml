@@ -19,6 +19,7 @@ website:
         text: Accueil
       - section: "Physique PCSI/PSI"
         contents: 
+          - pages/fiches_methodes.ipynb
           - pages/methode_euler_2.ipynb
       #- section: "Autres enseignements"
       #  contents: 
