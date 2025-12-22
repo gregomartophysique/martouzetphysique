@@ -1,6 +1,10 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!application_python/"
   
 website:
   title: "Martouzet Physique"
@@ -15,21 +19,12 @@ website:
         text: Accueil
       - section: "Physique PCSI/PSI"
         contents: 
-          - pages/intro_graphique.ipynb
-      - section: "Autres enseignements"
-        contents: 
-          - section: "ITC PSI"
-            contents:
-              - pages/intro_graphique.ipynb 
-          - section: "Terminale ES"
-            contents:
-              - pages/intro_graphique.ipynb 
-          - section: "DNL première anglais"
-            contents:
-              - pages/intro_graphique.ipynb 
-          - section: "Approfondissement terminale"
-            contents:
-              - pages/intro_graphique.ipynb 
+          - pages/methode_euler_2.ipynb
+      #- section: "Autres enseignements"
+      #  contents: 
+      #    - section: "ITC PSI"
+      #      contents:
+      #        - pages/intro_graphique.ipynb 
       - section: "Mes publications"
         contents:
           - pages/these.ipynb
@@ -58,7 +53,7 @@ filters:
   - shinylive.lua
 
 
-freeze: auto
+# freeze: auto
 
 editor: source
 

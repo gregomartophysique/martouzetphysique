@@ -3,7 +3,7 @@ title: "Figures tikz"
 format:
   html:
     toc: true
-    css: fig_styles.css
+    css: resources/fig_styles.css
 ---
 
 

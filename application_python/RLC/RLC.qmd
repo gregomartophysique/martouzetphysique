@@ -1,0 +1,113 @@
+---
+title: "Circuit RLC série"
+format:
+  dashboard:
+    orientation: columns
+server: shiny
+---
+
+```{python, echo=F}
+#| context: setup
+#css: https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css
+#include-in-header:  : https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js
+import numpy as np
+import matplotlib.pyplot as plt
+from shiny import render, reactive, ui
+from scipy.integrate import odeint
+
+#with ui.tags.head():
+#    # Link KaTeX CSS
+#    ui.tags.script(src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"),
+#    ui.tags.script("""
+#        document.addEventListener('DOMContentLoaded', function() {
+#            renderMathInElement(document.body);
+#        });
+#    """
+#    )
+```
+
+## Column {width=20%}
+
+```{python}
+#| title: Paramètres
+#| expandable: false
+
+ui.input_slider("R", "R", 1, 4, value=1, step=0.1, post="R")
+
+ui.input_slider("C", "C", -9, 0, value=-6, step=0.1, post="F")
+
+ui.input_slider("L", "L", -6, 0, value=-3, step=0.1, post="H")
+
+ui.input_slider("E0", "\\[E_0\\]", 0, 30, value=5, step=0.1, post="V")
+
+ui.input_switch("libre", "Régime libre", False)
+```
+
+## Column {width=80%}
+
+```{python}
+#| title: Graphique temporel
+#| expandable: false
+
+@render.plot()
+def nav_1():
+    data = run_simulation(
+        input.R(),
+        input.L(),
+        input.C(),
+        input.E0(),
+        input.libre()
+    )
+
+    return make_plot(*data)
+```
+
+```{python}
+def equadiff(Q, t, E0, omega0, l, C):
+    q, dq = Q
+    dqdt = dq
+    d2qdt2 = omega0**2*(E0*C-q) - 2*l*dq
+    return dqdt, d2qdt2
+
+def run_simulation(R0, L0, C0, E0, libre):
+  t = np.linspace(0, 0.1, 10001)
+  
+  R = 10**R0
+  L = 10**L0
+  C = 10**C0
+	
+  omega0 = 1/(L*C)**0.5
+  l = R/(2*L)
+  Q = 1/(R*C*omega0)
+  
+  if libre:
+    Q0 = [E0,0]
+    E = 0
+  else:
+    Q0 = [0,0]
+    E = E0
+  sol = odeint(equadiff, Q0 , t, args=(E, omega0, l, C))
+  q = sol[:, 0]
+	
+  return t, q/C
+
+
+def make_plot(t, y):
+
+    # Define the figure and axes
+    fig = plt.figure()
+    ax1 = plt.gca()
+    
+    ax1.plot( t, y )
+    #ax1.set_xlim(0, np.max(t) )
+    #ax1.set_ylim(-5, 5)
+    
+    ax1.title.set_text("Graphique")
+    ax1.set_xlabel("t")
+    ax1.set_ylabel("s(t)")
+    ax1.grid(True)
+    
+    plt.tight_layout()
+
+    return fig
+```

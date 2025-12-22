@@ -44,14 +44,69 @@
     ]
   },
   {
-    "objectID": "pages/figure_tikz.html",
-    "href": "pages/figure_tikz.html",
-    "title": "Figures tikz",
+    "objectID": "pages/methode_euler_2.html",
+    "href": "pages/methode_euler_2.html",
+    "title": "Méthode d’Euler",
     "section": "",
-    "text": "Lien vers des sites pas mals :\n\nun\ndeux\n\n\n\n&lt;img src=\"figures_tikz/lac_gelée.pdf\"&gt;\n&lt;details&gt;\n&lt;summary&gt;Cliquez sur l'image pour voir le texte&lt;/summary&gt;\n  Voila un code tex\n&lt;/details&gt;\n\n\nText1\n\n\nText1\n\n\nText1\n\n\n\n\nlac_gele.tex\n\ncode",
+    "text": "En physique-chimie, de nombreux phénomènes sont décrits par des équations différentielles, qu’il s’agisse de la chute d’un objet, du comportement d’un circuit électrique ou de l’évolution des concentrations en fonction du temps. Ces équations expriment comment une grandeur évolue selon une variable, il s’agit souvent d’une variable temporelle, mais pas toujours. Cependant, il est souvent impossible d’obtenir une solution analytique exacte pour ces équations, en particulier lorsqu’elles sont non linéaires ou qu’elles dépendent de plusieurs variables. C’est là qu’intervient la méthode d’Euler, c’est l’une des méthodes numériques les plus simples pour obtenir une solution approchée.",
     "crumbs": [
-      "Outils",
-      "Figures tikz"
+      "Physique PCSI/PSI",
+      "Méthode d’Euler"
+    ]
+  },
+  {
+    "objectID": "pages/methode_euler_2.html#objectif",
+    "href": "pages/methode_euler_2.html#objectif",
+    "title": "Méthode d’Euler",
+    "section": "",
+    "text": "En physique-chimie, de nombreux phénomènes sont décrits par des équations différentielles, qu’il s’agisse de la chute d’un objet, du comportement d’un circuit électrique ou de l’évolution des concentrations en fonction du temps. Ces équations expriment comment une grandeur évolue selon une variable, il s’agit souvent d’une variable temporelle, mais pas toujours. Cependant, il est souvent impossible d’obtenir une solution analytique exacte pour ces équations, en particulier lorsqu’elles sont non linéaires ou qu’elles dépendent de plusieurs variables. C’est là qu’intervient la méthode d’Euler, c’est l’une des méthodes numériques les plus simples pour obtenir une solution approchée.",
+    "crumbs": [
+      "Physique PCSI/PSI",
+      "Méthode d’Euler"
+    ]
+  },
+  {
+    "objectID": "pages/methode_euler_2.html#principe-de-la-méthode",
+    "href": "pages/methode_euler_2.html#principe-de-la-méthode",
+    "title": "Méthode d’Euler",
+    "section": "Principe de la méthode",
+    "text": "Principe de la méthode\nL’idée fondamentale de la méthode d’Euler est d’approximer la dérivée \\(\\frac{\\text{d}y}{\\text{d}t}\\) par son taux d’accroissement sur l’intervalle \\([t,t+\\text{d} t]\\). Autrement dit, cela revient à effectuer un développement limité au premier ordre de \\(y(t+\\text{d} t)\\) :\n\\[\n  \\frac{\\text{d}y}{\\text{d}t}\n\\]\nLa première étape est de discrétiser le domaine continu de résolution, il correspond au temps, à une direction (une position, une altitude, …), ou toute autre variable … Dans la suite on note \\(t\\) la variable, mais il ne faut pas oublier son sens plus large.\nPour cela, on le divise en un ensemble discret de points afin de rendre le problème soluble par des techniques de calcul numérique. Lors de cette étape, on remplace les fonctions continues par des approximations basées sur les valeurs des variables à des points spécifiques.\nOn définit un pas de temps \\(\\mathrm{d}t\\) et cela donne la suite de nombres \\((t_n)\\) telle que :\n\\[\n    t_n = n \\cdot\\text{d}t\\quad\\forall n\\in\\mathbb{N}\n\\] De même toutes les fonctions et en particulier celle que l’on cherche seront aussi discrétisées. La fonction recherchée \\(y(t)\\) sera alors approximée par une suite \\((y_n)\\) : [ y_n = y( nt) n ] %Dans la suite, on note \\(t_i = i\\text{d}t\\) et \\(X_i=X(t_i)=X(i\\text{d}t)\\). Le temps et la fonction recherchée ne sont donc plus des grandeurs mais des grandeurs .",
+    "crumbs": [
+      "Physique PCSI/PSI",
+      "Méthode d’Euler"
+    ]
+  },
+  {
+    "objectID": "pages/methode_euler_2.html#implémentation-en-python",
+    "href": "pages/methode_euler_2.html#implémentation-en-python",
+    "title": "Méthode d’Euler",
+    "section": "Implémentation en python",
+    "text": "Implémentation en python\nCela est particulièrement simple à mettre en place informatiquement car cela revient à manipuler des tableaux de données. En python le type peut être utilisés de cette manière et interprétés comme des suites.\nLe but est alors de remplir petit à petit les listes contenant la variable temporelle et la fonction recherchée en utilisant une boucle for ou while.\nAvec une boucle while :\n\nimport matplotlib.pyplot as plt\ntau = 1\ndt = 0.1\nyf = 5\nt = [0]\ny = [0] # Condition initiale\n\nwhile t[-1]&lt;5*tau:\n    t.append( t[-1]+dt )\n    y.append( y[-1]+dt*(yf-y[-1]) )\n    \nplt.xlabel('$t$')\nplt.ylabel('$y(t)$')\nplt.plot( t, y )",
+    "crumbs": [
+      "Physique PCSI/PSI",
+      "Méthode d’Euler"
+    ]
+  },
+  {
+    "objectID": "pages/methode_euler_2.html#influence-du-pas-dintégration",
+    "href": "pages/methode_euler_2.html#influence-du-pas-dintégration",
+    "title": "Méthode d’Euler",
+    "section": "Influence du pas d’intégration",
+    "text": "Influence du pas d’intégration\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 500\nfrom shiny import App, render, ui\nimport numpy as np\nimport matplotlib.pyplot as plt\n\napp_ui = ui.page_fluid(\n        ui.input_numeric(\"dt\", \"dt = \", 0.1, min=0.001, max=10, step=0.1) ,\n        ui.output_plot(\"plot\"),\n)\n\ndef solve( dt ):\n    t_liste = [0]\n    U_liste = [0]\n\n    tmax = 5\n    while t_liste[-1] &lt; tmax :\n        t_liste.append( t_liste[-1]+dt )\n        U_liste.append( U_liste[-1]+dt*(5-U_liste[-1]) )\n\n    return t_liste, U_liste\n\ndef server(input, output, session):\n    t_exact = np.linspace( 0, 5, 101)\n    \n    @output\n    @render.plot(alt=\"Sine wave\")\n    def plot():\n        fig, (ax1, ax2) = plt.subplots(1, 2)\n        ax1.set_xlim([0, 5])\n        ax2.set_xlim([0, 5])\n        ax1.set_ylim([0, 7])\n        \n        \n        dt = input.dt() \n        if type(dt)==int or type(dt)==float:\n            t, uc = solve( input.dt() )\n            ax1.plot(t, uc, '+')\n            ax1.plot(t, uc, 'C0', lw=0.7)\n\n            t_erreur = np.array( t )\n            erreur = 100*np.abs( np.array( uc ) - 5*(1-np.exp(-t_erreur)))/(5*(1-np.exp(-t_erreur)))\n\n            ax2.plot(t_erreur, erreur, c='C1', marker='+', ls='')\n            ax2.plot(t_erreur, erreur, c='C1', lw=0.7)\n        \n        ax1.set_xlabel('$t$')\n        ax1.set_ylabel('$u_c(t)$')\n        ax2.set_xlabel('$t$')\n        ax2.set_ylabel('erreur [%]')\n        \n        ax1.plot(t_exact, 5*(1-np.exp(-t_exact)), 'k--', label='')\n        ax1.grid()\n\n\napp = App(app_ui, server)",
+    "crumbs": [
+      "Physique PCSI/PSI",
+      "Méthode d’Euler"
+    ]
+  },
+  {
+    "objectID": "pages/methode_euler_2.html#pour-aller-plus-loin",
+    "href": "pages/methode_euler_2.html#pour-aller-plus-loin",
+    "title": "Méthode d’Euler",
+    "section": "Pour aller plus loin",
+    "text": "Pour aller plus loin",
+    "crumbs": [
+      "Physique PCSI/PSI",
+      "Méthode d’Euler"
     ]
   },
   {
@@ -66,6 +121,13 @@
     ]
   },
   {
+    "objectID": "pages/codes_python/signal_sinusoidal.html",
+    "href": "pages/codes_python/signal_sinusoidal.html",
+    "title": "Signal sinusoïdal",
+    "section": "",
+    "text": "#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 500\n\nfrom shiny import App, render, ui\nimport numpy as np\nimport matplotlib.pyplot as plt\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n            ui.input_slider(\"period\", \"Period\", 0.5, 4, 1, step=0.5),\n            ui.input_slider(\"amplitude\", \"Amplitude\", 0, 2, 1, step=0.25),\n            ui.input_slider(\"shift\", \"Phase shift\", 0, 2, 0, step=0.1),\n        ),\n        ui.output_plot(\"plot\"),\n    ),\n)\n\n\ndef server(input, output, session):\n    @output\n    @render.plot(alt=\"Sine wave\")\n    def plot():\n        t = np.arange(0.0, 4.0, 0.01)\n        s = input.amplitude() * np.sin(\n            2 * np.pi / input.period() * (t - input.shift() / 2)\n        )\n        fig, ax = plt.subplots()\n        ax.set_ylim([-2, 2])\n        ax.plot(t, s)\n        ax.grid()\n\n\napp = App(app_ui, server)"
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Bonjour et bienvenue sur mon site !",
@@ -78,12 +140,23 @@
   {
     "objectID": "pages/applications_python.html",
     "href": "pages/applications_python.html",
-    "title": "applications_python",
+    "title": "Applications Python",
     "section": "",
-    "text": "Embedded Shiny application\nTo display a running Shiny app, use a code block with {shinylive-python}.\n#| '!! shinylive warning !!': |\n#|   shinylive does not work in self-contained HTML documents.\n#|   Please set `embed-resources: false` in your metadata.\n#| standalone: true\n#| viewerHeight: 420\n\nfrom shiny import App, render, ui\nimport numpy as np\nimport matplotlib.pyplot as plt\n\napp_ui = ui.page_fluid(\n    ui.layout_sidebar(\n        ui.sidebar(\n            ui.input_slider(\"period\", \"Period\", 0.5, 4, 1, step=0.5),\n            ui.input_slider(\"amplitude\", \"Amplitude\", 0, 2, 1, step=0.25),\n            ui.input_slider(\"shift\", \"Phase shift\", 0, 2, 0, step=0.1),\n        ),\n        ui.output_plot(\"plot\"),\n    ),\n)\n\n\ndef server(input, output, session):\n    @output\n    @render.plot(alt=\"Sine wave\")\n    def plot():\n        t = np.arange(0.0, 4.0, 0.01)\n        s = input.amplitude() * np.sin(\n            2 * np.pi / input.period() * (t - input.shift() / 2)\n        )\n        fig, ax = plt.subplots()\n        ax.set_ylim([-2, 2])\n        ax.plot(t, s)\n        ax.grid()\n\n\napp = App(app_ui, server)",
+    "text": "Signal sinusoïdal\n\n\n\n\n\n\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Outils",
-      "applications_python"
+      "Applications Python"
+    ]
+  },
+  {
+    "objectID": "pages/figure_tikz.html",
+    "href": "pages/figure_tikz.html",
+    "title": "Figures tikz",
+    "section": "",
+    "text": "Lien vers des sites pas mals :\n\nun\ndeux\n\n\n\n&lt;img src=\"figures_tikz/lac_gelée.pdf\"&gt;\n&lt;details&gt;\n&lt;summary&gt;Cliquez sur l'image pour voir le texte&lt;/summary&gt;\n  Voila un code tex\n&lt;/details&gt;\n\n\nText1\n\n\nText1\n\n\nText1\n\n\n\n\nlac_gele.tex\n\ncode",
+    "crumbs": [
+      "Outils",
+      "Figures tikz"
     ]
   }
 ]
