@@ -1,0 +1,10 @@
+- title: "Figure 1"
+  author: Norah Jones
+  image: "figures_tikz/lac_gelée.pdf"
+  code: "blabla"
+  categories: [archived, technology]
+- title: "Figure 2"
+  author: Norah Jones
+  image: "figures_tikz/lac_gelée.pdf"
+  code: "blabla"
+  categories: [archived]

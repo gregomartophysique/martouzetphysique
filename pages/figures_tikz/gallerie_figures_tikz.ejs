@@ -1,0 +1,13 @@
+<div class="figuretikz">
+<ul>
+<% for (const item of items) { %>
+  <li><a href="<%- item.path %>"><%= item.title %></a>
+  <img src="figures_tikz/lac_gelée.pdf">
+  <details>
+    <summary>Code</summary>
+      %= item.['code'] %
+    </details>
+  </li>
+<% } %>
+</ul>
+</div>

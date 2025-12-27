@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Figures tikz – Martouzet Physique</title>
+<title>Suite de Fibonacci – Martouzet Physique</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -104,10 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
 
-<link rel="stylesheet" href="resources/fig_styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="nav-sidebar docked fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -117,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Figures tikz</h1>
+          <h1 class="quarto-secondary-nav-title">Suite de Fibonacci</h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -208,7 +207,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/figure_tikz.html" class="sidebar-item-text sidebar-link active">
+  <a href="../pages/figure_tikz.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Figures tikz</span></a>
   </div>
 </li>
@@ -225,15 +224,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Figures tikz</h1>
+<h1 class="title d-none d-lg-block">Suite de Fibonacci</h1>
 </div>
 
 
@@ -250,64 +247,181 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Lien vers des sites pas mals :</p>
-<ul>
-<li>un</li>
-<li>deux</li>
-</ul>
-<details>
-  <summary>Cliquez sur l'image pour voir le texte</summary>
-  Voila un code tex
-</details>
-
-<div class="figuretikz">
-  <div class="item_figure">
-    <div>Lac gelé</div>
-    <img src="figures_tikz/lac_gelée.pdf">
-    <details>
-    <summary>Cliquez sur l'image pour voir le texte</summary>
-      Voila un code tex
-    </details>
-  </div>
-  <div class="item_figure"> Text1 </div>
-  <div class="item_figure"> Text1 </div>
-  <div class="item_figure"> Text1 </div>
+<section id="approche-naïve" class="level3">
+<h3 class="anchored" data-anchor-id="approche-naïve">Approche naïve</h3>
+<div id="cell-2" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fibonacci(n):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> n<span class="op">==</span><span class="dv">1</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> fibonacci(n<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span>fibonacci(n<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>fibonacci( <span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+<pre><code>55</code></pre>
 </div>
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>lac_gele.tex</strong></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-filename="lac_gele.tex"><pre class="sourceCode tex code-with-copy"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>code</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="calcul-de-bas-en-haut" class="level3">
+<h3 class="anchored" data-anchor-id="calcul-de-bas-en-haut">Calcul de bas en haut</h3>
+<div id="cell-4" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fibonacci_bas_en_haut(n):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    a, b <span class="op">=</span> <span class="dv">0</span>,<span class="dv">1</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n<span class="op">-</span><span class="dv">1</span>):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        a, b <span class="op">=</span> b, a<span class="op">+</span>b</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> b</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>fibonacci_bas_en_haut(<span class="dv">1000</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+<pre><code>43466557686937456435688527675040625802564660517371780402481729089536555417949051890403879840079255169295922593080322634775209689623239873322471161642996440906533187938298969649928516003704476137795166849228875</code></pre>
 </div>
-<div class="sourceCode tex">
-
 </div>
-<pre><code class="language-tex">
-<!--#include file="lac_gele.tex" -->
-</code></pre>
-
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="./_site/shinylive/load-shinylive-sw.js" type="module"></script>
-<script type="module">
-      import { runExportedApp } from "./_site/shinylive/shinylive.js";
-      runExportedApp({
-        id: "root",
-        appEngine: "python",
-        relPath: "",
-      });
-    </script>
-<p><link rel="stylesheet" href="./_site/shinylive/style-resets.css"> <link rel="stylesheet" href="./_site/shinylive/shinylive.css"></p>
-
-
-<div id="root" style="height: 100vh; width: 100vw">
-
+</section>
+<section id="calul-de-haut-en-bas-avec-mémoïsation" class="level3">
+<h3 class="anchored" data-anchor-id="calul-de-haut-en-bas-avec-mémoïsation">Calul de haut en bas avec mémoïsation</h3>
+<div id="cell-6" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> {<span class="dv">0</span>:<span class="dv">0</span>,<span class="dv">1</span>:<span class="dv">1</span>}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fibonacci_memoisation(n):</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n <span class="kw">in</span> d:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> d[n]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    d[n] <span class="op">=</span> fibonacci_memoisation(n<span class="op">-</span><span class="dv">1</span>)<span class="op">+</span>fibonacci_memoisation(n<span class="op">-</span><span class="dv">2</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d[n]</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>fibonacci_memoisation(<span class="dv">992</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>925239415994386554869588530526732113391791027107146089675782213997604728132159099144675176879829352818608730653883769505215818615700996374793242741022444070914268567004041261931970004460258737885521082308229</code></pre>
+</div>
+</div>
+</section>
+<section id="rendu-de-monnaie" class="level1">
+<h1>Rendu de monnaie</h1>
+<section id="mémoïsation" class="level3">
+<h3 class="anchored" data-anchor-id="mémoïsation">Mémoïsation</h3>
+<div id="cell-8" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rendu_memoisation(pieces, somme):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_memoisation([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>], <span class="dv">12</span>) )</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_memoisation([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>], <span class="dv">6</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="rendu-de-monnaie-par-algorithme-bas-en-haut" class="level3">
+<h3 class="anchored" data-anchor-id="rendu-de-monnaie-par-algorithme-bas-en-haut">Rendu de monnaie par algorithme “Bas en haut”</h3>
+<div id="cell-10" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rendu_bas_en_haut(pieces, somme):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_bas_en_haut([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>], <span class="dv">12</span>) )</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_bas_en_haut([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>], <span class="dv">6</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="affichage-de-la-solution" class="level3">
+<h3 class="anchored" data-anchor-id="affichage-de-la-solution">Affichage de la solution</h3>
+<p>Modifier l’algorithme “bas en haut” pour que qu’il ne donne pas que le nombre de pièce minimal mais aussi la solution associée. La fonction devra alors renvoyer un tuple contenant la solution et une liste avec toutes les pièces utilisées (éventuellement en plusieurs exemplaires).</p>
+<div id="cell-12" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rendu_solution( pieces, somme ):</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    pieces.sort()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialisation</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> {<span class="dv">0</span>:(<span class="dv">0</span>,[])}</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># relation de récurence</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> s <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, somme<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>        minimum <span class="op">=</span> d[s<span class="op">-</span>pieces[<span class="dv">0</span>]][<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>        liste_optimale <span class="op">=</span> d[s<span class="op">-</span>pieces[<span class="dv">0</span>]][<span class="dv">1</span>][:]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>        piece_a_garder <span class="op">=</span> pieces[<span class="dv">0</span>]</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> p <span class="kw">in</span> pieces[<span class="dv">1</span>:]:</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> s<span class="op">-</span>p<span class="op">&gt;=</span><span class="dv">0</span>:</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> d[s<span class="op">-</span>p][<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span><span class="op">&lt;</span>minimum:</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>                    piece_a_garder <span class="op">=</span> p</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>                    liste_optimale <span class="op">=</span> d[s<span class="op">-</span>p][<span class="dv">1</span>][:]</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                    minimum <span class="op">=</span> d[s<span class="op">-</span>p][<span class="dv">0</span>]<span class="op">+</span><span class="dv">1</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        liste_optimale.append( piece_a_garder )   </span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        d[s] <span class="op">=</span> (minimum, liste_optimale[:])</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> d[somme]</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_solution([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>], <span class="dv">12</span>) )</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_solution([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>], <span class="dv">6</span>) )</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( rendu_solution([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">5</span>], <span class="dv">101</span>) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(3, [5, 5, 2])
+(2, [3, 3])
+(21, [5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 1])</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="problème-du-sac-à-dos" class="level1">
+<h1>Problème du sac à dos</h1>
+<div id="cell-14" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> [...] </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># m et v doivent avoir la même taille</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="cell-15" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sac_a_dos(m, v):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">len</span>(m) <span class="co"># nombre d'objet dans la liste</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialisation du tableau que l’on va compléter :</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    V<span class="op">=</span> .................................................................</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remplissage du tableau</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    ...</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ...</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( sac_a_dos(m, v) )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="distance-dédition-de-levenshtein" class="level1">
+<h1>Distance d’édition de Levenshtein</h1>
+<section id="algorithme" class="level3">
+<h3 class="anchored" data-anchor-id="algorithme">Algorithme</h3>
+<div id="cell-20" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> levenshtein(S1,S2):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    n1, n2 <span class="op">=</span> <span class="bu">len</span>(S1),<span class="bu">len</span>(S2)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># initialisation du tableau que l’on va compléter :</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    T<span class="op">=</span> .................................................................</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remplissage de la 1ère colonne, et de la 1ère ligne</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n1<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        T[i][<span class="dv">0</span>]<span class="op">=</span> ...... <span class="co"># si S2 vide : distance d’édition = ....</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n2<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        T[<span class="dv">0</span>][j]<span class="op">=</span>....... <span class="co"># si S1 vide : distance d’édition = ....</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># remplissage du reste du tableau de bas en haut</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,n1<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,n2<span class="op">+</span><span class="dv">1</span>):</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> .................................... : <span class="co"># i-ème caractère de ch1 et j-ème de ch2 identiques</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>                <span class="co"># attention décalage entre le rang dans la chaine de caractère et le rang dans le tableau</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>                T[i][j]<span class="op">=</span>...................... <span class="co"># la distance d’édition est celle qui sépare les deux chaînes de caractères jusqu’à i-1, et j-1</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">else</span>: <span class="co"># on cherche la distance minimale</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                a<span class="op">=</span>....................... <span class="co"># suppression de ch1[i-1]</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>                b<span class="op">=</span>....................... <span class="co"># insertion de ch2[j-1] à la fin de ch1[i]</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>                c<span class="op">=</span>....................... <span class="co"># substitution de ch1[i-1] par ch2[j-1]</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>                T[i][j]<span class="op">=</span>.......................</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> ................. <span class="co"># le résultat est dans la case .........</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-cyan-fg ansi-bold">  Cell </span><span class="ansi-green-fg ansi-bold">In [3], line 4</span>
+<span class="ansi-yellow-fg ansi-bold">    T= .................................................................</span>
+<span class="ansi-white-fg ansi-bold">          ^</span>
+<span class="ansi-red-fg ansi-bold">SyntaxError</span><span class="ansi-red-fg ansi-bold">:</span> invalid syntax
+</pre>
+</div>
+</div>
+</div>
+</section>
+<section id="correction-orthographique" class="level3">
+<h3 class="anchored" data-anchor-id="correction-orthographique">Correction orthographique</h3>
+<p>On travaille ici avec un dictionnaire français alégé, il n’y pas les mots avec accents !</p>
+<div id="cell-23" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> load <span class="im">import</span> lecture_mots_francais</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>liste <span class="op">=</span> lecture_mots_francais()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>13945 mots lus</code></pre>
+</div>
 </div>
 
 
-
-
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

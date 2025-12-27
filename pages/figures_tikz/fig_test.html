@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+		.figuretikz {
+  color: red;
+  margin: 20px auto;
+  padding: 0 20px;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+  gap: 15px;
+  justify-content: center;
+}
+
+.item_figure {
+    color: black;
+    min-height: 200px;
+    max-height: 200px;
+    width: 200px;
+    border: 1px solid gray;
+    border-color: gray;
+}
+    </style>
+    <script>
+		//<!-- Begin
+		var code = document.querySelectorAll('.code');
+		function displaySubs(the_sub){
+		        if (document.getElementById(the_sub).style.display==""){
+		        document.getElementById(the_sub).style.display = "none";return
+		  }
+		for (i=0;i<code.length;i++) {
+		    code[i].style.display="none";
+		}
+		  document.getElementById(the_sub).style.display = "";
+		  }
+		//  End -->
+	</script>
+		
+</head>
+
+<body>
+	<details>
+  <summary>Cliquez sur l'image pour voir le texte</summary>
+  Voila un code tex
+</details>
+
+<div class="figuretikz">
+  <div class="item_figure">
+    <div>Lac gelé</div>
+    <img src="lac_gele.png" alt="lac_gele.png" height="auto">
+    <input class="btn_code" type="button" value="afficher code" onclick="displaySubs('sub7')">
+    <div id="sub7">Hello</div>
+  </div>
+  <div class="item_figure"> Text1 </div>
+  <div class="item_figure"> Text1 </div>
+  <div class="item_figure"> Text1 </div>
+</div>
+</body>
+
+</html>
