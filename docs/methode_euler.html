@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="fr">
 <head>
-    <title>Méthode d'Euler</title>
+    <title>MÃ©thode d'Euler</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -52,10 +52,10 @@
                         <a href="#homeSubmenu" class="submenu-toggle open">Physique PCSI/PSI<span class="arrow">></span></a>
                         <ul class="collapse submenu open" id="homeSubmenu">
                             <li>
-                                <a href="#">Fiches méthodes</a>
+                                <a href="#">Fiches mÃ©thodes</a>
                             </li>
                             <li class="active">
-                                <a href="./methode_euler.html">Méthode d'Euler</a>
+                                <a href="./methode_euler.html">MÃ©thode d'Euler</a>
                             </li>
                         </ul>
                     </li>
@@ -79,18 +79,18 @@
 
             </div>
 
-            <h1> Méthode d'Euler</h1>
+            <h1> MÃ©thode d'Euler</h1>
 
             <h2>Objectif</h2>
 
-            En physique-chimie, de nombreux phénomènes sont décrits par des équations différentielles, qu’il s’agisse de la chute d’un objet, du comportement d’un circuit électrique ou de l'évolution des concentrations en fonction du temps. Ces équations expriment comment une grandeur évolue selon une variable, il s'agit souvent d'une variable temporelle, mais pas toujours.
-            Cependant, il est souvent impossible d’obtenir une solution analytique exacte pour ces équations, en particulier lorsqu'elles sont non linéaires ou qu’elles dépendent de plusieurs variables. C’est là qu’intervient la méthode d’Euler, c'est l’une des méthodes numériques les plus simples pour
-            obtenir une solution approchée.
+            En physique-chimie, de nombreux phÃ©nomÃ¨nes sont dÃ©crits par des Ã©quations diffÃ©rentielles, quâ€™il sâ€™agisse de la chute dâ€™un objet, du comportement dâ€™un circuit Ã©lectrique ou de l'Ã©volution des concentrations en fonction du temps. Ces Ã©quations expriment comment une grandeur Ã©volue selon une variable, il s'agit souvent d'une variable temporelle, mais pas toujours.
+            Cependant, il est souvent impossible dâ€™obtenir une solution analytique exacte pour ces Ã©quations, en particulier lorsqu'elles sont non linÃ©aires ou quâ€™elles dÃ©pendent de plusieurs variables. Câ€™est lÃ  quâ€™intervient la mÃ©thode dâ€™Euler, c'est lâ€™une des mÃ©thodes numÃ©riques les plus simples pour
+            obtenir une solution approchÃ©e.
 
 
-            <h2>Principe de la méthode</h2>
+            <h2>Principe de la mÃ©thode</h2>
 
-            L'idée fondamentale de la méthode d'Euler est d'approximer la dérivée \(\frac{\text{d}y}{\text{d}t}\) par son taux d'accroissement sur l'intervalle \([t,t+\text{d} t]\).
+            L'idÃ©e fondamentale de la mÃ©thode d'Euler est d'approximer la dÃ©rivÃ©e \(\frac{\text{d}y}{\text{d}t}\) par son taux d'accroissement sur l'intervalle \([t,t+\text{d} t]\).
 
             $$
             \frac{\text{d}y}{\text{d}t} \simeq
@@ -101,7 +101,7 @@
             }
             $$
 
-            Autrement dit, cela revient à effectuer un développement limité au premier ordre de \(y(t+\text{d} t)\) :
+            Autrement dit, cela revient Ã  effectuer un dÃ©veloppement limitÃ© au premier ordre de \(y(t+\text{d} t)\) :
 
             $$
             y(t+\text{d} t)
@@ -109,21 +109,21 @@
             \text{d} t \frac{\text{d}y}{\text{d}t}
             $$
 
-            La première étape est de discrétiser le domaine continu de résolution, il correspond au temps, à une direction (une position, une altitude, ...), ou toute autre variable ...
+            La premiÃ¨re Ã©tape est de discrÃ©tiser le domaine continu de rÃ©solution, il correspond au temps, Ã  une direction (une position, une altitude, ...), ou toute autre variable ...
             Dans la suite on note \(t\) la variable, mais il ne faut pas oublier son sens plus large.
 
-            Pour cela, on le divise en un ensemble discret de points afin de rendre le problème soluble par des techniques de calcul numérique.
-            Lors de cette étape, on remplace les fonctions continues par des approximations basées sur les valeurs des variables à des points spécifiques.
+            Pour cela, on le divise en un ensemble discret de points afin de rendre le problÃ¨me soluble par des techniques de calcul numÃ©rique.
+            Lors de cette Ã©tape, on remplace les fonctions continues par des approximations basÃ©es sur les valeurs des variables Ã  des points spÃ©cifiques.
 
-            On définit un pas de temps \(\mathrm{d}t\) et
+            On dÃ©finit un pas de temps \(\mathrm{d}t\) et
             cela donne la suite de nombres \((t_n)\) telle que :
 
             $$
             t_n = n \cdot \dd
             $$
 
-            De même toutes les fonctions et en particulier celle que l'on cherche seront aussi discrétisées.
-            La fonction recherchée \(y(t)\) sera alors approximée par une suite \((y_n)\) :
+            De mÃªme toutes les fonctions et en particulier celle que l'on cherche seront aussi discrÃ©tisÃ©es.
+            La fonction recherchÃ©e \(y(t)\) sera alors approximÃ©e par une suite \((y_n)\) :
 
             $$
             y_n  = y( n\cdot \dd{} t)
@@ -132,15 +132,15 @@
             n\in\mathbb{N}
             $$
 
-            Le temps et la fonction recherchée ne sont donc plus des grandeurs <strong>continues</strong> mais des grandeurs <strong>discrètes</strong>.
+            Le temps et la fonction recherchÃ©e ne sont donc plus des grandeurs <strong>continues</strong> mais des grandeurs <strong>discrÃ¨tes</strong>.
             Dans la suite, on note \(t_i = i\dd t\) et \(X_i=X(t_i)=X(i\dd t)\).
 
-            <h2>Implémentation en python</h2>
+            <h2>ImplÃ©mentation en python</h2>
 
-            Cela est particulièrement simple à mettre en place informatiquement car cela revient à manipuler des tableaux de données.
-            En python le type <code class="language-python hljs">list</code>  peut être utilisés de cette manière et interprétés comme des suites.
+            Cela est particuliÃ¨rement simple Ã  mettre en place informatiquement car cela revient Ã  manipuler des tableaux de donnÃ©es.
+            En python le type <code class="language-python hljs">list</code>  peut Ãªtre utilisÃ©s de cette maniÃ¨re et interprÃ©tÃ©s comme des suites.
 
-            Le but est alors de remplir petit à petit les listes contenant la variable temporelle et la fonction recherchée
+            Le but est alors de remplir petit Ã  petit les listes contenant la variable temporelle et la fonction recherchÃ©e
             en utilisant une boucle <code class="language-python hljs">for</code> ou <code class="language-python hljs">while</code>.
 
             Avec une boucle <code class="language-python hljs">while</code>:
@@ -161,13 +161,13 @@ while t[-1]<5*tau: t.append( t[-1]+dt )
 </code></pre>
 
 
-            <h2>Influence du pas d'intégration</h2>
+            <h2>Influence du pas d'intÃ©gration</h2>
 
             <p>
 
 
                 <iframe id="inlineFrameExample"
-                        title="Exemple de cadre intégré"
+                        title="Exemple de cadre intÃ©grÃ©"
                         width="90%"
                         height="560"
                         src="./methode_euler_animation.html"
