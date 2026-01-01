@@ -1,82 +1,84 @@
 <!doctype html>
-<html lang="fr">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr">
 <head>
-    <title>Sidebar 01</title>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Sidebar 01</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="style.css">
 
-    <!-- LATEX (Katex) -->
-    <!-- The loading of KaTeX is deferred to speed up page rendering -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
-    <!-- To automatically render math in text elements -->
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
-            onload="renderMathInElement(document.body);"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+        <!-- LATEX (Katex) -->
+        <!-- The loading of KaTeX is deferred to speed up page rendering -->
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+        <!-- To automatically render math in text elements -->
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js"
+                onload="renderMathInElement(document.body);"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
 
 
-</head>
-<body>
+    </head>
+    <body>
 
-    <div class="wrapper">
-        <nav id="sidebar">
-            <div>
-                <div id="title_site">
-                    Martouzet Physique
+        <div class="wrapper">
+            <nav id="sidebar">
+                <div>
+                    <div id="title_site">
+                        Martouzet Physique
+                    </div>
+
+                    <ul>
+                        <li class="active"><a href="./index.html">Accueil</a></li>
+                        <li>
+                            <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a>
+                            <ul class="collapse submenu" id="homeSubmenu">
+                                <li>
+                                    <a href="#">Fiches mÃ©thodes</a>
+                                </li>
+                                <li>
+                                    <a href="./methode_euler.html">MÃ©thode d'Euler</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <div class="footer">
+                        @ G. Martouzet 2025
+                    </div>
+
+                </div>
+            </nav>
+
+            <!-- Page Content  -->
+            <div id="content">
+
+                <div>
+
+                    <button type="button" id="sidebarCollapse">
+                        <span>=</span>
+                    </button>
+
                 </div>
 
-                <ul>
-                    <li class="active"><a href="./index.html">Accueil</a></li>
-                    <li>
-                        <a href="#homeSubmenu" data-toggle="collapse" class="dropdown-toggle submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a>
-                        <ul class="collapse submenu" id="homeSubmenu">
-                            <li>
-                                <a href="#">Fiches méthodes</a>
-                            </li>
-                            <li>
-                                <a href="./methode_euler.html">Méthode d'Euler</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+                <main>
+                    <figure class="figure">
+                        <img src="skyline_auxerre.png" class="img-fluid">
+                    </figure>
 
-                <div class="footer">
-                    @ G. Martouzet 2025
-                </div>
+                    <h1>Bonjour et bienvenue sur mon site !</h1>
+                    <p>Je mâ€™appelle GrÃ©goire Martouzet, je suis enseignant de physique en classe prÃ©paratoire PCSI au lycÃ©e Jacques Amyot dâ€™Auxerre (<a href="https://lyc89-amyot.sd.ac-dijon.fr/cpge-pcsi-psi/">PrÃ©pa Jacques-Amyot</a>) depuis septembre 2022. Jâ€™accompagne chaque annÃ©e des Ã©tudiants motivÃ©s dans la dÃ©couverte et lâ€™approfondissement des bases fondamentales de la physique, en cherchant toujours Ã  transmettre Ã  la fois la rigueur scientifique et le plaisir de comprendre le monde qui nous entoure.</p>
+                    <p>En parallÃ¨le, jâ€™enseigne Ã©galement en DNL anglais physique-chimie auprÃ¨s des Ã©lÃ¨ves de PremiÃ¨re. Ce dispositif me permet de croiser les apprentissages scientifiques et linguistiques, et dâ€™ouvrir les Ã©lÃ¨ves Ã  une approche plus internationale des sciences.</p>
+                    <p>Sur ce site, je souhaite partager mes projets pÃ©dagogiques, des ressources pour mes Ã©lÃ¨ves ainsi que des rÃ©flexions autour de lâ€™enseignement des sciences. Vous y trouverez des documents, des activitÃ©s, des idÃ©esâ€¦</p>
+                    <p>Une partie non nÃ©gligeable du contenu, notamment pour les exercices, provient de collÃ¨gues. Certaines pages de ce site sont donc plus une vitrine de ce que je propose Ã  mes Ã©lÃ¨ves plus que de rÃ©elles inventions personnelles.</p>
+                    <p>Bonne visite, et au plaisir dâ€™Ã©changer !</p>
+
+                    \[\phi+1\]
+                </main>
 
             </div>
-        </nav>
-
-        <!-- Page Content  -->
-        <div id="content">
-
-            <div>
-
-                <button type="button" id="sidebarCollapse">
-                    <span>=</span>
-                </button>
-
-            </div>
-
-            <main>
-                <figure class="figure">
-                    <img src="skyline_auxerre.png" class="img-fluid">
-                </figure>
-
-                <h1>Bonjour et bienvenue sur mon site !</h1>
-                <p>Je m’appelle Grégoire Martouzet, je suis enseignant de physique en classe préparatoire PCSI au lycée Jacques Amyot d’Auxerre (<a href="https://lyc89-amyot.sd.ac-dijon.fr/cpge-pcsi-psi/">Prépa Jacques-Amyot</a>) depuis septembre 2022. J’accompagne chaque année des étudiants motivés dans la découverte et l’approfondissement des bases fondamentales de la physique, en cherchant toujours à transmettre à la fois la rigueur scientifique et le plaisir de comprendre le monde qui nous entoure.</p>
-                <p>En parallèle, j’enseigne également en DNL anglais physique-chimie auprès des élèves de Première. Ce dispositif me permet de croiser les apprentissages scientifiques et linguistiques, et d’ouvrir les élèves à une approche plus internationale des sciences.</p>
-                <p>Sur ce site, je souhaite partager mes projets pédagogiques, des ressources pour mes élèves ainsi que des réflexions autour de l’enseignement des sciences. Vous y trouverez des documents, des activités, des idées…</p>
-                <p>Une partie non négligeable du contenu, notamment pour les exercices, provient de collègues. Certaines pages de ce site sont donc plus une vitrine de ce que je propose à mes élèves plus que de réelles inventions personnelles.</p>
-                <p>Bonne visite, et au plaisir d’échanger !</p>
-
-                \[\phi+1\]
-            </main>
-
         </div>
-    </div>
 
-    <script src="main.js"></script>
-</body>
+        <script src="main.js"></script>
+    </body>
 </html>
