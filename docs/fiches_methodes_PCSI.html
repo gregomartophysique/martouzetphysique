@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <title>Fiches Méthodes</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- LATEX (Katex) -->
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"> <!-- KaTeX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script> <!-- Auto-render -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+            macros: {
+        '\\dd': '\\mathrm{d}',
+                '\\dv': '\\frac{\\dd{#1}}{\\dv{#2}}',
+                '\\vect': '\\overrightarrow{#1}',
+                '\\R': '\\mathbb{R}'
+            }
+    });"></script>
+
+
+    <!-- Coloration des codes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/arduino-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        code.hljs {
+            display: inline;
+            background: #f0f0f0;
+            padding: 0.1em 0.2em;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- SIDEBAR -->
+        <nav id="sidebar">
+            <div>
+                <div id="title_site">
+                    Martouzet Physique
+                </div>
+
+                <ul>
+                    <li><a href="./index.html">Accueil</a></li>
+                    <li class="active">
+                        <a href="#homeSubmenu" class="submenu-toggle open">Physique PCSI/PSI<span class="arrow">></span></a>
+                        <ul class="collapse submenu open" id="homeSubmenu">
+                            <li class="active">
+                                <a href="#">Fiches méthodes</a>
+                            </li>
+                            <li>
+                                <a href="./methode_euler.html">Méthode d'Euler</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="footer">
+                    @ G. Martouzet 2025
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <div>
+
+                <button type="button" id="sidebarCollapse">
+                    <span>=</span>
+                </button>
+
+            </div>
+
+            <h1>Fiches méthodes</h1>
+
+            <p>Cette page regroupe des fiches méthodes destinées aux étudiants de PCSI.</p>
+            <ul>
+                <li><a href="pdf/A-formulaire_maths.pdf">Fiche A - Formulaire mathématique</a></li>
+                <li><a href="pdf/B-Signaux_déphasage.pdf">Fiche B - Signaux et déphasage</a></li>
+                <li><a href="pdf/C-DL.pdf">Fiche C - Développements limités</a></li>
+                <li><a href="pdf/D-surface_volume.pdf">Fiche D - Surfaces et volumes élémentaires</a></li>
+                <li><a href="pdf/F-produit_scalaire.pdf">Fiche E - Produit scalaire</a></li>
+            </ul>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
