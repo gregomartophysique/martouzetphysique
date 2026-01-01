@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Deux graphiques Chart.js</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body);"></script>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 5px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .input-range {
+    width: 50vw;          /* 50 % de la largeur de la fenêtre */
+    max-width: 50vw;
+}
+
+/* Cas écran très étroit */
+@media (max-width: 200px) {
+    .input-range {
+        width: 100vw;     /* pleine largeur */
+    }
+}
+        
+        .app_physique {
+			box-shadow: 0 0 0.5em gray;
+			padding: 30px;
+		}
+
+        /* Conteneur des deux graphiques */
+        .plots-container {
+            display: flex;
+            gap: 60px;
+            width: 100%;
+        }
+
+        /* Un graphique */
+        .plot {
+            flex: 1 1 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Zone canvas : proportions conservées */
+        .plot-area {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-height: 400px;
+            position: relative;
+        }
+
+        canvas {
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        /* Labels */
+        .xlabel {
+            margin-top: 10px;
+        }
+
+        .plot-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .ylabel {
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: rotate(-90deg) translateY(-50%);
+            transform-origin: left top;
+			text-align: center;
+        }
+
+        /* Responsive mobile */
+        @media (max-width: 800px) {
+            .plots-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+	<script>
+    window.onload = function() {
+		window.ctx1 = document.getElementById('chart1').getContext('2d');
+		window.myChart1 = new Chart(window.ctx1, {});
+		window.ctx2 = document.getElementById('chart2').getContext('2d');
+		window.myChart2 = new Chart(window.ctx2, {});
+		
+		const range = document.getElementById('myRange');
+		
+		range.addEventListener('input', onInput, false);
+		onInput();
+}
+
+	function onInput(){
+ 
+ 
+    window.myChart1.destroy();
+    window.myChart2.destroy();
+    
+    var dx = document.getElementById("myRange").value;
+    var dx = parseFloat(dx.replace(",", "."));
+    
+    output = document.getElementById("text_dt");
+    output.textContent = "Pas de calcul : \\( \\textrm{d}t = \\) " + dx.toFixed(2);
+    renderMathInElement(output);
+    
+    x = 0;
+    y = 0;
+    yerr= 0;
+    
+    const pts = [ {x:x, y:y} ];
+    const pts_erreur = [ {x:x, y:y} ];
+    
+    while (x<5) {
+		x += dx;
+		y += dx*(1-y);
+		yerr = 100*Math.abs(y-(1-Math.exp(-x)))/(1-Math.exp(-x));
+		pts.push( {x:x, y:y} )
+		pts_erreur.push( {x:x, y:yerr} )
+	}
+	
+	x = 0;
+    y = 0;
+    
+    const pts_exact = [ {x:x, y:y} ];
+    
+    while (x<5) {
+		x += 0.01;
+		y = 1-Math.exp(-x)
+		pts_exact.push( {x:x, y:y} )
+	}
+	
+	
+    
+    data = {
+		datasets: [{
+			label: "Méthode d'Euler",
+			backgroundColor: "#1f77b4",
+			borderColor: "#1f77b4",
+			//pointRadius: 5,
+			borderDash: [5, 5],
+			borderWidth: '1px',
+			//pointStyle: 'cross', 
+			data: pts,
+			pointStyle: 'cross',    // ← croix
+    pointRadius: 6,
+    pointBorderWidth: 2
+		},
+		{
+			label: 'Exact',
+			backgroundColor: "#000000",
+			borderColor: "#000000",
+			borderWidth: '1px',
+			pointRadius: 0,
+			data: pts_exact,
+		},
+		]
+	};
+	
+	data2 = {
+		datasets: [{
+			label: 'Erreur',
+			backgroundColor: "#ff7f0e",
+			borderColor: "#ff7f0e",
+			pointRadius: 0,
+			data: pts_erreur,
+			borderDash: [5,5],
+			borderWidth: '1px',
+			pointStyle: 'cross',    // ← croix
+    pointRadius: 6,
+    pointBorderWidth: 2
+		},
+		]
+	};
+	
+	const no_animation = { // Pas d'animation
+		animation: false,
+		animations: { colors: false, x: false, y: false },
+		transitions: { active: { animation: false }, resize: { animation: false }
+	}};
+
+    const config = {
+		type: 'line',       // type de graphisme ligne
+        data:data,
+        options: {
+			no_animation,
+			plugins: {
+				legend: {
+					labels: {
+					  usePointStyle: true,
+					},
+				  },
+				tooltip: {
+					enabled: false // Pas de bulle
+					},
+			},          // fin des plugins
+			responsive: true, //false, // permet de s'adapter à la page
+			maintainAspectRatio: false,
+			scales: {           // les axes
+				x: {                // Axe X
+					type: 'linear',
+					min:0, max:5,
+				},  // fin de l'axe X
+				y: { min:0, max:1.5 }   //fin de l'axe Y
+ 
+				} //fin des axes
+				}   // fin des options
+				};  //fin de config    
+ 
+	
+ 
+	const config2 = {
+		type: 'line',       // type de graphisme ligne
+        data:data2,
+        options: { 
+			no_animation,
+			//spectRatio: 2,     //rapport entre la hauteur et la largueur 1= carré, 0.5 être deux fois plus haut que large 2 être deux fois plus large que haut
+            plugins: {
+				legend: {
+					labels: {
+					  usePointStyle: true,
+					},
+				  },
+				tooltip: { enabled: false },
+				title: {                    // titre graphisme
+					display: false,
+					text: 'Euler'
+				},  //fin du titre
+			},          // fin des plugins
+			responsive: true, //false, // permet de s'adapter à la page
+			maintainAspectRatio: false,
+			scales: {           // les axes
+				x: {                // Axe X
+					display: true,  // autorise l'affichage d'un texte pour l'axe X
+					type: 'linear',
+					min:0, max:5,
+				},  // fin de l'axe X
+				y: {
+					display: true,
+					min:0, max:100,
+                      }   //fin de l'axe Y
+ 
+				} //fin des axes
+				}   // fin des options
+				};  //fin de config    
+ 
+    window.myChart1 = new Chart(window.ctx1, config);
+    window.myChart2 = new Chart(window.ctx2, config2);
+    
+}  
+	</script>
+
+
+</head>
+
+<body>
+	
+<div class="app_physique">
+	<div id="text_dt">\( dt =  \)</div>
+	<input class="input-range" type="range" step="any" value="0.1" min="0.01" max="2" id="myRange" width="100px">
+	
+	
+
+<div class="plots-container">
+
+    <!-- Graphique 1 -->
+    <div class="plot">
+        <div class="plot-wrapper">
+            <div class="ylabel">\( y(t) \)</div>
+            <div class="plot-area">
+                <canvas id="chart1"></canvas>
+            </div>
+        </div>
+        <div class="xlabel">\( t \)</div>
+    </div>
+
+    <!-- Graphique 2 -->
+    <div class="plot">
+        <div class="plot-wrapper">
+            <div class="ylabel">\( \textrm{Erreur } (\%) \)</div>
+            <div class="plot-area">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+        <div class="xlabel">\( t \)</div>
+    </div>
+
+
+</div>
+
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <title>Méthode d'Euler</title>
+    <!meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- LATEX (Katex) -->
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"> <!-- KaTeX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script> <!-- Auto-render -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+            macros: {
+        '\\dd': '\\mathrm{d}',
+                '\\dv': '\\frac{\\dd{#1}}{\\dv{#2}}',
+                '\\vect': '\\overrightarrow{#1}',
+                '\\R': '\\mathbb{R}'
+            }
+    });"></script>
+
+
+    <!-- Coloration des codes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/arduino-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        code.hljs {
+            display: inline;
+            background: #f0f0f0;
+            padding: 0.1em 0.2em;
+            border-radius: 4px;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="wrapper">
+        <!-- SIDEBAR -->
+        <nav id="sidebar">
+            <div>
+                <div id="title_site">
+                    Martouzet Physique
+                </div>
+
+                <ul>
+                    <li><a href="./index.html">Accueil</a></li>
+                    <li class="active">
+                        <a href="#homeSubmenu" class="submenu-toggle open">Physique PCSI/PSI<span class="arrow">></span></a>
+                        <ul class="collapse submenu open" id="homeSubmenu">
+                            <li>
+                                <a href="#">Fiches méthodes</a>
+                            </li>
+                            <li class="active">
+                                <a href="./methode_euler.html">Méthode d'Euler</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="footer">
+                    @ G. Martouzet 2025
+                </div>
+
+            </div>
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <div>
+
+                <button type="button" id="sidebarCollapse">
+                    <span>=</span>
+                </button>
+
+            </div>
+
+            <h1> Méthode d'Euler</h1>
+
+            <h2>Objectif</h2>
+
+            En physique-chimie, de nombreux phénomènes sont décrits par des équations différentielles, qu’il s’agisse de la chute d’un objet, du comportement d’un circuit électrique ou de l'évolution des concentrations en fonction du temps. Ces équations expriment comment une grandeur évolue selon une variable, il s'agit souvent d'une variable temporelle, mais pas toujours.
+            Cependant, il est souvent impossible d’obtenir une solution analytique exacte pour ces équations, en particulier lorsqu'elles sont non linéaires ou qu’elles dépendent de plusieurs variables. C’est là qu’intervient la méthode d’Euler, c'est l’une des méthodes numériques les plus simples pour
+            obtenir une solution approchée.
+
+
+            <h2>Principe de la méthode</h2>
+
+            L'idée fondamentale de la méthode d'Euler est d'approximer la dérivée \(\frac{\text{d}y}{\text{d}t}\) par son taux d'accroissement sur l'intervalle \([t,t+\text{d} t]\).
+
+            $$
+            \frac{\text{d}y}{\text{d}t} \simeq
+            \frac{
+            y(t+\text{d} t) - y(t)
+            }{
+            \text{d} t
+            }
+            $$
+
+            Autrement dit, cela revient à effectuer un développement limité au premier ordre de \(y(t+\text{d} t)\) :
+
+            $$
+            y(t+\text{d} t)
+            \simeq  y(t)+
+            \text{d} t \frac{\text{d}y}{\text{d}t}
+            $$
+
+            La première étape est de discrétiser le domaine continu de résolution, il correspond au temps, à une direction (une position, une altitude, ...), ou toute autre variable ...
+            Dans la suite on note \(t\) la variable, mais il ne faut pas oublier son sens plus large.
+
+            Pour cela, on le divise en un ensemble discret de points afin de rendre le problème soluble par des techniques de calcul numérique.
+            Lors de cette étape, on remplace les fonctions continues par des approximations basées sur les valeurs des variables à des points spécifiques.
+
+            On définit un pas de temps \(\mathrm{d}t\) et
+            cela donne la suite de nombres \((t_n)\) telle que :
+
+            $$
+            t_n = n \cdot \dd
+            $$
+
+            De même toutes les fonctions et en particulier celle que l'on cherche seront aussi discrétisées.
+            La fonction recherchée \(y(t)\) sera alors approximée par une suite \((y_n)\) :
+
+            $$
+            y_n  = y( n\cdot \dd{} t)
+            \quad
+            \forall
+            n\in\mathbb{N}
+            $$
+
+            Le temps et la fonction recherchée ne sont donc plus des grandeurs <strong>continues</strong> mais des grandeurs <strong>discrètes</strong>.
+            Dans la suite, on note \(t_i = i\dd t\) et \(X_i=X(t_i)=X(i\dd t)\).
+
+            <h2>Implémentation en python</h2>
+
+            Cela est particulièrement simple à mettre en place informatiquement car cela revient à manipuler des tableaux de données.
+            En python le type <code class="language-python hljs">list</code>  peut être utilisés de cette manière et interprétés comme des suites.
+
+            Le but est alors de remplir petit à petit les listes contenant la variable temporelle et la fonction recherchée
+            en utilisant une boucle <code class="language-python hljs">for</code> ou <code class="language-python hljs">while</code>.
+
+            Avec une boucle <code class="language-python hljs">while</code>:
+
+<pre><code class="language-python">
+import matplotlib.pyplot as plt
+tau = 1
+dt = 0.1
+yf = 5
+t = [0]
+y = [0] # Condition initiale
+
+while t[-1]<5*tau: t.append( t[-1]+dt )
+                   y.append( y[-1]+dt*(yf-y[-1]) )
+                   plt.xlabel('$t$')
+                   plt.ylabel('$y(t)$')
+                   plt.plot( t, y )
+</code></pre>
+
+
+            <h2>Influence du pas d'intégration</h2>
+
+            <p>
+
+
+                <iframe id="inlineFrameExample"
+                        title="Exemple de cadre intégré"
+                        width="90%"
+                        height="560"
+                        src="./methode_euler_animation.html"
+                        style="border-width:0">
+                </iframe>
+
+            </p>
+
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
