@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Animation Méthode Euler</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+    <script src="graph.js"></script>
+    <link rel="stylesheet" href="appStyle.css">
+
+   
+    <script>
+
+        window.onload = function () {
+
+            figure = new Figure();
+            axis1 = new Axis(document.getElementById('chart1').getContext('2d'));
+            axis2 = new Axis(document.getElementById('chart2').getContext('2d'));
+
+            figure.addAxis(axis1);
+            figure.addAxis(axis2);
+
+            axis2.setylim({ min: 0, max: 100 });
+
+            console.log(axis2);
+
+            line1 = new Line({
+                label: "Méthode d'Euler",
+                backgroundColor: Line.color(0),
+                borderColor: Line.color(0),
+                borderDash: [5, 5],
+                pointStyle: 'cross',
+                pointRadius: 6,
+                pointBorderWidth: 2,
+            });
+
+            line2 = new Line({
+                label: 'Exact',
+                backgroundColor: "#000000",
+                borderColor: "#000000",
+            });
+            line3 = new Line({
+                label: 'Erreur',
+                backgroundColor: Line.color(1),
+                borderColor: Line.color(1),
+                borderDash: [5, 5],
+                pointStyle: 'cross',
+                pointRadius: 6,
+                pointBorderWidth: 2
+            });
+
+
+            axis1.addLine(line1);
+            axis1.addLine(line2);
+            axis2.addLine(line3);
+
+            slider_dt = new Slider("myRange", "text_dt", onInput, { before: "Pas de calcul : \\( \\textrm{d}t = \\) " });
+
+            onInput();
+        }
+
+
+
+        function onInput() {
+            var dx = slider_dt.get();
+
+            x = 0;
+            y = 0;
+            yerr = 0;
+
+            const pts = [{ x: x, y: y }];
+            const pts_erreur = [{ x: x, y: y }];
+
+            while (x < 5) {
+                x += dx;
+                y += dx * (1 - y);
+                yerr = 100 * Math.abs(y - (1 - Math.exp(-x))) / (1 - Math.exp(-x));
+                pts.push({ x: x, y: y })
+                pts_erreur.push({ x: x, y: yerr })
+            }
+
+            x = 0;
+            y = 0;
+
+            const pts_exact = [{ x: x, y: y }];
+
+            while (x < 5) {
+                x += 0.01;
+                y = 1 - Math.exp(-x)
+                pts_exact.push({ x: x, y: y })
+            }
+
+            line1.set_config({ data: pts });
+            line2.set_config({ data: pts_exact });
+            line3.set_config({ data: pts_erreur });
+
+
+
+            figure.update();
+        }
+    </script>
+
+
+</head>
+
+<body>
+	
+<div class="app_physique">
+	<div id="text_dt">\( dt =  \)</div>
+	<input class="input-range" type="range" step="any" value="0.1" min="0.01" max="2" id="myRange" width="100px">
+	
+	
+
+<div class="plots-container">
+
+    <!-- Graphique 1 -->
+    <div class="plot">
+        <div class="plot-wrapper">
+            <div class="ylabel">\( y(t) \)</div>
+            <div class="plot-area">
+                <canvas id="chart1"></canvas>
+            </div>
+        </div>
+        <div class="xlabel">\( t \)</div>
+    </div>
+
+    <!-- Graphique 2 -->
+    <div class="plot">
+        <div class="plot-wrapper">
+            <div class="ylabel">\( \textrm{Erreur } (\%) \)</div>
+            <div class="plot-area">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+        <div class="xlabel">\( t \)</div>
+    </div>
+
+
+</div>
+
+</div>
+
+
+
+</body>
+</html>

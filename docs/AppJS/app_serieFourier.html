@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Série Fourier</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script src="graph.js"></script>
+
+    <link rel="stylesheet" href="appStyle.css">
+    <script>
+        window.onload = function () {
+            figure = new Figure();
+            axis1 = new Axis(document.getElementById('chart1').getContext('2d'));
+            axis2 = new Axis(document.getElementById('chart2').getContext('2d'));
+
+            axis1.setxlim({ min: 0, max: 4 * 3.1415 });
+            axis1.setylim({ min: -1.5, max: 1.5 });
+            axis2.setxlim({ min: 0, max: 4 * 3.1415 });
+            axis2.setylim({ min: -1.5, max: 1.5 });
+            axis2.config.options.legend = {
+                ...axis2.config.options.legend, display: false
+            };
+
+            axis2.config.options.plugins.legend = {
+                ...axis2.config.options.plugins.legend, display: false 
+            };
+            axis1.config.options.plugins.legend = {
+                ...axis1.config.options.plugins.legend, display: false
+            };
+
+
+            figure.addAxis(axis1);
+            figure.addAxis(axis2);
+
+            line1 = new Line({
+                label: 'Signal',
+                backgroundColor: Line.color(0),
+                borderColor: Line.color(0),
+            });
+
+            linereel = new Line({
+                label: 'Signal',
+                backgroundColor: 'black',
+                borderColor: 'black',
+                borderDash: [5, 5],
+            });
+
+            line3 = new Line();
+
+
+            axis1.addLine(line1);
+            axis1.addLine(linereel);
+
+            axis2.addLine(line3);
+
+
+
+            slider_N = new Slider("Nrange", "text_N", onInput, { before: "Nombre d'harmoniques : \\( N = \\) ", fixed: 0 });
+
+            document.querySelectorAll('input[name="rdTypeSignal"]').forEach(radio => {
+                radio.addEventListener('change', () => onInput())
+            });
+            onInput();
+        }
+
+        function process(t, fct_signal) {
+            var H0 = slider_N.get();
+
+            const e_signal = [];
+
+            let ps = fct_signal() // parametre du signal
+
+
+
+            for (let i = 0; i < t.length; i++) {
+                e = 0;
+
+                for (let j = 0; j < ps.f.length; j++) {
+                    ej = ps.amp[j] * Math.sin(ps.f[j] * t[i] + ps.phase[j]);
+                    e += ej;
+
+                }
+
+                e_signal.push(e);
+
+            }
+
+            return { e_signal: e_signal };
+
+        }
+
+        function sinus() {
+            return { f: [1], amp: [1], phase: [0] };
+        }
+
+        function triangle() {
+            const f = [];
+            const amp = [];
+            const phase = [];
+
+            for (let i = 0; i < 100; i++) {
+                f.push(2 * i + 1);
+                amp.push(8 / Math.PI ** 2 * ((-1) ** i * 1 / (2 * i + 1) ** 2));
+                phase.push(0);
+            }
+            return { f: f, amp: amp, phase: phase };
+        }
+
+        function carre() {
+            const f = [];
+            const amp = [];
+            const phase = [];
+
+            for (let i = 0; i < 100; i++) {
+                f.push(2 * i + 1);
+                amp.push(4 / (Math.PI * (2 * i + 1)));
+                phase.push(0);
+            }
+            return { f: f, amp: amp, phase: phase };
+        }
+
+
+        function onInput() {               
+
+            const choixSignal = document.getElementById("TypeSignal").elements["rdTypeSignal"].value;
+
+            const expr_signal = document.getElementById("expr_signal");
+            switch (choixSignal) {
+                case "Carre": fct_signal = carre;
+                    expr_signal.innerHTML = "\\(e(t)=\\frac{4E_0}{\\pi}\\sum_{k=0}^{+\\infty} \\frac{1}{2k+1}\\text{sin}(2\\pi (2k+1) f t)\\)";
+                    break;
+
+                case "Triangle": fct_signal = triangle; expr_signal.innerHTML = "\\(e(t)=\\frac{8E_0}{\\pi^2}\\sum_{k=0}^{+\\infty} \\frac{(-1)^{k}}{(2k+1)^2}\\text{sin}(2\\pi (2k+1) f t)\\)"; break;
+            }
+            renderMathInElement(expr_signal);
+
+
+            var N = slider_N.get();
+            const t = Np.linspace(0, 4 * 3.1415, 400);
+
+            let ps = fct_signal() // parametre du signal
+
+            const signal = [];
+            for (let j = 0; j < t.length; j++) {
+                signal.push(0);
+            }
+
+            axis2.lines = [];
+            for (let i = 0; i < N; i++) {
+                let data = [];
+                for (let j = 0; j < t.length; j++) {
+                    data.push(ps.amp[i] * Math.sin(ps.f[i] * t[j] + ps.phase[i]));
+                    signal[j] += ps.amp[i] * Math.sin(ps.f[i] * t[j] + ps.phase[i]);
+                }
+                line  = new Line();
+                axis2.addLine(line);
+                line.set_config({ data: Np.toObject(t, data) });
+            }
+
+            line1.set_config({ data: Np.toObject(t, signal) });
+
+            figure.update();
+
+        }
+
+        //
+    </script>
+
+
+</head>
+
+<body>
+    <div>Martouzet Physique</div>
+
+    <div class="app_physique">
+
+        <div class="plots-container">
+            <div class="plot">
+                <div id="text_N">\( N =  \)</div>
+                <input class="input-range" type="range" step="1" value="1" min="1" max="50" id="Nrange" width="100px" />
+            </div>
+            <div class="plot">
+                <fieldset style="width: 100%">
+                    <legend>Signal :</legend>
+                    <form id="TypeSignal">
+                        <input type="radio" name="rdTypeSignal" id="rdCarre" value="Carre"checked>
+                        <label for="rdCarre">Carré</label>
+                        <input type="radio" name="rdTypeSignal" id="rdTriangle" value="Triangle">
+                        <label for="rdTriangle">Triangle</label>
+                        <div id="expr_signal">\(e(t)=E_0\text{sin}(2\pi f t)\)</div>
+
+                    </form>
+
+                </fieldset>
+                
+
+            </div>
+
+        </div>
+
+        <div class="plots-container">
+
+            <!-- Graphique 1 -->
+            <div class="plot">
+                <div class="plot-wrapper">
+                    <div class="ylabel">\( s(t) \)</div>
+                    <div class="plot-area">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+                <div class="xlabel">\( t \)</div>
+            </div>
+
+            <!-- Graphique 2 -->
+            <div class="plot">
+                <div class="plot-wrapper">
+                    <div class="ylabel">\( s_k(t) \)</div>
+                    <div class="plot-area">
+                        <canvas id="chart2"></canvas>
+
+                    </div>
+
+                </div>
+                <div class="xlabel">\( t \)</div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>

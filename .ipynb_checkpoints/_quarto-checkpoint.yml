@@ -1,0 +1,60 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.ipynb"
+    - "!application_python/"
+  
+website:
+  title: "Martouzet Physique"
+  bread-crumbs: false
+  sidebar:
+    background: "#D9E3E4"
+    pinned: true
+    align: center
+    style: "docked"
+    contents:
+      - href: index.qmd
+        text: Accueil
+      - section: "Physique PCSI/PSI"
+        contents: 
+          - pages/fiches_methodes.ipynb
+          - pages/methode_euler_2.ipynb
+      #- section: "Autres enseignements"
+      #  contents: 
+      #    - section: "ITC PSI"
+      #      contents:
+      #        - pages/intro_graphique.ipynb 
+      - section: "Mes publications"
+        contents:
+          - pages/these.ipynb
+          - pages/Article_Pédagogique.ipynb
+      - section: "Outils"
+        contents: 
+          - pages/figure_tikz.qmd
+          - pages/applications_python.qmd
+    tools:
+      - icon: linkedin
+        href: https://www.linkedin.com/in/gr%C3%A9goire-martouzet-a61786129/
+      - icon: github
+        href: https://github.com/gregomartophysique/martouzetphysique/
+  page-footer:
+    right: "Built with [Quarto](https://quarto.org/)"
+    left: "&copy; Copyright 2025, Martouzet G."
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss]
+    toc: false
+    
+filters:
+  - include-tex.lua
+  - shinylive.lua
+
+
+# freeze: auto
+
+editor: source
+

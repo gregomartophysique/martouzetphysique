@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Deux graphiques Chart.js</title>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- KaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+    <script src="graph.js"></script>
+
+    <link rel="stylesheet" href="appStyle.css">
+    <script>
+        window.onload = function () {
+            figure = new Figure();
+            axis1 = new Axis(document.getElementById('chart1').getContext('2d'));
+            axis2 = new Axis(document.getElementById('chart2').getContext('2d'));
+
+            axis1.setxlim({ min: 0, max: 4 * 3.1415 });
+            axis1.setylim({ min: -1.5, max: 1.5 });
+            axis2.setxlim({ min: 0.01, max: 100, type: 'logarithmic' });
+            axis2.setylim({ min: -80, max: 20 });
+            axis2.config.options.scale = {
+                ...axis2.config.options.scale, y1:
+                {
+                    type: 'linear',
+                    display: true,
+                    position: 'right',
+                    min: -Math.PI, max: Math.PI,
+                    ticks: { color: 'red' }
+                }
+            };
+
+            figure.addAxis(axis1);
+            figure.addAxis(axis2);
+
+            line1 = new Line({
+                label: 'e(t)',
+                backgroundColor: Line.color(0),
+                borderColor: Line.color(0),
+            });
+            line2 = new Line({
+                label: 's(t)',
+                backgroundColor: Line.color(1),
+                borderColor: Line.color(1),
+            });
+
+            line3 = new Line({ label: 'Gain' });
+            line4 = new Line({
+                label: 'Phase', yAxisID: 'y1', backgroundColor: Line.color(1),
+                borderColor: Line.color(1)
+            });
+
+
+            axis1.addLine(line1);
+            axis1.addLine(line2);
+            axis2.addLine(line3);
+            axis2.addLine(line4);
+
+
+
+            slider_H0 = new Slider("H0range", "text_H0", onInput, { before: "Gain : \\( H_0 = \\) ", fixed: 1 });
+            slider_f0 = new Slider("f0range", "text_f0", onInput, { before: "Fréquence propre : \\( f_0 = \\) ", after: " Hz", fixed: 2, fct_eval: (x) => 10 ** x });
+            slider_Q = new Slider("Qrange", "text_Q", onInput, { before: "Facteur de qualité : \\( Q = \\) ", fixed: 1, fct_eval: (x) => 10 ** x });
+
+            document.querySelectorAll('input[name="rdTypeSignal"]').forEach(radio => {
+                radio.addEventListener('change', () => onInput())
+            });
+            document.querySelectorAll('input[name="rdFT"]').forEach(radio => {
+                radio.addEventListener('change', () => onInput())
+            });
+            onInput();
+        }
+
+        function process(t, fct_signal, fct_t) {
+            var H0 = slider_H0.get();
+            var f0 = slider_f0.get();
+            var Q = slider_Q.get();
+
+            const e_signal = [];
+            const s_signal = [];
+
+            let ps = fct_signal() // parametre du signal
+
+            // fonction de transfert
+            const G = [];
+            const phase = [];
+            for (let j = 0; j < ps.f.length; j++) {
+                H = fct_t(ps.f[j], { f0: f0, H0: H0, Q: Q })
+                G.push(H.G);
+                phase.push(H.phase)
+            }
+
+
+            for (let i = 0; i < t.length; i++) {
+                e = 0;
+                s = 0;
+
+                for (let j = 0; j < ps.f.length; j++) {
+                    ej = ps.amp[j] * Math.sin(ps.f[j] * t[i] + ps.phase[j]);
+                    sj = G[j] * ps.amp[j] * Math.sin(ps.f[j] * t[i] + ps.phase[j] + phase[j]);
+                    e += ej;
+                    s += sj;
+
+                }
+
+                e_signal.push(e);
+                s_signal.push(s);
+
+            }
+
+            return { e_signal: e_signal, s_signal: s_signal };
+
+        }
+
+        function sinus() {
+            return { f: [1], amp: [1], phase: [0] };
+        }
+
+        function triangle() {
+            const f = [];
+            const amp = [];
+            const phase = [];
+
+            for (let i = 0; i < 100; i++) {
+                f.push(2 * i + 1);
+                amp.push( 8/Math.PI**2*((-1) ** i * 1 / (2 * i + 1) ** 2));
+                phase.push(0);
+            }
+            return { f: f, amp: amp, phase: phase };
+        }
+
+        function carre() {
+            const f = [];
+            const amp = [];
+            const phase = [];
+
+            for (let i = 0; i < 100; i++) {
+                f.push(2 * i + 1);
+                amp.push(4 /(Math.PI* (2 * i + 1)) );
+                phase.push(0);
+            }
+            return { f: f, amp: amp, phase: phase };
+        }
+
+        function pb1(f, p) { // p : paramètre (f0, H0, Q)
+            let x = f / p.f0;
+            let G = p.H0 / (Math.sqrt(1 + x ** 2));
+            return {
+                G: G,
+                Gdb: 20 * Math.log10(G),
+                phase: - Math.atan(x)
+            };
+        }
+
+        function ph1(f, p) { // p : paramètre (f0, H0, Q)
+            let x = f / p.f0;
+            let G = p.H0 * x / (Math.sqrt(1 + x ** 2));
+            return {
+                G: G,
+                Gdb: 20 * Math.log10(G),
+                phase: Math.PI / 2 - Math.atan(x)
+            };
+        }
+
+        function pb2(f, p) { // p : paramètre (f0, H0, Q)
+            let x = f / p.f0;
+            let G = p.H0 / (Math.sqrt((1 - x ** 2) ** 2 + (x / p.Q) ** 2));
+            return {
+                G: G,
+                Gdb: 20 * Math.log10(G),
+                phase: ((f > p.f0) ? -Math.PI : 0) - Math.atan(x / p.Q / (1 - x ** 2))
+            };
+        }
+
+        function ph2(f, p) { // p : paramètre (f0, H0, Q)
+            let x = f / p.f0;
+            let G = p.H0 * x ** 2 / (Math.sqrt((1 - x ** 2) ** 2 + (x / p.Q) ** 2));
+            return {
+                G: G,
+                Gdb: 20 * Math.log10(G),
+                phase: Math.PI + ((f > p.f0) ? -Math.PI : 0) - Math.atan(x / p.Q / (1 - x ** 2))
+            };
+        }
+
+        function pbd2(f, p) { // p : paramètre (f0, H0, Q)
+            let x = f / p.f0;
+            let G = p.H0 / Math.sqrt(1 + p.Q ** 2 * (x - 1 / x) ** 2);
+            return {
+                G: G,
+                Gdb: 20 * Math.log10(G),
+                phase: - Math.atan(p.Q * (x - 1 / x))
+            };
+        }
+
+        function onInput() {
+
+            const choixSignal = document.getElementById("TypeSignal").elements["rdTypeSignal"].value;
+
+            const expr_signal = document.getElementById("expr_signal");
+            switch (choixSignal) {
+                case "Sinus": fct_signal = sinus; expr_signal.innerHTML ="\\(e(t)=E_0\\text{sin}(2\\pi f t)\\)"; break;
+                case "Carre": fct_signal = carre; expr_signal.innerHTML = "\\(e(t)=\\frac{4E_0}{\\pi}\\sum_{k=0}^{+\\infty} \\frac{1}{2k+1}\\text{sin}(2\\pi (2k+1) f t)\\)"; break;
+                case "Triangle": fct_signal = triangle; expr_signal.innerHTML = "\\(e(t)=\\frac{8E_0}{\\pi^2}\\sum_{k=0}^{+\\infty} \\frac{(-1)^{k}}{(2k+1)^2}\\text{sin}(2\\pi (2k+1) f t)\\)"; break;
+            }
+            renderMathInElement(expr_signal);
+
+            const choixFiltre = document.getElementById("TypeFiltre").elements["rdFT"].value;
+
+            fct_transfert = pb1;
+            switch (choixFiltre) {
+                case "pb1": fct_transfert = pb1; document.getElementById('Qrange').disabled = true; break;
+                case "ph1": fct_transfert = ph1; document.getElementById('Qrange').disabled = true; break;
+                case "pb2": fct_transfert = pb2; document.getElementById('Qrange').disabled = false; break;
+                case "ph2": fct_transfert = ph2; document.getElementById('Qrange').disabled = false; break;
+
+                case "pbd2": fct_transfert = pbd2; document.getElementById('Qrange').disabled = false; break;
+            }
+
+            var H0 = slider_H0.get();
+            var f0 = slider_f0.get();
+            var Q = slider_Q.get();
+
+            const t = Np.linspace(0, 4 * 3.1415, 200);
+
+            data = process(t, fct_signal, fct_transfert);
+
+            line1.set_config({ data: Np.toObject(t, data.e_signal) });
+            line2.set_config({ data: Np.toObject(t, data.s_signal) });
+
+            // Diagramme de Bode
+            const f1 = Np.logspace(-2, Math.log10(f0)-0.5, 5);
+            const f2 = Np.logspace(Math.log10(f0) - 0.5, Math.log10(f0)+0.5, 21);
+            const f3 = Np.logspace(Math.log10(f0)+0.5, 2, 5);
+            const f = f1.concat(f2, f3);
+
+            const G = [];
+            const Ph = [];
+
+            for (let j = 0; j < f.length; j++) {
+                H = fct_transfert(f[j], { f0: f0, H0: H0, Q: Q })
+                G.push(H.Gdb);
+                Ph.push(H.phase);
+            }
+            line3.set_config({ data: Np.toObject(f, G) });
+            line4.set_config({ data: Np.toObject(f, Ph) });
+
+            figure.update();
+
+        }
+
+        //
+    </script>
+
+
+</head>
+
+<body>
+    <div>Martouzet Physique</div>
+
+    <div class="app_physique">
+
+        <div class="plots-container">
+            <div class="plot">
+                <div id="text_H0">\( H_0 =  \)</div>
+                <input class="input-range" type="range" step="0.01" value="1" min="0.1" max="2" id="H0range" width="100px">
+                <div id="text_f0">\( f_0 =  \)</div>
+                <input class="input-range" type="range" step="0.01" value="0" min="-2" max="2" id="f0range" width="100px">
+                <div id="text_Q">\( Q =  \)</div>
+                <input class="input-range" type="range" step="0.01" value="0" min="-1" max="1" id="Qrange" width="100px" disabled>
+                
+            </div>
+            <div class="plot">
+                <fieldset style="width: 100%">
+                    <legend>Signal :</legend>
+                    <form id="TypeSignal">
+                        <input type="radio" name="rdTypeSignal" id="rdSinus" value="Sinus" checked>
+                        <label for="rdSinus">Sinus</label>
+                        <input type="radio" name="rdTypeSignal" id="rdCarre" value="Carre">
+                        <label for="rdCarre">Carré</label>
+                        <input type="radio" name="rdTypeSignal" id="rdTriangle" value="Triangle">
+                        <label for="rdTriangle">Triangle</label>
+                        <div id="expr_signal">\(e(t)=E_0\text{sin}(2\pi f t)\)</div>
+
+                    </form>
+                    
+                </fieldset>
+                <fieldset style="width: 100%">
+                    <legend>Filtre :</legend>
+                    <form id="TypeFiltre">
+                        <input type="radio" name="rdFT" id="rdPB1" value="pb1" checked>
+                        <label for="rdPB1">Passe-bas ordre 1</label>
+                        <input type="radio" name="rdFT" id="rdPH1" value="ph1">
+                        <label for="rdPH1">Passe-haut ordre 1</label>
+                        <input type="radio" name="rdFT" id="rdPB2" value="pb2">
+                        <label for="rdPB2">Passe-bas ordre 2</label>
+                        <input type="radio" name="rdFT" id="rdPH2" value="ph2">
+                        <label for="rdPH2">Passe-haut ordre 2</label>
+                        <input type="radio" name="rdFT" id="rdPBd2" value="pbd2">
+                        <label for="rdPBd2">Passe-bande ordre 2</label>
+                        <input type="radio" name="rdFT" id="rdRBd2" value="rbd2">
+                        <label for="rdRBd2">Coupe-bande ordre 2</label>
+                    </form>
+                    <div>\(\underline{H}(\text{j}f)=\frac{H_0}{1+\text{j}f/f_0}\)</div>
+                </fieldset>
+
+            </div>
+
+        </div>
+
+        <div class="plots-container">
+
+            <!-- Graphique 1 -->
+            <div class="plot">
+                <div class="plot-wrapper">
+                    <div class="ylabel">\( y(t) \)</div>
+                    <div class="plot-area">
+                        <canvas id="chart1"></canvas>
+                    </div>
+                </div>
+                <div class="xlabel">\( t \)</div>
+            </div>
+
+            <!-- Graphique 2 -->
+            <div class="plot">
+                <div class="plot-wrapper">
+                    <div class="ylabel" style="color: #1f77b4">\( G_\textrm{dB} \)</div>
+                    <div class="ylabel_twin" style="color: #ff7f0e">\( \phi \) (rad)</div>
+                    <div class="plot-area">
+                        <canvas id="chart2"></canvas>
+
+                    </div>
+
+                </div>
+                <div class="xlabel">\( f \)</div>
+            </div>
+
+
+        </div>
+
+    </div>
+    
+
+
+</body>
+</html>

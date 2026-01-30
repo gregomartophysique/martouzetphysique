@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+    padding: 5px;
+    font-family: Arial, sans-serif;
+}
+
+.input-range {
+    width: 50vw; /* 50 % de la largeur de la fenêtre */
+    max-width: 50vw;
+}
+
+/* Cas écran très étroit */
+@media (max-width: 200px) {
+    .input-range {
+        width: 100vw; /* pleine largeur */
+    }
+}
+
+.app_physique {
+    box-shadow: 0 0 0.5em gray;
+    padding: 30px;
+}
+
+/* Conteneur des deux graphiques */
+.plots-container {
+    display: flex;
+    gap: 60px;
+    width: 100%;
+}
+
+/* Un graphique */
+.plot {
+    flex: 1 1 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Zone canvas : proportions conservées */
+.plot-area {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    max-height: 400px;
+    position: relative;
+}
+
+canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* Labels */
+.xlabel {
+    margin-top: 10px;
+}
+
+.plot-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.ylabel {
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    transform: rotate(-90deg) translateY(-50%);
+    transform-origin: left top;
+    text-align: center;
+}
+
+.ylabel_twin {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    white-space: nowrap;
+    right: -10px;
+    transform: rotate(90deg) translateY(-50%);
+    transform-origin: right top;
+}
+
+/* Responsive mobile */
+@media (max-width: 800px) {
+    .plots-container {
+        flex-direction: column;
+    }
+}

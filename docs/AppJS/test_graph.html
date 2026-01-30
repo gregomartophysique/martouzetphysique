@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <title>Graphique HTML avec graduation automatique</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        .graph-container {
+            display: grid;
+            grid-template-columns: 70px 1fr;
+            grid-template-rows: 1fr 50px;
+            width: 80vw;
+            height: 60vh;
+            border: 1px solid #333;
+        }
+
+        .y-axis {
+            grid-column: 2;
+            grid-row: 1;
+            display: grid;
+            align-items: center;
+            justify-items: end;
+            padding-right: 8px;
+            font-size: 0.85em;
+        }
+
+        .x-axis {
+            grid-column: 3;
+            grid-row: 2;
+            display: grid;
+            align-items: start;
+            justify-items: center;
+            padding-top: 6px;
+            font-size: 0.85em;
+        }
+
+        .plot-area {
+            grid-column: 3;
+            grid-row: 1;
+            position: relative;
+        }
+
+        .x-axis_label {
+            grid-column: 3;
+            grid-row: 3;
+            display: grid;
+            align-items: start;
+            justify-items: center;
+            padding-top: 6px;
+            font-size: 0.85em;
+        }
+
+        .y-axis-label {
+            grid-column: 1;
+            grid-row: 1;
+            position: absolute;
+            top: 50%;
+            //left: -5px;
+            transform: rotate(-90deg) translateY(-50%);
+            transform-origin: left top;
+            text-align: center;
+        }
+
+        canvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="graph-container">
+        <div class="y-axis-label" id="yAxisLabel">y label</div>
+        <div class="y-axis" id="yAxis"></div>
+
+        <div class="plot-area" id="plotArea">
+            <canvas id="plot"></canvas>
+        </div>
+
+        <div class="x-axis" id="xAxis"></div>
+        <div class="x-axis_label" id="xAxisLabel"> x label</div>
+
+    </div>
+
+    <script>
+  const plotArea = document.getElementById('plotArea');
+  const canvas = document.getElementById('plot');
+  const ctx = canvas.getContext('2d');
+
+  const xAxis = document.getElementById('xAxis');
+  const yAxis = document.getElementById('yAxis');
+
+  const data = [
+    { x: 0.3, y: 12 },
+    { x: 2.1, y: 42 },
+    { x: 4.8, y: 35 },
+    { x: 6.4, y: 78 },
+    { x: 8.9, y: 61 }
+  ];
+
+  function extent(values) {
+    return [Math.min(...values), Math.max(...values)];
+  }
+
+  let [xMin, xMax] = extent(data.map(p => p.x));
+  let [yMin, yMax] = extent(data.map(p => p.y));
+
+  function niceStep(min, max, ticks = 5) {
+    const range = max - min;
+    const rough = range / ticks;
+    const pow = Math.pow(10, Math.floor(Math.log10(rough)));
+    const steps = [1, 2, 5, 10];
+
+    return steps.map(s => s * pow)
+                 .find(s => range / s <= ticks) || steps[steps.length - 1] * pow;
+  }
+
+  function generateTicks(min, max, step) {
+    const start = Math.floor(min / step) * step;
+    const end = Math.ceil(max / step) * step;
+    const ticks = [];
+    for (let v = start; v <= end + 1e-9; v += step) ticks.push(v);
+    return ticks;
+  }
+
+  function resizeCanvas() {
+    const rect = plotArea.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    draw();
+  }
+
+  function mapX(x) {
+    return (x - xMin) / (xMax - xMin) * canvas.width;
+  }
+
+  function mapY(y) {
+    return canvas.height - (y - yMin) / (yMax - yMin) * canvas.height;
+  }
+
+  function drawAxes() {
+    const xStep = niceStep(xMin, xMax);
+    const yStep = niceStep(yMin, yMax);
+
+    const xTicks = generateTicks(xMin, xMax, xStep);
+    const yTicks = generateTicks(yMin, yMax, yStep);
+
+    xAxis.style.gridTemplateColumns = `repeat(${xTicks.length}, 1fr)`;
+    yAxis.style.gridTemplateRows = `repeat(${yTicks.length}, 1fr)`;
+
+    xAxis.innerHTML = xTicks.map(v => `<div>${v.toFixed(2)}</div>`).join('');
+    yAxis.innerHTML = yTicks.slice().reverse()
+      .map(v => `<div>${v.toFixed(0)}</div>`).join('');
+
+    // Grille
+    ctx.strokeStyle = '#ddd';
+    ctx.lineWidth = 1;
+
+    xTicks.forEach(v => {
+      const x = mapX(v);
+      ctx.beginPath();
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, canvas.height);
+      ctx.stroke();
+    });
+
+    yTicks.forEach(v => {
+      const y = mapY(v);
+      ctx.beginPath();
+      ctx.moveTo(0, y);
+      ctx.lineTo(canvas.width, y);
+      ctx.stroke();
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawAxes();
+
+    ctx.strokeStyle = 'blue';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+
+    data.forEach((p, i) => {
+      const x = mapX(p.x);
+      const y = mapY(p.y);
+      if (i === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    });
+
+    ctx.stroke();
+  }
+
+  const ro = new ResizeObserver(resizeCanvas);
+  ro.observe(plotArea);
+
+  resizeCanvas();
+    </script>
+
+</body>
+</html>

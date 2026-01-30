@@ -47,7 +47,21 @@ a {
     color: black;
     top:0;
     bottom:0;
+    transition: all 0.3s ease;
 }
+
+    #sidebar.active {
+        margin-left: -200px;
+    }
+
+    #sidebar .logo {
+        display: block;
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+        background-size: cover;
+        background-position: center;
+    }
 
     #title_site {
         padding: 20px;
@@ -139,6 +153,27 @@ a {
         background: rgb(26.52,65.96,154.36);
     }
 
+/* =====================
+   Responsive
+===================== */
+
+@media (max-width: 991.98px) {
+    #content {
+        margin-left: 20px;
+    }
+
+    #sidebar {
+        margin-left: -200px;
+    }
+
+    #sidebar.active {
+        margin-left: 0;
+    }
+
+    #sidebarCollapse {
+        display: block;
+    }
+}
 
 
 /* Sous-menu */
