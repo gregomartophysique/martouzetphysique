@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Applications et codes</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <script src="load_list.js"></script>
+    <style>
+        .element {
+            display: flex;
+            box-shadow: 0 0 0.5em gray;
+            margin: 10px;
+            height: 200px;
+        }
+
+            .element .right_side {
+                margin: 10px;
+                flex-basis: 45%;
+                flex-grow: 1;
+                flex-shrink: 0;
+                display: block;
+                unicode-bidi: isolate;
+            }
+
+            .element .title {
+                margin-top: 0px;
+                margin-bottom: 5px;
+                font-family: Arial, sans-serif;
+                font-size: 24px;
+            }
+
+            .element .thumbnail {
+                text-align: center;
+                margin: 10px;
+                flex-basis: 30%;
+                flex-grow: 0;
+                flex-shrink: 0;
+                display: inline-block;
+                unicode-bidi: isolate;
+                height: 180px;
+                width: 100px;
+            }
+
+        .thumbnail:hover {
+            /* L'image est grossie de 50% */
+            -webkit-transform: scale(1.5); /* Safari et Chrome */
+            -moz-transform: scale(1.5); /* Firefox */
+            -ms-transform: scale(1.5); /* Internet Explorer 9 */
+            -o-transform: scale(1.5); /* Opera */
+            transform: scale(1.5);
+        }
+
+        .element .description {
+            font-family: Arial, sans-serif;
+        }
+
+        .element .keywords {
+            margin-bottom: 5px;
+        }
+
+        .element .keyword {
+            display: inline-block;
+            border-style: solid;
+            border-width: 1px;
+            margin: 1px;
+            padding: 1px;
+            color: gray;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+        }
+
+        .thumbnail-image {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Menu -->
+        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li ><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li ><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li class="active"><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li class="active"><a href="code_python.html">Applications et codes</a></li>	</li></ul>
+    </ul>
+    <div class="footer">
+                @ G. Martouzet 2026
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Page Content  -->
+             <div id="content">
+                 <div id="header">
+
+                     <h1>Applications et codes</h1>
+                     <p>Mots clés :</p>
+
+                     <div id="choose_keyword">
+
+                     </div>
+
+                 </div>
+
+
+
+                 <div id="liste">
+
+
+                 </div>
+             </div>
+</body>
+</html>
