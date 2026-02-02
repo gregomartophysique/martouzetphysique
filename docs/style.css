@@ -173,3 +173,43 @@ a {
     .submenu-toggle.open .arrow {
         transform: rotate(-135deg);
     }
+
+
+/* Liste à cocher */
+
+
+ul.listCheckbox {
+    list-style: none;
+    padding: 2px;
+}
+
+
+    ul.listCheckbox li {
+        display: inline;
+    }
+
+        ul.listCheckbox li label {
+            display: inline-block;
+            border: 1px solid gray;
+            color: gray;
+            border-radius: 5px;
+            margin: 3px 0px;
+        }
+
+        ul.listCheckbox li label {
+            padding: 3px 3px;
+            margin:5px;
+            cursor: pointer;
+        }
+
+        ul.listCheckbox li input[type="checkbox"]:checked + label {
+            border: 1px solid #3F48CC;
+            background-color: #00A2E8;
+            color: #fff;
+            transition: all 0.5s;
+        }
+
+        ul.listCheckbox li input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+        }
