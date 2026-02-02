@@ -174,7 +174,7 @@ window.onload = function () {
 		liste.appendChild(element);
 	}
 
-	var choose_keyword = document.getElementById("listCategorie");
+	var choose_keyword = document.getElementById("listCategorie"); 
 	for (let k = 0; k < possible_keywords.length; k++) {
 		key = document.createElement("LI");
 		input = document.createElement("INPUT");
