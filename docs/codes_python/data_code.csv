@@ -1,0 +1,11 @@
+Nom;Img;Descrip;Descrip_file;CodePY;Code;CodeJS;Keywords
+De Fresnel à Fraunhofer;Fresnel_Fraun.jpg;Calcul de la figure de diffraction par intégration de Huygens-Fresnel. Possibilité de modifier certains paramètres (longueur d'onde, largeur de la fente, ...). Le nombre de Fresnel F est affiché en direct. L'éclairement 2D, tel qu'on le voit sur un écran et éclairement en fonction de la position;FresnelFraun.md;De_Fresnel_a_Fraun.py;;;Onde,Optique
+Critère de Rayleigh;Rayleigh.jpg;Illustration du critère de Rayleigh. L'éclairement 2D, tel qu'on le voit sur un écran et éclairement en fonction de la position;;Critere_Rayleigh.py;;;Onde,Optique
+Diffraction périodique;diffraction_periodique.jpg;;;Diffraction_periodique.py;;;Onde,Optique
+Trajectoire;trajectoire.jpg;Trajectoire et énergie potentielle effective d'un point dasn un champ de force centrale conservatives (loi de Kepler).;;Trajectoire.py;;;Mécanique
+Marée;maree.jpg;Illustration des forces de marées, avec l'influence de la Lune et du Soleil. Animation sur une journée ou sur 29.5 jours.;;Maree.py;;;Mécanique
+Equation auto-cohérente;Equ_autocoherente.jpg;Résolution de l'équation auto-cohérente en champ moyen pour différentes températures et différents champs magnétiques.;;Equ_autocoherente.py;;;Thermodynamique
+Energie libre de Landau;Energie_libre_Landau.jpg;Affichage de l'énergie libre dans le cas du model de Landau (pour différentes températures).;;Energie_libre_Landau.py;;;Thermodynamique
+Loi de Planck;loi_planck.jpg;Calcul du spectre d'un corps à partir de la loi de Planck. Donne également des éléments tel que le maximum, la constante de Stefan, etc.;;loi_planck.py;;;Thermodynamique
+Cristallographie;Cristallographie.jpg;Visualisation 3D de mailles.;;;;;Chimie
+Filtre en traitement du signal;traitement_signal.jpg;Visualisation de l'influence de filtre sur un signal, représentation temporelle et spectrale;;;;;Filtrage,Electricité, Signaux

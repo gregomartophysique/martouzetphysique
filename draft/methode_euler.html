@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
 
     <!-- LATEX (Katex) -->
     <!-- KaTeX CSS -->
@@ -13,12 +14,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script> <!-- Auto-render -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
             onload="renderMathInElement(document.body, {
-            macros: {
-        '\\dd': '\\mathrm{d}',
-                '\\dv': '\\frac{\\dd{#1}}{\\dv{#2}}',
-                '\\vect': '\\overrightarrow{#1}',
-                '\\R': '\\mathbb{R}'
-            }
+            macros: macro_katex
     });"></script>
 
 

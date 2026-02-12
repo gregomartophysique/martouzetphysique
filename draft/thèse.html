@@ -7,19 +7,17 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <script src="main.js"></script>
+
     <!-- LATEX (Katex) -->
     <!-- KaTeX CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"> <!-- KaTeX JS -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script> <!-- Auto-render -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
             onload="renderMathInElement(document.body, {
-            macros: {
-        '\\dd': '\\mathrm{d}',
-                '\\dv': '\\frac{\\dd{#1}}{\\dv{#2}}',
-                '\\vect': '\\overrightarrow{#1}',
-                '\\R': '\\mathbb{R}'
-            }
+            macros: macro_katex
     });"></script>
+
 
 
     <!-- Coloration des codes -->

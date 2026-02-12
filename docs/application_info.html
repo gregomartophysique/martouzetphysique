@@ -4,11 +4,65 @@
     <title>Applications et codes</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
+    <script src="codes_python/liste_application.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- LATEX (Katex) -->
+    <!-- KaTeX CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"> <!-- KaTeX JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script> <!-- Auto-render -->
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body, {
+        macros: macro_katex
+});"></script>
+
     <script>
         window.onload = function () {
-            var txt = document.getElementById("title_code");
-            var p = getUrlParam("code_name");
-            txt.innerHTML = p;
+            const ID = getUrlParam("ID");
+            var code = {};
+
+            for (let j = 0; j < data_application.length; j++) {
+                if (ID == data_application[j].id) {
+                    code = data_application[j];
+
+                }
+            }
+            const txt = document.getElementById("title_code");
+
+
+            txt.innerHTML = code.Nom;
+
+            const descrip_courte = document.getElementById("description_courte");
+            descrip_courte.innerHTML = code.Descrip;
+
+            document.getElementById('IMG').setAttribute('src', 'codes_python/' + code.Img);
+
+            fetch("codes_python/" + code.Descrip_file)
+                .then(r => r.text())
+                .then(md => {
+                    document.getElementById('output').innerHTML = marked.parse(md);
+                    
+                    renderMathInElement(output, {
+                        delimiters: [
+                            { left: "$$", right: "$$", display: true },
+                            { left: "$", right: "$", display: false }
+                        ],
+                        macros: macro_katex
+                    });
+                });
+
+
+
+            /*
+        fetch("codes_python/" + code.Descrip_file)
+            .then(response => response.text())
+            .then(text => {
+                document.getElementById('output').textContent = text;
+            })
+            .catch(error => {
+                document.getElementById('output').textContent = "Erreur : " + error;
+            });*/
         }
 
         function getUrlParam(name) {
@@ -16,11 +70,44 @@
             return params.get(name);
         }
     </script>
+    <style>
+        /* Barre des onglets */
+        .tabs {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .tabs button {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background: #eee;
+            cursor: pointer;
+        }
+
+                .tabs button.active {
+                    background: #4285f4;
+                    color: white;
+                }
+
+        /* Contenu */
+        .tab-content {
+            display: none;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+
+            .tab-content.active {
+                display: block;
+            }
+    </style>
+   
+
 </head>
 <body>
     <div class="wrapper">
         <!-- Menu -->
-        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li ><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li ><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li class="active"><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li class="active"><a href="code_python.html">Applications et codes</a></li>	</li></ul>
+        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li ><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li ><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li class="active"><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li class="active"><a href="code_python.html">Applications et codes</a></li>		<li ><a href="site_web.html">Sites web extérieurs</a></li>	</li></ul>
     </ul>
     <div class="footer">
                 @ G. Martouzet 2026
@@ -32,9 +119,51 @@
     <!-- Page Content  -->
     <div id="content">
         <div id="header">
-            <h1 id="title_code">Applications et codes</h1> 
+            <h1 id="title_code">Applications et codes</h1>
+
+            <div id="description_courte"></div>
+
+            <div class="tabs">
+                <button data-tab="tab1" class="active">Description</button>
+                <button data-tab="tab2">Image</button>
+            </div>
+
+            <hr>
+
+            <div id="tab1" class="tab-content active">
+                <div id="output"></div>
+            </div>
+
+            <div id="tab2" class="tab-content">
+                <img id="IMG" width=100 src="" alt="">
+            </div>
+
+
+
         </div>
-     </div>
+    </div>
+
+
+    <script>
+        const buttons = document.querySelectorAll('.tabs button');
+        const contents = document.querySelectorAll('.tab-content');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+
+
+
+                // Retirer les classes actives
+                buttons.forEach(b => b.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                // Activer le bon onglet
+                button.classList.add('active');
+                document.getElementById(button.dataset.tab)
+                    .classList.add('active');
+            });
+        });
+    </script>
 
 </body>
 </html>

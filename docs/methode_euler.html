@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
 
     <!-- LATEX (Katex) -->
     <!-- KaTeX CSS -->
@@ -13,12 +14,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script> <!-- Auto-render -->
     <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
             onload="renderMathInElement(document.body, {
-            macros: {
-        '\\dd': '\\mathrm{d}',
-                '\\dv': '\\frac{\\dd{#1}}{\\dv{#2}}',
-                '\\vect': '\\overrightarrow{#1}',
-                '\\R': '\\mathbb{R}'
-            }
+            macros: macro_katex
     });"></script>
 
 
@@ -39,7 +35,7 @@
 <body>
 
     <div class="wrapper">
-        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li class="active"><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li class="active"><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li ><a href="code_python.html">Applications et codes</a></li>	</li></ul>
+        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li class="active"><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li class="active"><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li ><a href="code_python.html">Applications et codes</a></li>		<li ><a href="site_web.html">Sites web extérieurs</a></li>	</li></ul>
     </ul>
     <div class="footer">
                 @ G. Martouzet 2026

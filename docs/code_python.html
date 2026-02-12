@@ -4,6 +4,7 @@
     <title>Applications et codes</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
+    <script src="codes_python/liste_application.js"></script>
     <script src="load_list.js"></script>
     <style>
         .element {
@@ -41,44 +42,42 @@
                 width: 100px;
             }
 
-        .element .description {
-            font-family: Arial, sans-serif;
-        }
+            .element .description {
+                font-family: Arial, sans-serif;
+            }
 
-        .element .keywords {
-            margin-bottom: 5px;
-        }
+            .element .keywords {
+                margin-bottom: 5px;
+            }
 
-        .element .keyword {
-            display: inline-block;
-            border-style: solid;
-            border-width: 1px;
-            margin: 1px;
-            padding: 1px;
-            color: gray;
-            border-radius: 5px;
-            font-family: Arial, sans-serif;
-        }
+            .element .keyword {
+                display: inline-block;
+                border-style: solid;
+                border-width: 1px;
+                margin: 1px;
+                padding: 1px;
+                color: gray;
+                border-radius: 5px;
+                font-family: Arial, sans-serif;
+            }
 
         .thumbnail-image {
             height: 100%;
         }
 
         #code_type {
-
         }
 
         .code_type_class {
             border-style: solid;
             border-width: 1px;
-
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
         <!-- Menu -->
-        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li ><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li ><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li class="active"><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li class="active"><a href="code_python.html">Applications et codes</a></li>	</li></ul>
+        <nav id="sidebar">	<div>	<div id="title_site">Martouzet Physique</div>	<ul>	<li ><a href="index.html">Accueil</a></li>	<li ><a href="#" class="submenu-toggle">Physique PCSI/PSI<span class="arrow">></span></a><ul>		<li ><a href="cours.html">Cours PCSI</a></li>		<li ><a href="fiches_methodes_PCSI.html">Fiches Méthodes</a></li>		<li ><a href="methode_euler.html">Méthode Euler</a></li>	</li></ul>	<li ><a href="#" class="submenu-toggle">Mes publications<span class="arrow">></span></a><ul>		<li ><a href="thèse.html">Thèse</a></li>		<li ><a href="article_pédagogique.html">Articles pédagogiques</a></li>	</li></ul>	<li class="active"><a href="#" class="submenu-toggle">Outils<span class="arrow">></span></a><ul>		<li ><a href="figure_tikz.html">Figures tikz</a></li>		<li class="active"><a href="code_python.html">Applications et codes</a></li>		<li ><a href="site_web.html">Sites web extérieurs</a></li>	</li></ul>
     </ul>
     <div class="footer">
                 @ G. Martouzet 2026
@@ -98,15 +97,15 @@
                          <legend> Type d'application :</legend>
 
                          <ul class="listCheckbox" id="listLanguage">
-                             <li><input type="checkbox" id="check_code_type_py" value="code_type_py" checked /><label for="check_code_type_py">Python</label></li>
-                             <li><input type="checkbox" id="check_code_type_js" value="code_type_js" checked /><label for="check_code_type_js">JavaScript</label></li>
-
+                             <li><input type="checkbox" id="check_code_type_py" value="code_type_py" name="Python" checked /><label for="check_code_type_py">Python</label></li>
+                             <li><input type="checkbox" id="check_code_type_js" value="code_type_js" name="JS" checked /><label for="check_code_type_js">JavaScript</label></li>
+                             <li><input type="checkbox" id="check_code_type_pa" value="code_type_pa" name="Pascal" checked /><label for="check_code_type_pa">Autre</label></li>
                          </ul>
 
                      </fieldset>
 
 
-                     <fieldset>
+                     <fieldset id="keywords_field">
                          <legend> Catégories :</legend>
 
                          <div class="container">

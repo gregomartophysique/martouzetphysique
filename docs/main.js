@@ -9,3 +9,18 @@ document.querySelectorAll('.submenu-toggle').forEach(toggle => {
         this.classList.toggle('open');
     });
 });
+
+
+
+
+/*
+    Katex
+*/
+
+macro_katex = {
+    '\\dd': '\\mathrm{d}',
+    '\\dv': '\\frac{\\dd{#1}}{\\dd{#2}}',
+    '\\vect': '\\overrightarrow{#1}',
+    '\\R': '\\mathbb{R}'
+}
+
