@@ -50,6 +50,9 @@
                         ],
                         macros: macro_katex
                     });
+                })
+                .catch(error => {
+                    document.getElementById('output').textContent = "Erreur : " + error;
                 });
 
 
