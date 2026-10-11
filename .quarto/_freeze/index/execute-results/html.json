@@ -2,7 +2,7 @@
   "hash": "7b4b2dc638e84c878e16cac375190968",
   "result": {
     "engine": "jupyter",
-    "markdown": "---\ntitle: \"martouzetphysique\"\njupyter: python3\n---\n\nVoici la nouvelle version de mon site. Elle sera bientôt en ligne et fonctionnelle, l'ensemble du contenu reviendra vite !\n\nIl est fait avec Quarto ...\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n::: {#ef12b36a .cell execution_count=1}\n``` {.python .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n2\n```\n:::\n:::\n\n\n",
+    "markdown": "---\ntitle: \"martouzetphysique\"\njupyter: python3\n---\n\nVoici la nouvelle version de mon site. Elle sera bientôt en ligne et fonctionnelle, l'ensemble du contenu reviendra vite !\n\nIl est fait avec Quarto ...\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n::: {#8983ed1f .cell execution_count=1}\n``` {.python .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n2\n```\n:::\n:::\n\n\n",
     "supporting": [
       "index_files"
     ],
