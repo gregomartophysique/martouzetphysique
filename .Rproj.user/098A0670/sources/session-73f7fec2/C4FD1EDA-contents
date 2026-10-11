@@ -18,7 +18,11 @@ website:
     contents:
       - href: index.qmd
         text: Home
+      - href: pages/optique_geometrique.qmd
+        text: Optique géométrique
       - about.qmd
+      - href: pages/these.ipynb
+        text: These
 
 format:
   html:

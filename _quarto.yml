@@ -4,6 +4,9 @@ project:
 
 website:
   title: "Martouzet Physique"
+  page-footer:
+    left: "Copyright 2026, Martouzet Grégoire"
+    
   sidebar:
     style: "docked"
     search: False
@@ -15,7 +18,11 @@ website:
     contents:
       - href: index.qmd
         text: Home
+      - href: pages/optique_geometrique.qmd
+        text: Optique géométrique
       - about.qmd
+      - href: pages/these.ipynb
+        text: These
 
 format:
   html:

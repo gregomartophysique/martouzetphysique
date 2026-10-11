@@ -4,5 +4,11 @@
   },
   "index.qmd": {
     "index.html": "fe0d33e8"
+  },
+  "pages/these.ipynb": {
+    "these.html": "ed8d59d2"
+  },
+  "pages/optique_geometrique.qmd": {
+    "optique_geometrique.html": "e6fe9231"
   }
 }
