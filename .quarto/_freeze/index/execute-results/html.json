@@ -1,0 +1,12 @@
+{
+  "hash": "d2696aa1013d4594c5ced7f4d7f807de",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"martouzetphysique\"\njupyter: python3\n---\n\nThis is a Quarto website.\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n::: {#fd9a4170 .cell execution_count=1}\n``` {.python .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-display execution_count=1}\n```\n2\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
