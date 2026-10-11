@@ -3,7 +3,9 @@ title: "martouzetphysique"
 jupyter: python3
 ---
 
-This is a Quarto website.
+Voici la nouvelle version de mon site. Elle sera bientôt en ligne et fonctionnelle, l'ensemble du contenu reviendra vite !
+
+Il est fait avec Quarto ...
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
