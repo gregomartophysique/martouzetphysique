@@ -1,0 +1,22 @@
+[
+  {
+    "listing": "/pages/TPs.html",
+    "items": [
+      "/pages/TP/TP_propagation.html"
+    ]
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/actualites_blog/JO_hiver_2026/JO_hiver_2026.html"
+    ]
+  },
+  {
+    "listing": "/pages/codes.html",
+    "items": [
+      "/pages/codes_applications/GEOGEBRA/lentille_epaisse_3regles.html",
+      "/pages/codes_applications/PY/Traitement_Signal.html",
+      "/pages/codes_applications/PY/De_Fresnel_a_Fraun.html"
+    ]
+  }
+]

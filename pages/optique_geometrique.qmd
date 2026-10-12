@@ -5,16 +5,4 @@ jupyter: python3
 
 # 
 
-1.  La rayon passant par le centre de la lentille n'est pas dévié
-2.  Le rayon passant par le foyer principal objet ressort parallèlement à l'axe optique
-3.  Un rayon incident parallèle à l'axe optique ressort en passant par le foyer principal image.
 
-```{=html}
-<iframe
-src="../applications/lentille_epaisse.html"
-width="100%"
-height="600px"
-title="Titre de la page intégrée"
-style="border: 1px solid #ccc; border-radius: 4px;"\>
-</iframe\>
-```

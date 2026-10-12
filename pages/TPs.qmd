@@ -1,0 +1,11 @@
+---
+title: "Travaux Pratiques"
+listing:
+  contents:
+    - "TP/*.ipynb"
+  type: default
+  fields: [title, categories, description]
+  sort: "title desc"
+  categories: true
+  filter-ui: true
+---

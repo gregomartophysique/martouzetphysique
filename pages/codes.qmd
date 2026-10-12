@@ -1,0 +1,14 @@
+---
+title: "Codes"
+listing:
+  contents:
+    - "codes_applications/*/*.qmd"
+  type: default
+  fields: [image, title, categories, description]
+  sort: "title desc"
+  categories: true
+  filter-ui: true
+---
+
+::: {#codes}
+:::

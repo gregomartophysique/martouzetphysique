@@ -17,12 +17,15 @@ website:
         href: https://www.linkedin.com/in/gr%C3%A9goire-martouzet-a61786129
     contents:
       - href: index.qmd
-        text: Home
-      - href: pages/optique_geometrique.qmd
-        text: Optique géométrique
-      - about.qmd
+        text: Accueil
+      - href: about.qmd
+        text: A propos
+      - href: pages/TPs.qmd
+        text: Travaux pratiques
+      - href: pages/codes.qmd
+        text: Codes et applications
       - href: pages/these.ipynb
-        text: These
+        text: Ma thèse
 
 format:
   html:

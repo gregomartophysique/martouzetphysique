@@ -1,1 +1,28 @@
 /* css styles */
+
+/* Espacement entre les items */
+.quarto-listing-default .list.grid {
+  row-gap: 0;
+}
+
+/* Séparation des items */
+.quarto-listing-default .quarto-post {
+  padding: 1rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Titres */
+.quarto-listing-default .listing-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* Descriptions */
+.quarto-listing-default .description {
+  color: #555;
+  line-height: 1.5;
+}
+
+div.quarto-post .metadata {
+  display: none;
+}

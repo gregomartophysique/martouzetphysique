@@ -1,9 +1,13 @@
 ---
-title: "Optique géométrique"
-jupyter: python3
+toc: false
+categories: 
+  - Geogebra
+  - Optique géométrique
+title: "Lentille épaisse"
+description: "Permet de visualiser les trois règles et les limites du modèle de la lentille mince."
+image: lentille_epaisse_3regles.png
+listing: false
 ---
-
-# 
 
 1.  La rayon passant par le centre de la lentille n'est pas dévié
 2.  Le rayon passant par le foyer principal objet ressort parallèlement à l'axe optique
@@ -11,7 +15,7 @@ jupyter: python3
 
 ```{=html}
 <iframe
-src="../applications/lentille_epaisse.html"
+src="lentille_epaisse_3regles_geogebra.html"
 width="100%"
 height="600px"
 title="Titre de la page intégrée"

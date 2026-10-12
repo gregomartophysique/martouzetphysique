@@ -1,0 +1,17 @@
+---
+toc: false
+categories: 
+  - Sport
+  - Exercices
+title: "JO hivers 2026"
+description: "Une feuille d'exercice en lien avec les JO hivers 2026."
+author: "Martouzet Grégoire"
+date: 02/10/2026
+image: JO_hiver_2026_logo.png
+listing: false
+---
+
+<iframe src="exo_JO2026.pdf" width="100%" height="600px">
+    <p>Votre navigateur ne prend pas en charge les PDF. 
+    Vous pouvez <a href="exo_JO2026.pdf">télécharger le PDF ici</a>.</p>
+</iframe>

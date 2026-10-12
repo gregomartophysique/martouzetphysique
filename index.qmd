@@ -1,14 +1,22 @@
 ---
 title: "martouzetphysique"
 jupyter: python3
+listing:
+  id: actualites
+  contents:
+    - "actualites_blog/*/*.qmd"
+  sort: "date desc"
+  type: grid
+  categories: true
+  fields: [image, date, title, categories, description]
+  filter-ui: true
 ---
 
-Voici la nouvelle version de mon site. Elle sera bientôt en ligne et fonctionnelle, l'ensemble du contenu reviendra vite !
+Voici la nouvelle version de mon site. L'ensemble du contenu revient petit à petit !
 
-Il est fait avec Quarto ...
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+# Actualités
 
-```{python}
-1 + 1
-```
+::: {#actualites}
+:::
+
