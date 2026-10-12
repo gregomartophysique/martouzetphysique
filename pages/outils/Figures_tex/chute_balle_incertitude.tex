@@ -1,0 +1,34 @@
+\begin{tikzpicture}	
+	\foreach \t in {0,1,2,3}{
+			\foreach \d in {-0.2,-0.15,...,0}{
+				\pgfmathparse{1-4.5*abs(\d)}
+				\let\opa\pgfmathresult
+				\pgfmathparse{(\t+\d)*(\t+\d)/2}
+				\draw[shading=ball, opacity=\opa] (0,-\pgfmathresult) circle (0.3);
+				\pgfmathparse{(\t-\d)*(\t-\d)/2}
+				\draw[shading=ball, opacity=\opa] (0,-\pgfmathresult) circle (0.3);
+			}
+			
+			\pgfmathparse{\t*\t/2}
+			\draw[shading=ball] (0,-\pgfmathresult) circle (0.3);
+			\draw (0.7, -\pgfmathresult) -- ++ (0.2, 0) node[right] {$z_\t$};
+			\draw (-0.3, -\pgfmathresult) node[above left] {$t_\t$};
+		}
+		
+		\pgfmathparse{3*3/2}
+		\draw[<->] ($(0.5, -1.05*\pgfmathresult)$) -- ($(0.5, -0.95*\pgfmathresult)$) node[right, rotate=90] {$\Delta z$};
+		
+		\draw[->] (0.8, 0) -- ++ (0, -5) node[below] {$z$};
+		
+		% Règle
+		\coordinate (regle) at (-1.5, 0);
+		\begin{scope}[shift=(regle)]
+			\foreach \y in {0, 0.1, ..., 5}{
+				\draw (0,-\y) -- ++ (0.1,0);
+			}
+			\foreach \y in {0, 0.5, ..., 5}{
+				\draw (0,-\y) -- ++ (0.25,0);
+			}
+		\end{scope}
+		\draw (regle) rectangle ++ (0.5, -5);
+\end{tikzpicture}

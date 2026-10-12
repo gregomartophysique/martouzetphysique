@@ -1,0 +1,12 @@
+{
+  "hash": "3adb42831ee928e6f2b182fcadac8e37",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"A propos\"\njupyter: python3\n---\n\n\nSite réalisé avec Quarto ...\n\n\nTo learn more about Quarto websites visit <https://quarto.org/docs/websites>.\n\n",
+    "supporting": [
+      "about_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

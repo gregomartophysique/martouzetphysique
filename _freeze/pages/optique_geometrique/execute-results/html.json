@@ -1,0 +1,12 @@
+{
+  "hash": "d97e9ed21fe829a909b6946661d22322",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Optique géométrique\"\njupyter: python3\n---\n\n# \n\n",
+    "supporting": [
+      "optique_geometrique_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

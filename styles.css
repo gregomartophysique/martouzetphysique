@@ -26,3 +26,13 @@
 div.quarto-post .metadata {
   display: none;
 }
+
+/* Images du listing Quarto pour les grid qui affiche completement les images*/
+.quarto-listing .thumbnail-image {
+  height: 180px !important;
+  width: auto !important;
+  max-width: 100%;
+  object-fit: contain !important;
+  display: block;
+  margin: auto;
+}

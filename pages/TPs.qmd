@@ -3,8 +3,10 @@ title: "Travaux Pratiques"
 listing:
   contents:
     - "TP/*.ipynb"
-  type: default
-  fields: [title, categories, description]
+  type: table
+  fields: [title]
+  field-display-names:
+      title: "Titre"
   sort: "title desc"
   categories: true
   filter-ui: true

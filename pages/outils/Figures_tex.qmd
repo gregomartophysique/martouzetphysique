@@ -1,0 +1,14 @@
+---
+title: "Figures"
+listing:
+  id: figures
+  contents:
+    - "Figures_tex/*.qmd"
+  type: grid
+  categories: true
+  fields: [image, title, categories]
+  filter-ui: true
+---
+
+::: {#figures}
+:::

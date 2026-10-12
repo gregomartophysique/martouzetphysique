@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  
+execute:
+  freeze: auto
 
 website:
   title: "Martouzet Physique"
@@ -26,6 +29,12 @@ website:
         text: Codes et applications
       - href: pages/these.ipynb
         text: Ma thèse
+      - text: Outils
+        contents:
+          - href: pages/outils/Figures_tex.qmd
+            text: Figures
+          - href: pages/outils/sites_web.qmd
+            text: Logiciels et sites web
 
 format:
   html:

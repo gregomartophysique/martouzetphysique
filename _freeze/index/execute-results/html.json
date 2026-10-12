@@ -1,0 +1,12 @@
+{
+  "hash": "8b56f4aad9add45fcfddf26fe8fc8768",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"martouzetphysique\"\njupyter: python3\nlisting:\n  id: actualites\n  contents:\n    - \"actualites_blog/*/*.qmd\"\n  sort: \"date desc\"\n  type: grid\n  categories: true\n  fields: [image, date, title, categories, description]\n  filter-ui: true\n---\n\nVoici la nouvelle version de mon site. L'ensemble du contenu revient petit à petit !\n\n\n# Actualités\n\n::: {#actualites}\n:::\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

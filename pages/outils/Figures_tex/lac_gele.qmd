@@ -1,0 +1,14 @@
+---
+categories: 
+  - Exercices
+  - Thermodynamique
+  - Diffusion thermique
+title: "Lac gelé"
+image: lac_gele.png
+---
+
+\![Lac gelé](lac_gele.png)
+
+``` tex
+{{< include lac_gele.tex >}}
+```

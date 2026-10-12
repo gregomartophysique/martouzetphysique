@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.19">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Méthode de Monte-Carlo et composition d’incertitudes – Martouzet Physique</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-6622afbb6a93371a7f6aaa1c40799739.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      Martouzet Physique
+      </li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../../">Martouzet Physique</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/gregomartophysique/martouzetphysique" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-github"></i></a>
+    <a href="https://www.linkedin.com/in/gr%C3%A9goire-martouzet-a61786129" title="" class="quarto-navigation-tool px-1" aria-label=""><i class="bi bi-linkedin"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Accueil</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../about.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">A propos</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/TPs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Travaux pratiques</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/codes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Codes et applications</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/these.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Ma thèse</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Outils</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/outils/Figures_tex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Figures</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/outils/sites_web.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Logiciels et sites web</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#etapes-de-la-méthode" id="toc-etapes-de-la-méthode" class="nav-link" data-scroll-target="#etapes-de-la-méthode">Etapes de la méthode</a>
+  <ul class="collapse">
+  <li><a href="#fonctions-python-utiles" id="toc-fonctions-python-utiles" class="nav-link" data-scroll-target="#fonctions-python-utiles">Fonctions python utiles</a></li>
+  </ul></li>
+  <li><a href="#exemple-dans-le-cas-dun-produit-et-implémentation-en-python" id="toc-exemple-dans-le-cas-dun-produit-et-implémentation-en-python" class="nav-link" data-scroll-target="#exemple-dans-le-cas-dun-produit-et-implémentation-en-python">Exemple dans le cas d’un produit et implémentation en python</a>
+  <ul class="collapse">
+  <li><a href="#choix-du-nombre-n-de-tirages" id="toc-choix-du-nombre-n-de-tirages" class="nav-link" data-scroll-target="#choix-du-nombre-n-de-tirages">Choix du nombre <span class="math inline">\(N\)</span> de tirages</a></li>
+  </ul></li>
+  <li><a href="#monte-carlo-et-régression-linéaire-chute-libre-dune-bille" id="toc-monte-carlo-et-régression-linéaire-chute-libre-dune-bille" class="nav-link" data-scroll-target="#monte-carlo-et-régression-linéaire-chute-libre-dune-bille">Monte-Carlo et régression linéaire : Chute libre d’une bille</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Méthode de Monte-Carlo et composition d’incertitudes</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>La méthode de Monte-Carlo permet de déterminer l’incertitude-type sur une grandeur calculée à partir de grandeurs expérimentales, mesurées ou fournies. Elle est particulièrement utile lorsque l’expression pour calculer la grandeur est compliquée et n’est plus uniquement un produit ou une somme. Le principe est de <strong>tirer aléatoirement un grand nombre de valeurs} respectant une certaine loi de probabilité, puis leur appliquer la formule pour obtenir un grand nombre de la valeur recherchée. Une étude statistique permet ensuite de déterminer la </strong>moyenne** (donc la grandeur souhaitée) et l’<strong>écart type</strong> de la distribution et donc l’incertitude.</p>
+<p><em>Rappel sur le calcul d’incertitudes</em></p>
+<p>Soit une grandeur <span class="math inline">\(X\)</span> calculée à partir de deux paramètres <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>, dont on connait les incertitudes <span class="math inline">\(\Delta a\)</span> et <span class="math inline">\(\Delta b\)</span>. - <span class="math inline">\(X\)</span> est définie par une somme ou différence : <span class="math display">\[
+            X = a\pm b
+            \quad
+            \Rightarrow
+            \quad
+            \Delta X^2 = \Delta a^2 + \Delta b^2
+        \]</span> - <span class="math inline">\(X\)</span> est définie par un produit ou quotient : <span class="math display">\[
+        X = a \cdot b
+        \qq{ou}
+        X = \frac{a}{b}
+        \quad\Rightarrow\quad
+        \left(\frac{\Delta X}{X}\right)^2 = \left(\frac{\Delta a}{a}\right)^2 +\left(\frac{\Delta b}{b}\right)^2
+        \]</span> - Autres : méthode de Monte-Carlo</p>
+</section>
+<section id="etapes-de-la-méthode" class="level1">
+<h1>Etapes de la méthode</h1>
+<p>Soit une grandeur <span class="math inline">\(X\)</span> calculée à partir d’autres paramètres (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) par une relation mathématique <span class="math inline">\(X=f(a,b)\)</span>, nous cherchons à calculer l’incertitude sur <span class="math inline">\(X\)</span> (notée <span class="math inline">\(\Delta X\)</span>), à partir des incertitudes <span class="math inline">\(\Delta a\)</span> et <span class="math inline">\(\Delta b\)</span>, sur les paramètres <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Ici la méthode est présentée avec deux paramètres mais peut facilement être généralisé à plus.</p>
+<ol type="1">
+<li>Lister les grandeurs expérimentales utiles pour le calcul de la grandeur et associer à chacune l’incertitude associée, ici <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Par exemple, expérimentalement, on mesure <span class="math inline">\(a=a_0\pm\Delta a\)</span> et <span class="math inline">\(b=b_0\pm\Delta b\)</span>.</li>
+<li>Procéder à <span class="math inline">\(N\)</span> tirages au sort aléatoires des paramètres <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Le tirage est effectué en supposant que les paramètres vérifient une loi de probabilité donnée. On prendra par exemple une loi normale centrée sur <span class="math inline">\(a_0\)</span> et d’écart-type <span class="math inline">\(\Delta a\)</span>. `A cette étape, nous avons donc deux listes de <span class="math inline">\(N\)</span> éléments contenant des valeurs de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> <strong>compatibles avec l’expérience</strong>.</li>
+<li>Pour chaque couple de valeur (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) obtenus, calculer la grandeur <span class="math inline">\(X\)</span> associé à partir de l’expression mathématique. A cette étape, nous avons donc une liste de <span class="math inline">\(N\)</span> valeurs possibles de <span class="math inline">\(X\)</span>.\ Ici l’exemple traite d’un produit.</li>
+<li>Calculer la moyenne des valeurs obtenues <span class="math inline">\(X_0=\expval{X}\)</span>.</li>
+<li>Calculer l’écart-type de l’ensemble des valeurs, il s’agit de l’incertitude-type associée à la valeur de <span class="math inline">\(X_0\)</span>, que l’on note <span class="math inline">\(\Delta X\)</span>.</li>
+<li>Ecrire le résultat sous la forme <span class="math inline">\(X=X_0\pm\Delta X\)</span>.</li>
+</ol>
+<p><em>Schéma récapitulatif:</em></p>
+<section id="fonctions-python-utiles" class="level2">
+<h2 class="anchored" data-anchor-id="fonctions-python-utiles">Fonctions python utiles</h2>
+<ul>
+<li><code>np.random.normal(m,s,N)} : effectue un tirage de</code>N} valeurs selon une loi de probabilité normale centrée en <code>m} et d'écart-type</code>s};</li>
+<li><code>np.mean(L)} : calcule la moyenne d'une liste</code>L};</li>
+<li><code>np.std(L)} : calcule l'écart-type d'une liste</code>L} ( en anglais);</li>
+<li><code>plt.hist(L)} : trace l'histogramme d'une liste</code>L}.</li>
+</ul>
+<p>On rappelle qu’il est possible d’effectuer des opérations termes à termes sur les tableaux numpy.</p>
+<p>Ces différentes fonctions sont disponibles en important les bibliothèques usuelles.</p>
+<div id="be0566a8-aee1-4b29-90ec-9f5c7f27a1a8" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="exemple-dans-le-cas-dun-produit-et-implémentation-en-python" class="level1">
+<h1>Exemple dans le cas d’un produit et implémentation en python</h1>
+<p>Un étudiant cherche à mesurer l’aire d’un rectangle de côté <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. `A l’aide d’une règle graduée au millimètre, il mesure <span class="math inline">\(a=\SI{10.0\pm0.1}{\centi\meter}\)</span> et <span class="math inline">\(b=\SI{20.0\pm0.1}{\centi\meter}\)</span>. L’application de la formule habituelle (rappelée en introduction) donne directement <span class="math inline">\(S=\SI{200\pm2}{\centi\meter\squared}\)</span>.</p>
+<p>L’étudiant décide d’utiliser la méthode de Monte-Carlo. Il tire donc aléatoirement <span class="math inline">\(N=10^4\)</span> valeur de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> en utilisant une loi normale respectivement centrée en 10 et d’écart-type 0.1 et centrée en 20 et d’écart-type 0.1.</p>
+<div id="e040db95-44d8-471e-8557-8d3bf30392a3" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span> <span class="co"># Nombre de tirages aléatoires</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10.0</span> <span class="co"># mesure de a</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fl">0.1</span> <span class="co"># incertitude associée</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">20.0</span> <span class="co"># mesure de b</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="fl">0.1</span> <span class="co"># incertitude associée</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.normal( a, da, N ) <span class="co"># Liste contenant les valeurs simulees de a et b</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.random.normal( b, db, N )</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> A<span class="op">*</span>B <span class="co"># Liste des surfaces calculée</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>s, ds <span class="op">=</span> np.mean( S ), np.std( S ) <span class="co"># Calcul du resultat</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Il obtient deux listes <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> contenant <span class="math inline">\(N\)</span> valeurs :</p>
+<p><code>A = [ 9.92546825,  9.93220864,  9.83840349, ..., 10.03003956, 9.98006161,  9.9274509 ]</code></p>
+<p><code>B = [ 20.09902132, 20.10960372, 19.7289994 , ..., 20.10191305, 19.94441959, 20.07721749]</code></p>
+<p>Il calcule ensuite les valeurs de la surface correspondante en multipliant termes à termes les deux listes <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> :</p>
+<p><code>S = [199.49219795, 199.73277971, 194.10185644, ..., 201.62298318, 199.04653634, 199.31559078]</code></p>
+<p>Pour finir, il calcule la moyenne de la liste <span class="math inline">\(S\)</span> (<span class="math inline">\(\expval{S}=\num{200.1}\)</span>) et l’écart-type (<span class="math inline">\(\sigma_S=\num{2.3}\)</span>).</p>
+<p>Voici un exemple des distributions obtenues :</p>
+<div id="9829d582-e3c6-4bc2-ab6e-dbc82e471dd3" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [A, B, S]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>xaxes <span class="op">=</span> [<span class="st">'x1'</span>,<span class="st">'x2'</span>,<span class="st">'x3'</span>,<span class="st">'x4'</span>]</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>yaxes <span class="op">=</span> [<span class="st">'y1'</span>,<span class="st">'y2'</span>,<span class="st">'y3'</span>,<span class="st">'y4'</span>]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>titles <span class="op">=</span> [<span class="st">'A'</span>,<span class="st">'B'</span>,<span class="st">'S=A*B'</span>] </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>f,a <span class="op">=</span> plt.subplots(<span class="dv">1</span>,<span class="dv">3</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx,ax <span class="kw">in</span> <span class="bu">enumerate</span>(a):</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    ax.hist(data[idx])</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    ax.set_title(titles[idx])</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    ax.set_xlabel(xaxes[idx])</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Incertitude_MonteCarlo_files/figure-html/cell-4-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Le programme retourne . En respectant le nombre de chiffre significatif, le résultat obtenu par la méthode de Monte-Carlo est donc <span class="math inline">\(S=\SI{200\pm2}{\centi\meter\squared}\)</span>. Ce résultat est bien compatible avec le résultat donné par la formule théorique pour un produit. Ceci valide donc la méthode, il est présent possible de modifier le code ci-dessus pour des relations non-linéaire.</p>
+<section id="choix-du-nombre-n-de-tirages" class="level2">
+<h2 class="anchored" data-anchor-id="choix-du-nombre-n-de-tirages">Choix du nombre <span class="math inline">\(N\)</span> de tirages</h2>
+<p>Il est naturel de se demander quelle valeur de <span class="math inline">\(N\)</span> choisir. - Un choix trop faible de <span class="math inline">\(N\)</span> entraîne une mauvaise représentation statistique, rendant l’estimation de l’incertitude peu précise. - À l’inverse, un <span class="math inline">\(N\)</span> trop grand allonge inutilement le temps de calcul.</p>
+<p>Observons l’évolution de l’erreur en fonction du nombre de tirages (voir graphique ci-contre). Lorsque <span class="math inline">\(N\)</span> est inférieur à , l’erreur reste significative. En revanche, pour <span class="math inline">\(N&gt;\num{e3}\)</span>, l’erreur se stabilise et converge vers la valeur attendue théoriquement par le calcul analytique.</p>
+<p>Ainsi, un choix de <span class="math inline">\(N=\num{e4}\)</span> constitue un bon compromis entre précision et temps de calcul. Cette valeur permet d’obtenir un résultat fiable en moins d’une seconde sur la plupart des ordinateurs.</p>
+<pre><code>\begin{tikzpicture}
+    \begin{semilogxaxis}[ymin=0, ymax=2, xmin=10, xmax=1e5, xlabel={Nombre de simulations},     ylabel={Incertitude relative (\%)}, width=0.95\linewidth]
+        \addplot[blue] table {convergence.txt};
+        \draw (10, 1.12) -- (1e5, 1.12);
+    \end{semilogxaxis}
+\end{tikzpicture}</code></pre>
+</section>
+</section>
+<section id="monte-carlo-et-régression-linéaire-chute-libre-dune-bille" class="level1">
+<h1>Monte-Carlo et régression linéaire : Chute libre d’une bille</h1>
+<p>Cette méthode permet également de déterminer une incertitude sur des paramètres d’ajustement d’une courbe. Par exemple, après avoir fait une régression linéaire sur 10 points, il est possible de tirer aléatoirement <span class="math inline">\(N\)</span> fois 10 points acceptables et effectuer <span class="math inline">\(N\)</span> ajustements. On obtient donc <span class="math inline">\(N\)</span> valeurs de pente, puis une étude statistique nous permet de calculer l’incertitude sur la pente.</p>
+<p>La différence est donc que le tirage aléatoire n’a pas lieu sur <span class="math inline">\(N\)</span> valeur mais uniquement sur une série de mesure (10 par exemple). Mais ce tirage a lieu <span class="math inline">\(N\)</span> fois.</p>
+<p>L’objectif est de mesurer <span class="math inline">\(g\)</span>, l’accélération de la pesanteur. Pour cela on lâche une bille (qui est donc en chute libre verticale) et on repère sa position au cours du temps. Pour cela on utilise une camera, la résolution temporelle est donc limité par la fréquence d’acquisition de la caméra. De plus, plus la bille tombe vite et plus elle apparait floue sur l’image, l’incertitude sur la position augmente.</p>
+<p>La vitesse est donnée par : <span class="math inline">\(v=gt\)</span>, ainsi si on trace la vitesse en fonction du temps, on obtient une droite de pente <span class="math inline">\(g\)</span>. La vitesse est déterminée à chaque instant par la relation : <span class="math display">\[v_i = \frac{z_{i+1}-z_i}{\Delta t}\]</span></p>
+<p>Or les positions <span class="math inline">\(z_i\)</span> sont de plus en plus mal repérées (flou de mouvement), on estime l’incertitude à 5;%. On obtient le graphique ci-dessous. Les ellipses correspondent à l’intervalle où il est probable d’avoir la valeur réelle de la grandeur.</p>
+<p>On effectue alors <span class="math inline">\(N\)</span> simulations compatibles avec cette première mesure. On calcule alors <span class="math inline">\(N\)</span> pentes, il est ensuite possible d’effectuer une étude statistique.</p>
+<div id="30cff232-e52c-4749-a3ad-b579a5da687e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> np.array( [<span class="dv">0</span>,<span class="fl">9.8</span>, <span class="fl">20.2</span>, <span class="fl">28.3</span>] ) <span class="co"># Liste des vitesses</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dv <span class="op">=</span> <span class="fl">0.05</span><span class="op">*</span>v0 <span class="co"># 5% d'erreur</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> np.array( [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>] ) <span class="co"># Liste des temps</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> <span class="fl">0.1</span> <span class="co"># Erreur fixe de 0.1 s</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> [] <span class="co"># Liste contenant les valeurs de pentes simul%*é*)es</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(N):</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> normal( v0, dv )</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    t <span class="op">=</span> normal( t0, dt )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    pente, _, r, <span class="op">*</span>_ <span class="op">=</span> linregress( t, v )</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    G.append( pente )</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( np.mean( C ), np.std( C ) ) <span class="co"># Etude statistique des pentes et affichage</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright 2026, Martouzet Grégoire</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
