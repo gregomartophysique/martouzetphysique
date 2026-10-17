@@ -2,20 +2,17 @@
   {
     "listing": "/pages/TPs.html",
     "items": [
+      "/pages/TP/TP_caracteristique_dipole.html",
+      "/pages/TP/TP_Rsortie_generateur.html",
+      "/pages/TP/TP-Focométrie.html",
       "/pages/TP/TP_propagation.html"
-    ]
-  },
-  {
-    "listing": "/pages/outils/Figures_tex.html",
-    "items": [
-      "/pages/outils/Figures_tex/chute_balle_incertitude.html",
-      "/pages/outils/Figures_tex/lac_gele.html"
     ]
   },
   {
     "listing": "/pages/codes.html",
     "items": [
       "/pages/codes_applications/GEOGEBRA/lentille_epaisse_3regles.html",
+      "/pages/codes_applications/GEOGEBRA/lentille-demicylindre.html",
       "/pages/codes_applications/PY/Traitement_Signal.html",
       "/pages/codes_applications/PY/De_Fresnel_a_Fraun.html"
     ]
@@ -24,6 +21,13 @@
     "listing": "/index.html",
     "items": [
       "/actualites_blog/JO_hiver_2026/JO_hiver_2026.html"
+    ]
+  },
+  {
+    "listing": "/pages/outils/Figures_tex.html",
+    "items": [
+      "/pages/outils/Figures_tex/chute_balle_incertitude.html",
+      "/pages/outils/Figures_tex/lac_gele.html"
     ]
   }
 ]

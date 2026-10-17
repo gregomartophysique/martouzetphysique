@@ -85,7 +85,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
+      valueNames: ['listing-title','listing-numero',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
       searchColumns: ["listing-title","listing-author"],
     };
@@ -192,6 +192,23 @@ window.Quarto = {
  <span class="menu-text">Codes et applications</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Methodes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/methodes/Incertitude_MonteCarlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Incertitude Monte-Carlo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/these.html" class="sidebar-item-text sidebar-link">
@@ -228,7 +245,7 @@ window.Quarto = {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T25kZQ==">Onde <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="RWxlY3RyaWNpdCVDMyVBOQ==">Electricité <span class="quarto-category-count">(2)</span></div><div class="category" data-category="T25kZQ==">Onde <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T25kZSUyMHNvbm9yZQ==">Onde sonore <span class="quarto-category-count">(1)</span></div><div class="category" data-category="T3B0aXF1ZSUyMGclQzMlQTlvbSVDMyVBOXRyaXF1ZQ==">Optique géométrique <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -280,13 +297,50 @@ window.Quarto = {
 <a class="sort" data-sort="listing-title-sort" onclick="if (this.classList.contains('sort-asc')) { this.classList.add('sort-desc'); this.classList.remove('sort-asc') } else { this.classList.add('sort-asc'); this.classList.remove('sort-desc')} return false;">Titre</a>
 </th>
 
+<th>
+N°
+</th>
+
 </tr>
 </thead>
 <tbody class="list">
 
-<tr data-index="0" data-categories="T25kZQ==" data-listing-file-modified-sort="1791829288753" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Mesure de la vitesse de propagation des ondes sonores" data-listing-filename-sort="TP_propagation.ipynb">
+<tr data-index="0" data-categories="RWxlY3RyaWNpdCVDMyVBOQ==" data-listing-file-modified-sort="1792175635229" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Caractéristique d'un dipôle" data-listing-filename-sort="TP_caracteristique_dipole.ipynb">
+<td>
+<a href="../pages/TP/TP_caracteristique_dipole.html" class="title listing-title">Caractéristique d’un dipôle</a>
+</td>
+<td>
+<span class="listing-numero">4</span>
+</td>
+
+</tr>
+
+<tr data-index="1" data-categories="RWxlY3RyaWNpdCVDMyVBOQ==" data-listing-file-modified-sort="1792174998913" data-listing-reading-time-sort="1" data-listing-word-count-sort="43" data-listing-title-sort="Résistance de sortie d'un GBF" data-listing-filename-sort="TP_Rsortie_generateur.ipynb">
+<td>
+<a href="../pages/TP/TP_Rsortie_generateur.html" class="title listing-title">Résistance de sortie d’un GBF</a>
+</td>
+<td>
+<span class="listing-numero">3</span>
+</td>
+
+</tr>
+
+<tr data-index="2" data-categories="T3B0aXF1ZSUyMGclQzMlQTlvbSVDMyVBOXRyaXF1ZQ==" data-listing-file-modified-sort="1792175842757" data-listing-reading-time-sort="4" data-listing-word-count-sort="655" data-listing-title-sort="Focométrie" data-listing-filename-sort="TP-Focométrie.ipynb">
+<td>
+<a href="../pages/TP/TP-Focométrie.html" class="title listing-title">Focométrie</a>
+</td>
+<td>
+<span class="listing-numero">2</span>
+</td>
+
+</tr>
+
+<tr data-index="3" data-categories="T25kZSUyQ09uZGUlMjBzb25vcmU=" data-listing-file-modified-sort="1792174894683" data-listing-reading-time-sort="1" data-listing-word-count-sort="1" data-listing-title-sort="Mesure de la vitesse de propagation des ondes sonores" data-listing-filename-sort="TP_propagation.ipynb">
 <td>
 <a href="../pages/TP/TP_propagation.html" class="title listing-title">Mesure de la vitesse de propagation des ondes sonores</a>
+</td>
+<td>
+<span class="listing-numero">1</span>
 </td>
 
 </tr>

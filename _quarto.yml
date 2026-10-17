@@ -27,6 +27,10 @@ website:
         text: Travaux pratiques
       - href: pages/codes.qmd
         text: Codes et applications
+      - text: Methodes
+        contents:
+          - href: pages/methodes/Incertitude_MonteCarlo.ipynb
+            text: Incertitude Monte-Carlo
       - href: pages/these.ipynb
         text: Ma thèse
       - text: Outils

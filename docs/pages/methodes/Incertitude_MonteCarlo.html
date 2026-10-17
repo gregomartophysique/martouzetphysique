@@ -151,9 +151,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
-      Martouzet Physique
-      </li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/methodes/Incertitude_MonteCarlo.html">Methodes</a></li><li class="breadcrumb-item"><a href="../../pages/methodes/Incertitude_MonteCarlo.html">Incertitude Monte-Carlo</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -198,6 +196,23 @@ window.Quarto = {
  <span class="menu-text">Codes et applications</span></a>
   </div>
 </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Methodes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/methodes/Incertitude_MonteCarlo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Incertitude Monte-Carlo</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/these.html" class="sidebar-item-text sidebar-link">
@@ -238,14 +253,10 @@ window.Quarto = {
    
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
-  <li><a href="#etapes-de-la-méthode" id="toc-etapes-de-la-méthode" class="nav-link" data-scroll-target="#etapes-de-la-méthode">Etapes de la méthode</a>
-  <ul class="collapse">
+  <li><a href="#etapes-de-la-méthode" id="toc-etapes-de-la-méthode" class="nav-link" data-scroll-target="#etapes-de-la-méthode">Etapes de la méthode</a></li>
   <li><a href="#fonctions-python-utiles" id="toc-fonctions-python-utiles" class="nav-link" data-scroll-target="#fonctions-python-utiles">Fonctions python utiles</a></li>
-  </ul></li>
-  <li><a href="#exemple-dans-le-cas-dun-produit-et-implémentation-en-python" id="toc-exemple-dans-le-cas-dun-produit-et-implémentation-en-python" class="nav-link" data-scroll-target="#exemple-dans-le-cas-dun-produit-et-implémentation-en-python">Exemple dans le cas d’un produit et implémentation en python</a>
-  <ul class="collapse">
+  <li><a href="#exemple-dans-le-cas-dun-produit-et-implémentation-en-python" id="toc-exemple-dans-le-cas-dun-produit-et-implémentation-en-python" class="nav-link" data-scroll-target="#exemple-dans-le-cas-dun-produit-et-implémentation-en-python">Exemple dans le cas d’un produit et implémentation en python</a></li>
   <li><a href="#choix-du-nombre-n-de-tirages" id="toc-choix-du-nombre-n-de-tirages" class="nav-link" data-scroll-target="#choix-du-nombre-n-de-tirages">Choix du nombre <span class="math inline">\(N\)</span> de tirages</a></li>
-  </ul></li>
   <li><a href="#monte-carlo-et-régression-linéaire-chute-libre-dune-bille" id="toc-monte-carlo-et-régression-linéaire-chute-libre-dune-bille" class="nav-link" data-scroll-target="#monte-carlo-et-régression-linéaire-chute-libre-dune-bille">Monte-Carlo et régression linéaire : Chute libre d’une bille</a></li>
   </ul>
 </nav>
@@ -253,7 +264,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../pages/methodes/Incertitude_MonteCarlo.html">Methodes</a></li><li class="breadcrumb-item"><a href="../../pages/methodes/Incertitude_MonteCarlo.html">Incertitude Monte-Carlo</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Méthode de Monte-Carlo et composition d’incertitudes</h1>
 </div>
@@ -284,7 +295,8 @@ window.Quarto = {
             \Delta X^2 = \Delta a^2 + \Delta b^2
         \]</span> - <span class="math inline">\(X\)</span> est définie par un produit ou quotient : <span class="math display">\[
         X = a \cdot b
-        \qq{ou}
+        \quad\mathrm{ou}
+        \quad
         X = \frac{a}{b}
         \quad\Rightarrow\quad
         \left(\frac{\Delta X}{X}\right)^2 = \left(\frac{\Delta a}{a}\right)^2 +\left(\frac{\Delta b}{b}\right)^2
@@ -295,34 +307,34 @@ window.Quarto = {
 <p>Soit une grandeur <span class="math inline">\(X\)</span> calculée à partir d’autres paramètres (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) par une relation mathématique <span class="math inline">\(X=f(a,b)\)</span>, nous cherchons à calculer l’incertitude sur <span class="math inline">\(X\)</span> (notée <span class="math inline">\(\Delta X\)</span>), à partir des incertitudes <span class="math inline">\(\Delta a\)</span> et <span class="math inline">\(\Delta b\)</span>, sur les paramètres <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Ici la méthode est présentée avec deux paramètres mais peut facilement être généralisé à plus.</p>
 <ol type="1">
 <li>Lister les grandeurs expérimentales utiles pour le calcul de la grandeur et associer à chacune l’incertitude associée, ici <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Par exemple, expérimentalement, on mesure <span class="math inline">\(a=a_0\pm\Delta a\)</span> et <span class="math inline">\(b=b_0\pm\Delta b\)</span>.</li>
-<li>Procéder à <span class="math inline">\(N\)</span> tirages au sort aléatoires des paramètres <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Le tirage est effectué en supposant que les paramètres vérifient une loi de probabilité donnée. On prendra par exemple une loi normale centrée sur <span class="math inline">\(a_0\)</span> et d’écart-type <span class="math inline">\(\Delta a\)</span>. `A cette étape, nous avons donc deux listes de <span class="math inline">\(N\)</span> éléments contenant des valeurs de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> <strong>compatibles avec l’expérience</strong>.</li>
-<li>Pour chaque couple de valeur (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) obtenus, calculer la grandeur <span class="math inline">\(X\)</span> associé à partir de l’expression mathématique. A cette étape, nous avons donc une liste de <span class="math inline">\(N\)</span> valeurs possibles de <span class="math inline">\(X\)</span>.\ Ici l’exemple traite d’un produit.</li>
-<li>Calculer la moyenne des valeurs obtenues <span class="math inline">\(X_0=\expval{X}\)</span>.</li>
+<li>Procéder à <span class="math inline">\(N\)</span> tirages au sort aléatoires des paramètres <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. Le tirage est effectué en supposant que les paramètres vérifient une loi de probabilité donnée. On prendra par exemple une loi normale centrée sur <span class="math inline">\(a_0\)</span> et d’écart-type <span class="math inline">\(\Delta a\)</span>. À cette étape, nous avons donc deux listes de <span class="math inline">\(N\)</span> éléments contenant des valeurs de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> <strong>compatibles avec l’expérience</strong>.</li>
+<li>Pour chaque couple de valeur (<span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>) obtenus, calculer la grandeur <span class="math inline">\(X\)</span> associé à partir de l’expression mathématique. A cette étape, nous avons donc une liste de <span class="math inline">\(N\)</span> valeurs possibles de <span class="math inline">\(X\)</span>.</li>
+<li>Calculer la moyenne des valeurs obtenues <span class="math inline">\(X_0=&lt;X&gt;\)</span>.</li>
 <li>Calculer l’écart-type de l’ensemble des valeurs, il s’agit de l’incertitude-type associée à la valeur de <span class="math inline">\(X_0\)</span>, que l’on note <span class="math inline">\(\Delta X\)</span>.</li>
 <li>Ecrire le résultat sous la forme <span class="math inline">\(X=X_0\pm\Delta X\)</span>.</li>
 </ol>
 <p><em>Schéma récapitulatif:</em></p>
-<section id="fonctions-python-utiles" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-python-utiles">Fonctions python utiles</h2>
+</section>
+<section id="fonctions-python-utiles" class="level1">
+<h1>Fonctions python utiles</h1>
 <ul>
-<li><code>np.random.normal(m,s,N)} : effectue un tirage de</code>N} valeurs selon une loi de probabilité normale centrée en <code>m} et d'écart-type</code>s};</li>
-<li><code>np.mean(L)} : calcule la moyenne d'une liste</code>L};</li>
-<li><code>np.std(L)} : calcule l'écart-type d'une liste</code>L} ( en anglais);</li>
-<li><code>plt.hist(L)} : trace l'histogramme d'une liste</code>L}.</li>
+<li><code>np.random.normal(m,s,N)</code> : effectue un tirage de <code>N</code> valeurs selon une loi de probabilité normale centrée en <code>m</code> et d’écart-type <code>s</code>;</li>
+<li><code>np.mean(L)</code> : calcule la moyenne d’une liste <code>L</code>;</li>
+<li><code>np.std(L)</code> : calcule l’écart-type d’une liste <code>L</code> (<em>STandard Deviation</em> en anglais);</li>
+<li><code>plt.hist(L)</code> : trace l’histogramme d’une liste <code>L</code>.</li>
 </ul>
 <p>On rappelle qu’il est possible d’effectuer des opérations termes à termes sur les tableaux numpy.</p>
 <p>Ces différentes fonctions sont disponibles en important les bibliothèques usuelles.</p>
-<div id="be0566a8-aee1-4b29-90ec-9f5c7f27a1a8" class="cell" data-execution_count="10">
+<div id="be0566a8-aee1-4b29-90ec-9f5c7f27a1a8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-</section>
 <section id="exemple-dans-le-cas-dun-produit-et-implémentation-en-python" class="level1">
 <h1>Exemple dans le cas d’un produit et implémentation en python</h1>
-<p>Un étudiant cherche à mesurer l’aire d’un rectangle de côté <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. `A l’aide d’une règle graduée au millimètre, il mesure <span class="math inline">\(a=\SI{10.0\pm0.1}{\centi\meter}\)</span> et <span class="math inline">\(b=\SI{20.0\pm0.1}{\centi\meter}\)</span>. L’application de la formule habituelle (rappelée en introduction) donne directement <span class="math inline">\(S=\SI{200\pm2}{\centi\meter\squared}\)</span>.</p>
+<p>Un étudiant cherche à mesurer l’aire d’un rectangle de côté <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span>. À l’aide d’une règle graduée au millimètre, il mesure <span class="math inline">\(a= 10.0\pm0.1 \,\mathrm{cm}\)</span> et <span class="math inline">\(b=20.0\pm0.1\,\mathrm{cm}\)</span>. L’application de la formule de composition (rappelée en introduction) donne directement <span class="math inline">\(S=200\pm2\,\mathrm{cm^2}\)</span>.</p>
 <p>L’étudiant décide d’utiliser la méthode de Monte-Carlo. Il tire donc aléatoirement <span class="math inline">\(N=10^4\)</span> valeur de <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> en utilisant une loi normale respectivement centrée en 10 et d’écart-type 0.1 et centrée en 20 et d’écart-type 0.1.</p>
-<div id="e040db95-44d8-471e-8557-8d3bf30392a3" class="cell" data-execution_count="13">
+<div id="e040db95-44d8-471e-8557-8d3bf30392a3" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span> <span class="co"># Nombre de tirages aléatoires</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10.0</span> <span class="co"># mesure de a</span></span>
@@ -342,9 +354,9 @@ window.Quarto = {
 <p><code>B = [ 20.09902132, 20.10960372, 19.7289994 , ..., 20.10191305, 19.94441959, 20.07721749]</code></p>
 <p>Il calcule ensuite les valeurs de la surface correspondante en multipliant termes à termes les deux listes <span class="math inline">\(A\)</span> et <span class="math inline">\(B\)</span> :</p>
 <p><code>S = [199.49219795, 199.73277971, 194.10185644, ..., 201.62298318, 199.04653634, 199.31559078]</code></p>
-<p>Pour finir, il calcule la moyenne de la liste <span class="math inline">\(S\)</span> (<span class="math inline">\(\expval{S}=\num{200.1}\)</span>) et l’écart-type (<span class="math inline">\(\sigma_S=\num{2.3}\)</span>).</p>
+<p>Pour finir, il calcule la moyenne de la liste <span class="math inline">\(S\)</span> (<span class="math inline">\(&lt;S&gt;=200.1\)</span>) et l’écart-type (<span class="math inline">\(\sigma_S=2.3\)</span>).</p>
 <p>Voici un exemple des distributions obtenues :</p>
-<div id="9829d582-e3c6-4bc2-ab6e-dbc82e471dd3" class="cell" data-execution_count="12">
+<div id="9829d582-e3c6-4bc2-ab6e-dbc82e471dd3" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [A, B, S]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>xaxes <span class="op">=</span> [<span class="st">'x1'</span>,<span class="st">'x2'</span>,<span class="st">'x3'</span>,<span class="st">'x4'</span>]</span>
@@ -365,19 +377,46 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>Le programme retourne . En respectant le nombre de chiffre significatif, le résultat obtenu par la méthode de Monte-Carlo est donc <span class="math inline">\(S=\SI{200\pm2}{\centi\meter\squared}\)</span>. Ce résultat est bien compatible avec le résultat donné par la formule théorique pour un produit. Ceci valide donc la méthode, il est présent possible de modifier le code ci-dessus pour des relations non-linéaire.</p>
-<section id="choix-du-nombre-n-de-tirages" class="level2">
-<h2 class="anchored" data-anchor-id="choix-du-nombre-n-de-tirages">Choix du nombre <span class="math inline">\(N\)</span> de tirages</h2>
-<p>Il est naturel de se demander quelle valeur de <span class="math inline">\(N\)</span> choisir. - Un choix trop faible de <span class="math inline">\(N\)</span> entraîne une mauvaise représentation statistique, rendant l’estimation de l’incertitude peu précise. - À l’inverse, un <span class="math inline">\(N\)</span> trop grand allonge inutilement le temps de calcul.</p>
-<p>Observons l’évolution de l’erreur en fonction du nombre de tirages (voir graphique ci-contre). Lorsque <span class="math inline">\(N\)</span> est inférieur à , l’erreur reste significative. En revanche, pour <span class="math inline">\(N&gt;\num{e3}\)</span>, l’erreur se stabilise et converge vers la valeur attendue théoriquement par le calcul analytique.</p>
-<p>Ainsi, un choix de <span class="math inline">\(N=\num{e4}\)</span> constitue un bon compromis entre précision et temps de calcul. Cette valeur permet d’obtenir un résultat fiable en moins d’une seconde sur la plupart des ordinateurs.</p>
-<pre><code>\begin{tikzpicture}
-    \begin{semilogxaxis}[ymin=0, ymax=2, xmin=10, xmax=1e5, xlabel={Nombre de simulations},     ylabel={Incertitude relative (\%)}, width=0.95\linewidth]
-        \addplot[blue] table {convergence.txt};
-        \draw (10, 1.12) -- (1e5, 1.12);
-    \end{semilogxaxis}
-\end{tikzpicture}</code></pre>
+<p>Le programme retourne <code>200.1 +- 2.3</code>. En respectant le nombre de chiffre significatif, le résultat obtenu par la méthode de Monte-Carlo est donc <span class="math inline">\(S=200\pm2\,\mathrm{cm^2}\)</span>. Ce résultat est bien compatible avec le résultat donné par la formule théorique pour un produit. Ceci valide donc la méthode, il est présent possible de modifier le code ci-dessus pour des relations non-linéaire.</p>
 </section>
+<section id="choix-du-nombre-n-de-tirages" class="level1">
+<h1>Choix du nombre <span class="math inline">\(N\)</span> de tirages</h1>
+<p>Il est naturel de se demander quelle valeur de <span class="math inline">\(N\)</span> choisir. - Un choix trop faible de <span class="math inline">\(N\)</span> entraîne une mauvaise représentation statistique, rendant l’estimation de l’incertitude peu précise. - À l’inverse, un <span class="math inline">\(N\)</span> trop grand allonge inutilement le temps de calcul.</p>
+<p>Observons l’évolution de l’erreur en fonction du nombre de tirages (voir graphique ci-dessous). Lorsque <span class="math inline">\(N\)</span> est inférieur à <span class="math inline">\(10^3\)</span>, l’erreur reste significative. En revanche, pour <span class="math inline">\(N&gt;10^3\)</span>, l’erreur se stabilise et converge vers la valeur attendue théoriquement par le calcul analytique.</p>
+<p>Ainsi, un choix de <span class="math inline">\(N=10^4\)</span> constitue un bon compromis entre précision et temps de calcul. Cette valeur permet d’obtenir un résultat fiable en moins d’une seconde sur la plupart des ordinateurs.</p>
+<div id="f8ece329-9a7b-420d-a6f1-d9c00b802b7e" class="cell" data-fold="true" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">10.0</span> <span class="co"># mesure de a</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>da <span class="op">=</span> <span class="fl">0.1</span> <span class="co"># incertitude associée</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">20.0</span> <span class="co"># mesure de b</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> <span class="fl">0.1</span> <span class="co"># incertitude associée</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ds_liste <span class="op">=</span> []</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>N_liste <span class="op">=</span> np.logspace( <span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">100</span> )</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> N_liste: <span class="co"># Nombre de tirages aléatoires</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    N <span class="op">=</span> <span class="bu">int</span>( n )</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.random.normal( a, da, N ) <span class="co"># Liste contenant les valeurs simulees de a et b</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> np.random.normal( b, db, N )</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> A<span class="op">*</span>B <span class="co"># Liste des surfaces calculée</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    s, ds <span class="op">=</span> np.mean( S ), np.std( S ) <span class="co"># Calcul du resultat</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ds_liste.append( ds )</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>plt.semilogx( N_liste, ds_liste )</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Nombre de tirage $N$'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Ecart-type $</span><span class="ch">\\</span><span class="st">sigma(S)$'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.ylim( <span class="dv">0</span>, <span class="fl">2.8</span> )</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Incertitude_MonteCarlo_files/figure-html/cell-5-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="monte-carlo-et-régression-linéaire-chute-libre-dune-bille" class="level1">
 <h1>Monte-Carlo et régression linéaire : Chute libre d’une bille</h1>
@@ -385,7 +424,7 @@ window.Quarto = {
 <p>La différence est donc que le tirage aléatoire n’a pas lieu sur <span class="math inline">\(N\)</span> valeur mais uniquement sur une série de mesure (10 par exemple). Mais ce tirage a lieu <span class="math inline">\(N\)</span> fois.</p>
 <p>L’objectif est de mesurer <span class="math inline">\(g\)</span>, l’accélération de la pesanteur. Pour cela on lâche une bille (qui est donc en chute libre verticale) et on repère sa position au cours du temps. Pour cela on utilise une camera, la résolution temporelle est donc limité par la fréquence d’acquisition de la caméra. De plus, plus la bille tombe vite et plus elle apparait floue sur l’image, l’incertitude sur la position augmente.</p>
 <p>La vitesse est donnée par : <span class="math inline">\(v=gt\)</span>, ainsi si on trace la vitesse en fonction du temps, on obtient une droite de pente <span class="math inline">\(g\)</span>. La vitesse est déterminée à chaque instant par la relation : <span class="math display">\[v_i = \frac{z_{i+1}-z_i}{\Delta t}\]</span></p>
-<p>Or les positions <span class="math inline">\(z_i\)</span> sont de plus en plus mal repérées (flou de mouvement), on estime l’incertitude à 5;%. On obtient le graphique ci-dessous. Les ellipses correspondent à l’intervalle où il est probable d’avoir la valeur réelle de la grandeur.</p>
+<p>Or les positions <span class="math inline">\(z_i\)</span> sont de plus en plus mal repérées (flou de mouvement), on estime l’incertitude à <span class="math inline">\(5\,\%\)</span>. On obtient le graphique ci-dessous. Les ellipses correspondent à l’intervalle où il est probable d’avoir la valeur réelle de la grandeur.</p>
 <p>On effectue alors <span class="math inline">\(N\)</span> simulations compatibles avec cette première mesure. On calcule alors <span class="math inline">\(N\)</span> pentes, il est ensuite possible d’effectuer une étude statistique.</p>
 <div id="30cff232-e52c-4749-a3ad-b579a5da687e" class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> np.array( [<span class="dv">0</span>,<span class="fl">9.8</span>, <span class="fl">20.2</span>, <span class="fl">28.3</span>] ) <span class="co"># Liste des vitesses</span></span>

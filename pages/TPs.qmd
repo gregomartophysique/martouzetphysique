@@ -4,10 +4,11 @@ listing:
   contents:
     - "TP/*.ipynb"
   type: table
-  fields: [title]
+  fields: [title, numero]
   field-display-names:
       title: "Titre"
-  sort: "title desc"
+      numero: "N°"
+  sort: "numero desc"
   categories: true
   filter-ui: true
 ---

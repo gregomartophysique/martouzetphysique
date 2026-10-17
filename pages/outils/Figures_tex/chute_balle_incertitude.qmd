@@ -6,7 +6,7 @@ title: "Chute d'une balle et incertitude"
 image: chute_balle_incertitude.png
 ---
 
-![Chute d'une belle et incertitude](chute_balle_incertitde.png)
+![Chute d'une belle et incertitude](chute_balle_incertitude.png)
 
 ```tex
 {{< include chute_balle_incertitude.tex >}}
