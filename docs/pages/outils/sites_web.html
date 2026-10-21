@@ -143,18 +143,41 @@ ul.task-list li input[type="checkbox"] {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../pages/methodes/Euler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthode d’Euler</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../pages/methodes/Incertitude_MonteCarlo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Incertitude Monte-Carlo</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Publications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/these.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/publications/Article_Pédagogique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Articles Pédagogiques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/publications/these.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ma thèse</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
@@ -176,6 +199,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Logiciels et sites web</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/outils/import_ltp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Import Latispro en Python</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -188,7 +217,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#sites-web-de-collègues" id="toc-sites-web-de-collègues" class="nav-link active" data-scroll-target="#sites-web-de-collègues">Sites web de collègues</a></li>
+  <li><a href="#sites-de-prof" id="toc-sites-de-prof" class="nav-link active" data-scroll-target="#sites-de-prof">Sites de prof</a></li>
+  <li><a href="#sites-de-contenu" id="toc-sites-de-contenu" class="nav-link" data-scroll-target="#sites-de-contenu">Sites de contenu</a></li>
   </ul>
 </nav>
     </div>
@@ -214,8 +244,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="sites-web-de-collègues" class="level1">
-<h1>Sites web de collègues</h1>
+<section id="sites-de-prof" class="level1">
+<h1>Sites de prof</h1>
+<ul>
+<li></li>
+</ul>
+</section>
+<section id="sites-de-contenu" class="level1">
+<h1>Sites de contenu</h1>
+<ul>
+<li>NIST (National Institute of Standards and Technologie) - Webbook de chimie. Regroupe des propriétés thermophysiques, très pratique pour tracer des diagrammes thermodynamiques.</li>
+</ul>
+<pre><code>import requests
+import numpy as np
+
+Temp = [-33, -20? -10, 0, 20, 30,] #np.arange( -50, 150, 10)
+
+for T in Temp:
+    print( T )
+    url = f'https://webbook.nist.gov/cgi/fluid.cgi?Action=Data&amp;Wide=on&amp;ID=C7664417&amp;Type=IsoTherm&amp;Digits=5&amp;PLow=0.1&amp;PHigh=200&amp;PInc=0.1&amp;T={T}&amp;RefState=DEF&amp;TUnit=C&amp;PUnit=bar&amp;DUnit=kg%2Fm3&amp;HUnit=kJ%2Fkg&amp;WUnit=m%2Fs&amp;VisUnit=uPa*s&amp;STUnit=N%2Fm'
+    r = requests.get(url, allow_redirects=True)
+    open( f'isotherme_T={T}.txt', 'wb').write(r.content)</code></pre>
 
 
 </section>

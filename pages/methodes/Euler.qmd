@@ -1,0 +1,200 @@
+---
+title: "Méthode d'Euler"
+format: html
+---
+
+## Objectif
+
+En physique-chimie, de nombreux phénomènes sont décrits par des équations différentielles, qu’il s’agisse de la chute d’un objet, du comportement d’un circuit électrique ou de l'évolution des concentrations en fonction du temps. Ces équations expriment comment une grandeur évolue selon une variable, il s'agit souvent d'une variable temporelle, mais pas toujours. Cependant, il est souvent impossible d’obtenir une solution analytique exacte pour ces équations, en particulier lorsqu'elles sont non linéaires ou qu’elles dépendent de plusieurs variables. C’est là qu’intervient la méthode d’Euler, c'est l’une des méthodes numériques les plus simples pour obtenir une solution approchée.
+
+On étudie l'équation différentielle :
+
+$$
+\frac{\mathrm dy}{\mathrm dt}=-ay,
+\qquad y(0)=y_0
+$$
+
+Sa solution exacte est :
+
+$$
+y(t)=y_0 e^{-at}
+$$
+
+## Principe de la méthode
+
+L'idée fondamentale de la méthode d'Euler est d'approximer la dérivée $\frac{\text{d}y}{\text{d}t}$ par son taux d'accroissement sur l'intervalle $[t,t+\text{d} t]$.
+
+$$ 
+  \frac{\text{d}y}{\text{d}t} \simeq 
+  \frac{
+      y(t+\text{d} t) - y(t)
+  }{
+      \mathrm{d} t
+  }
+$$
+
+Autrement dit, cela revient à effectuer un développement limité au premier ordre de $y(t+\text{d} t)$ :
+
+$$
+    y(t+\text{d} t)
+   \simeq  y(t)+
+      \mathrm{d} t \frac{\text{d}y}{\text{d}t}
+$$
+
+La première étape est de discrétiser le domaine continu de résolution, il correspond au temps, à une direction (une position, une altitude, ...), ou toute autre variable ... Dans la suite on note $t$ la variable, mais il ne faut pas oublier son sens plus large.
+
+Pour cela, on le divise en un ensemble discret de points afin de rendre le problème soluble par des techniques de calcul numérique. Lors de cette étape, on remplace les fonctions continues par des approximations basées sur les valeurs des variables à des points spécifiques.
+
+On définit un pas de temps $\mathrm{d}t$ et cela donne la suite de nombres $(t_n)$ telle que :
+
+$$
+    t_n = n \cdot\mathrm{d} t\quad\forall n\in\mathbb{N}
+$$ De même toutes les fonctions et en particulier celle que l'on cherche seront aussi discrétisées. La fonction recherchée $y(t)$ sera alors approximée par une suite $(y_n)$ : $$
+y_n  = y( n\cdot \mathrm{d}t)
+\quad
+\forall
+n\in\mathbb{N}
+$$
+
+Le temps et la fonction recherchée ne sont donc plus des grandeurs **continues** mais des grandeurs **discrètes**. Dans la suite, on note $t_i = i\dd t$ et $X_i=X(t_i)=X(i\dd t)$.
+
+## Implémentation en python
+
+Cela est particulièrement simple à mettre en place informatiquement car cela revient à manipuler des tableaux de données. En python le type \texttt{list} peut être utilisés de cette manière et interprétés comme des suites.
+
+Le but est alors de remplir petit à petit les listes contenant la variable temporelle et la fonction recherchée en utilisant une boucle `for` ou `while`.
+
+Avec une boucle `while` :
+
+``` python
+import matplotlib.pyplot as plt
+tau = 1
+dt = 0.1
+yf = 5
+t = [0]
+y = [0] # Condition initiale
+
+while t[-1]<5*tau:
+    t.append( t[-1]+dt )
+    y.append( y[-1]+dt*(yf-y[-1]) )
+    
+plt.xlabel('$t$')
+plt.ylabel('$y(t)$')
+plt.plot( t, y )
+```
+
+## Influence du pas d'intégration $\mathrm{d}t$
+
+On étudie l'équation différentielle :
+
+$$
+\frac{\mathrm dy}{\mathrm dt}=-ay,
+\qquad y(0)=y_0
+$$
+
+Sa solution exacte est :
+
+$$
+y(t)=y_0 e^{-at}
+$$
+
+```{ojs}
+//| echo: false
+
+viewof h = Inputs.range(
+  [0.05, 1],
+  {
+    step: 0.05,
+    value: 0.2,
+    label: "Pas de calcul dt",
+    width: 400
+  }
+)
+```
+
+```{ojs}
+//| echo: false
+
+a = 0.8
+y0 = 1
+tmax = 5
+```
+
+```{ojs}
+//| echo: false
+
+solutionExacte = Array.from(
+  {length: 301},
+  (_, i) => {
+    const t = tmax * i / 300;
+    return {t, y: y0 * Math.exp(-a * t)};
+  }
+)
+```
+
+```{ojs}
+//| echo: false
+
+solutionEuler = {
+  const points = [{t: 0, y: y0}];
+  let t = 0;
+  let y = y0;
+  while (t < tmax - 1e-10) {
+    const dt = Math.min(h, tmax - t);
+    y = y + dt * (-a * y);
+    t = t + dt;
+    points.push({t, y});
+  }
+  return points;
+}
+
+erreurFinale = Math.abs(
+  solutionEuler[solutionEuler.length - 1].y
+  - y0 * Math.exp(-a * tmax)
+)
+```
+
+```{ojs}
+//| echo: false
+
+Plot.plot({
+  title: "Méthode d'Euler : y' = -ay",
+  subtitle: `Pas dt = ${h.toFixed(2)}; Erreur finale absolue 
+      ${erreurFinale.toFixed(5)}`,
+  width: Math.min(width, 850),
+  height: 430,
+  marginLeft: 60,
+  marginBottom: 50,
+  x: {
+    label: "Temps t",
+    domain: [0, tmax],
+    grid: true
+  },
+  y: {
+    label: "y(t)",
+    domain: [-0.05, 1.05],
+    grid: true
+  },
+  marks: [
+    Plot.line(solutionExacte, {
+      x: "t",
+      y: "y",
+      stroke: "#2878B5",
+      strokeWidth: 2.5
+    }),
+    Plot.line(solutionEuler, {
+      x: "t",
+      y: "y",
+      stroke: "#D9534F",
+      strokeWidth: 2
+    }),
+    Plot.dot(solutionEuler, {
+      x: "t",
+      y: "y",
+      fill: "#D9534F",
+      r: 3
+    }),
+    Plot.frame()
+  ]
+})
+```

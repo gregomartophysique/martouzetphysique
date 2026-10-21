@@ -29,16 +29,24 @@ website:
         text: Codes et applications
       - text: Methodes
         contents:
+          - href: pages/methodes/Euler.qmd
+            text: Méthode d'Euler
           - href: pages/methodes/Incertitude_MonteCarlo.ipynb
             text: Incertitude Monte-Carlo
-      - href: pages/these.ipynb
-        text: Ma thèse
+      - text: Publications
+        contents:
+          - href: pages/publications/Article_Pédagogique.ipynb
+            text: Articles Pédagogiques
+          - href: pages/publications/these.ipynb
+            text: Ma thèse
       - text: Outils
         contents:
           - href: pages/outils/Figures_tex.qmd
             text: Figures
           - href: pages/outils/sites_web.qmd
             text: Logiciels et sites web
+          - href: pages/outils/import_ltp.ipynb
+            text: Import Latispro en Python
 
 format:
   html:
@@ -48,5 +56,4 @@ format:
     css: styles.css
     toc: true
 
-editor: visual
 

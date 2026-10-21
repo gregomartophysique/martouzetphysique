@@ -1,0 +1,12 @@
+{
+  "hash": "0ae6f40dadf17e7a3e701d6759faf21d",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntoc: false\ncategories:\n  - Optique géométrique\ntitle: \"Focométrie\"\nnumero: 2\ndescription: \"Mesure de la focale d'une lentille convergente\"\n---\n\nLa focométrie, ou l'art de mesurer la distance focale d'une lentille, est une discipline dont le but est de caractériser une lentille.\nComme tout exercice de métrologie, le secret de cet art est de maîtriser les incertitudes et de manipuler soigneusement !\nPour mesurer précisément la focale $f'$, trois méthodes sont proposées.\nPour chacune d'elles, il s'agira de discuter la précision de la mesure, mais aussi la difficulté et la rapidité de mise en place.\n    \nLes méthodes présentées utilise une lentille de vergence $+8\\delta$ (focale $f'= 12.5$ cm).\n\nCette valeur n'est pas fournie aux étudiants, l'objectif du TP est de la trouver.\n\n\n\n# Méthode d'auto-collimation\n\nMatériel :\n- Une lampe (sans objet pour avoir un maximum d'intensité lumineuse);\n- Un diaphragme (avoir un trou d'environ 2mm);\n- un miroir plan\n\nMettre en oeuvre la méthode d'auto-collimation. A votre avis, quelle est l'incertitude associée à la mesure ?\n\n\n```{=html}\n<iframe\nsrc=\"../codes_applications/GEOGEBRA/autocolimation_geogebra.html\"\nwidth=\"100%\"\nheight=\"600px\"\ntitle=\"Titre de la page intégrée\"\nstyle=\"border: 1px solid #ccc; border-radius: 4px;\"\\>\n</iframe\\>\n```\n\n\nf' = 12.75 +/- 0.5\n \n# Méthode des points conjugués\n\nMatériel :\n- Une lampe, munie d'un objet;\n- Un écran\n\n",
+    "supporting": [
+      "TP-Focométrie_new_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

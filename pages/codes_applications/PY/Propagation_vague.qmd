@@ -1,0 +1,10 @@
+---
+toc: false
+categories: 
+  - Python
+  - Onde 
+title: "Propagation d'une vague"
+description: "."
+image: Propagation_vague.png
+listing: false
+---

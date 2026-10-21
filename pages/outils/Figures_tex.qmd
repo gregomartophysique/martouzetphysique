@@ -10,5 +10,18 @@ listing:
   filter-ui: true
 ---
 
+Voici une base de données des figures que j'ai produites dans le cadre de mon enseignment (exercices, cours, TP, ...). Un certain nombre provient de divers sources mais ont été adapté pour mes besoins.
+
+- Tikz.net
+- Figure tikz
+- Site web de collègue et bases de données d'exercice
+- Sujet de concours
+
+Dans tout les cas, même si le design original n'est pas toujours de moi, elles ont toutes été recodées par mes soins et sans IA.
+
+Pour la compilation des figure, il faut au minimum tikz et un package personnel qui déclare l'ensemble des fonctions et macros que j'utilise.
+
+Mon package se cahrge d'importer tikz, pgfplot et tout autre package commun à toute mes figures.
+
 ::: {#figures}
 :::

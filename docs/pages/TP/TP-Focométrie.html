@@ -143,7 +143,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked fullcontent quarto-light">
+<body class="nav-sidebar docked quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -210,18 +210,41 @@ window.Quarto = {
       <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../../pages/methodes/Euler.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthode d’Euler</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../../pages/methodes/Incertitude_MonteCarlo.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Incertitude Monte-Carlo</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+ <span class="menu-text">Publications</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../pages/these.html" class="sidebar-item-text sidebar-link">
+  <a href="../../pages/publications/Article_Pédagogique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Articles Pédagogiques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/publications/these.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ma thèse</span></a>
   </div>
 </li>
+      </ul>
+  </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
@@ -243,6 +266,12 @@ window.Quarto = {
  <span class="menu-text">Logiciels et sites web</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../pages/outils/import_ltp.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Import Latispro en Python</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -250,7 +279,19 @@ window.Quarto = {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#méthode-dauto-collimation" id="toc-méthode-dauto-collimation" class="nav-link active" data-scroll-target="#méthode-dauto-collimation">Méthode d’auto-collimation</a></li>
+  <li><a href="#méthode-des-points-conjugués" id="toc-méthode-des-points-conjugués" class="nav-link" data-scroll-target="#méthode-des-points-conjugués">Méthode des points conjugués</a></li>
+  <li><a href="#méthode-de-bessel" id="toc-méthode-de-bessel" class="nav-link" data-scroll-target="#méthode-de-bessel">Méthode de Bessel</a></li>
+  <li><a href="#méthode-de-bessel-avancée" id="toc-méthode-de-bessel-avancée" class="nav-link" data-scroll-target="#méthode-de-bessel-avancée">Méthode de Bessel “avancée”</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -285,10 +326,18 @@ window.Quarto = {
 <p>Les méthodes présentées utilise une lentille de vergence <span class="math inline">\(+8\delta\)</span> (focale <span class="math inline">\(f'= 12.5\)</span> cm). Cette valeur n’est pas fournie aux étudiants, l’objectif du TP est de la trouver.</p>
 <section id="méthode-dauto-collimation" class="level1">
 <h1>Méthode d’auto-collimation</h1>
-<p>Matériel : - Une lampe (sans objet pour avoir un maximum d’intensité lumineuse); - Un diaphragme (avoir un trou d’environ 2mm), <strong>attention le diaphragme est fragile !</strong> - un miroir plan</p>
+<p>Matériel :</p>
+<ul>
+<li>Une lampe (sans objet pour avoir un maximum d’intensité lumineuse);</li>
+<li>Un diaphragme (avoir un trou d’environ 2mm),</li>
+<li>un miroir plan</li>
+</ul>
 <p>Mettre en oeuvre la méthode d’auto-collimation. A votre avis, quelle est l’incertitude associée à la mesure ?</p>
-<p>Valeur obtenue (n’oubliez d’indiquer pas votre incertitude) :</p>
-<p>f’ = 12.75 +/- 0.5</p>
+<a href="../codes_applications/GEOGEBRA/autocolimation.html">
+<div style="background-color:#0B0358; color:white; text-align:center; padding:20px; border-radius:8px; width:60%;margin:auto;">
+<p>Illustration de la méthode d’autocolimation avec Geogebra.</p>
+</div>
+</a><p><a href="../codes_applications/GEOGEBRA/autocolimation.html"></a></p>
 </section>
 <section id="méthode-des-points-conjugués" class="level1">
 <h1>Méthode des points conjugués</h1>

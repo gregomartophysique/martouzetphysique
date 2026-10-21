@@ -9,12 +9,11 @@
     ]
   },
   {
-    "listing": "/pages/codes.html",
+    "listing": "/pages/outils/Figures_tex.html",
     "items": [
-      "/pages/codes_applications/GEOGEBRA/lentille_epaisse_3regles.html",
-      "/pages/codes_applications/GEOGEBRA/lentille-demicylindre.html",
-      "/pages/codes_applications/PY/Traitement_Signal.html",
-      "/pages/codes_applications/PY/De_Fresnel_a_Fraun.html"
+      "/pages/outils/Figures_tex/chute_balle_incertitude.html",
+      "/pages/outils/Figures_tex/Diagramme_Pv_NH3.html",
+      "/pages/outils/Figures_tex/lac_gele.html"
     ]
   },
   {
@@ -24,10 +23,14 @@
     ]
   },
   {
-    "listing": "/pages/outils/Figures_tex.html",
+    "listing": "/pages/codes.html",
     "items": [
-      "/pages/outils/Figures_tex/chute_balle_incertitude.html",
-      "/pages/outils/Figures_tex/lac_gele.html"
+      "/pages/codes_applications/PY/Propagation_vague.html",
+      "/pages/codes_applications/GEOGEBRA/lentille_epaisse_3regles.html",
+      "/pages/codes_applications/GEOGEBRA/lentille-demicylindre.html",
+      "/pages/codes_applications/PY/Traitement_Signal.html",
+      "/pages/codes_applications/PY/De_Fresnel_a_Fraun.html",
+      "/pages/codes_applications/GEOGEBRA/autocolimation.html"
     ]
   }
 ]
