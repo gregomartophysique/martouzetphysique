@@ -28,19 +28,19 @@ website:
         text: Travaux pratiques
       - href: pages/codes.qmd
         text: Codes et applications
-      - text: Methodes
+      - section: Methodes
         contents:
           - href: pages/methodes/Euler.qmd
             text: Méthode d'Euler
           - href: pages/methodes/Incertitude_MonteCarlo.ipynb
             text: Incertitude Monte-Carlo
-      - text: Publications
+      - section: Publications
         contents:
           - href: pages/publications/Article_Pédagogique.ipynb
             text: Articles Pédagogiques
           - href: pages/publications/these.ipynb
             text: Ma thèse
-      - text: Outils
+      - section: Outils
         contents:
           - href: pages/outils/Figures_tex.qmd
             text: Figures
