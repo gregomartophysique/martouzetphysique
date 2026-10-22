@@ -1,0 +1,70 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{tikzGM}[2026/02/18 LaTeX package]
+
+\RequirePackage{tikz}
+%\usetikzlibrary{shapes, 3d, shapes.misc, patterns, babel}
+%\usetikzlibrary{babel, patterns} % Très important pour éviter les conflits avec circuitikz
+\usetikzlibrary{patterns}
+\usetikzlibrary{intersections}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shadings}
+\usetikzlibrary{svg.path}
+\usetikzlibrary{babel}
+\RequirePackage{tikz-3dplot}
+
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}%\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots}
+
+\RequirePackage[straightvoltages, european, cute inductors,  RPvoltages]{circuitikz}
+\ctikzset{bipoles/length=1cm}
+
+
+\tikzstyle{bullet} = [circle, fill,minimum size=4pt,inner sep=0pt, outer sep=0pt]
+
+\pgfplotsset{oscilloscope/.style={%
+		xmin=-5, xmax=5, ymin=-4, ymax=4,
+		xtick={-4,-3,...,4}, ytick={-3,-2,...,3},
+		minor xtick={-4.8, -4.6, ..., 4.8},
+		minor ytick={-3.8, -3.6, ..., 3.8},
+		xticklabel=\empty,yticklabel=\empty,
+		axis lines = center,
+		grid=major,
+		every inner x axis line/.append style={-},
+		every inner y axis line/.append style={-},
+		axis background/.style={rounded corners={0.05*\pgfkeysvalueof{/pgfplots/width}}, draw=black},
+		domain=-5:5, samples=100,
+}}
+
+
+% Couleur
+\definecolor{C0}{RGB}{31,119,180}
+\definecolor{C1}{RGB}{255,127,14}
+\definecolor{C2}{RGB}{44,160,44}
+\definecolor{C3}{RGB}{214,39,40}
+\definecolor{C4}{RGB}{148,103,189}
+\definecolor{C5}{RGB}{140,86,75}
+\definecolor{C6}{RGB}{227,119,194}
+\definecolor{C7}{RGB}{127,127,127}
+\definecolor{C8}{RGB}{188,189,34}
+\definecolor{C9}{RGB}{23,190,207}
+
+\tikzset {
+	simplearrow/.style args={#1}{%
+		postaction={decorate,decoration={markings, mark=at position #1 with {\arrow[scale=1.5,>=stealth]{>}}}}
+	},
+	simplearrow/.default=0.5,
+	doublearrow/.style args={#1}{%
+		postaction={decorate,decoration={markings, mark=at position #1 with {\arrow[scale=1.5,>=stealth]{>>}}}}
+	},
+	doublearrow/.default=0.5
+}
+
+%oeil
+\tikzset{
+	oeil/.pic={
+		\draw[thick,rounded corners] (-15:1)--(0,0)--(15:1);
+		\draw (-15:0.8) arc (-15:15:0.8);
+		\draw[fill=black] (0:0.75) ellipse(0.05 and 0.1);
+	}
+}

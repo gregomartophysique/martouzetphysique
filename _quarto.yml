@@ -13,6 +13,7 @@ website:
   sidebar:
     style: "docked"
     search: False
+    collapse-level: 1
     tools:
       - icon: github
         href: https://github.com/gregomartophysique/martouzetphysique

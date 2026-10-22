@@ -3,25 +3,34 @@ title: "Figures"
 listing:
   id: figures
   contents:
-    - "Figures_tex/*.qmd"
+    - "../images/figures/Figures_tex/*.qmd"
   type: grid
   categories: true
   fields: [image, title, categories]
   filter-ui: true
 ---
 
-Voici une base de données des figures que j'ai produites dans le cadre de mon enseignment (exercices, cours, TP, ...). Un certain nombre provient de divers sources mais ont été adapté pour mes besoins.
+Cette page rassemble une partie des figures que j'ai réalisées dans le cadre de mon enseignement : illustrations de cours, exercices, travaux pratiques, etc. Certaines figures sont inspirées de ressources existantes, notamment :
 
-- Tikz.net
-- Figure tikz
-- Site web de collègue et bases de données d'exercice
-- Sujet de concours
+- des galeries de figures TikZ : [Physagreg](https://www.physagreg.fr/schemas-figures-physique-svg-tikz.php); [TikZ.net](https://tikz.net/).
+- des sites web de collègues et des banques d'exercices ;
+- des sujets de concours.
 
-Dans tout les cas, même si le design original n'est pas toujours de moi, elles ont toutes été recodées par mes soins et sans IA.
 
-Pour la compilation des figure, il faut au minimum tikz et un package personnel qui déclare l'ensemble des fonctions et macros que j'utilise.
 
-Mon package se cahrge d'importer tikz, pgfplot et tout autre package commun à toute mes figures.
+Même lorsque l'idée ou le design original provient d'une autre source, toutes les figures ont été recodées par mes soins, sans recours à l'intelligence artificielle. Elles ont ainsi pu être adaptées à mes besoins pédagogiques et à ma propre charte graphique.
+
+**Compilation des figures**
+
+La compilation nécessite au minimum le package **TikZ**, ainsi qu'un package personnel regroupant les fonctions, commandes et macros que j'utilise régulièrement.
+
+Ce package personnel se charge également d'importer les dépendances communes à l'ensemble des figures, notamment `tikz`, `pgfplots` et les autres packages LaTeX nécessaires. Il suffit donc de charger cet unique package.
+
+<a href="../fichiers/tikzGM.sty">
+  <button style="background-color:#C3C3C3; color:black; text-align:center; padding:20px; border-radius:8px; width:60%;margin:auto;">
+      Télécharger mon package tikzGM.sty
+  </button>
+</a>
 
 ::: {#figures}
 :::

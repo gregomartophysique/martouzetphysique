@@ -1,0 +1,44 @@
+---
+categories: 
+  - Electricité
+  - Résistance
+title: "Circuit électrique divers"
+image: Circuit_elec_continu.gif
+---
+
+## Mesure d'une caractéristique
+
+![](../figure_elec_continu-1.png)
+
+``` tex
+\begin{tikzpicture}
+        \draw (0,0) to[vsource=$E$] (0,2) to[rmeter, t=A] ++ (2,0) to[R={$R_L$}, i_=$I$] ++ (2,0) to[led, v=$U_L$] ++(0,-2) -- (0,0);
+        \draw (4,1.8) -- (5.5,1.8) to[rmeter, t=V] (5.5,0.2) -- (4,0.2) ;
+\end{tikzpicture}
+```
+
+![](../figure_elec_continu-2.png)
+
+``` tex
+\begin{tikzpicture}
+        \draw (0,2) coordinate (EA1) node[left] {\textcolor{red}{SA1}} to[R, l_={$R_L$}, i_=$I$, *-*, v^={$U_R=\textcolor{C0}{EA1-EA5}$}] ++ (4,0) coordinate (EA5) coordinate (EA0) to[led, v^={$U_L=\textcolor{C2}{EA0}$}, *-] ++(0,-2) to[short, -*] (0,0) node[left] {GND} node[ground] {};
+        
+        \draw[-latex, thick, C0] (EA1) -- ++ (100: 0.75) node[above] {EA1};
+        \draw[-latex, thick, C0] (EA5) -- ++ (80: 0.75) node[above] {EA5};
+        \draw[-latex, thick, C2] (EA0) -- ++ (10: 0.75) node[right] {EA0};
+\end{tikzpicture}
+```
+
+
+## Résistance de sortie d'un générateur
+
+![](../figure_elec_continu-3.png)
+
+``` tex
+\begin{tikzpicture}
+    \draw (0,0) to[vsource=$E$] (0,1) to[R=$r$] (0,2) -- (4,2) to[tgeneric=$R$, v=$U$] (4,0) -- (0,0) node[ground] {};
+		\draw (4,2) -- (6,2) to[rmeter, t=V] (6,0) -- (4,0);
+		\draw[dashed] (-1,0.1) rectangle (1,2.1);
+		\path (-1,2.1) -- (1,2.1) node[midway, above] {Générateur};
+\end{tikzpicture}
+```

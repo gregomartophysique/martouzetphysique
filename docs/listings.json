@@ -9,14 +9,6 @@
     ]
   },
   {
-    "listing": "/pages/outils/Figures_tex.html",
-    "items": [
-      "/pages/outils/Figures_tex/chute_balle_incertitude.html",
-      "/pages/outils/Figures_tex/Diagramme_Pv_NH3.html",
-      "/pages/outils/Figures_tex/lac_gele.html"
-    ]
-  },
-  {
     "listing": "/index.html",
     "items": [
       "/actualites_blog/JO_hiver_2026/JO_hiver_2026.html"
@@ -31,6 +23,15 @@
       "/pages/codes_applications/PY/Traitement_Signal.html",
       "/pages/codes_applications/PY/De_Fresnel_a_Fraun.html",
       "/pages/codes_applications/GEOGEBRA/autocolimation.html"
+    ]
+  },
+  {
+    "listing": "/pages/outils/Figures_tex.html",
+    "items": [
+      "/pages/images/figures/Figures_tex/chute_balle_incertitude.html",
+      "/pages/images/figures/Figures_tex/figure_elec_continu.html",
+      "/pages/images/figures/Figures_tex/Diagramme_Clapeyron_Pv.html",
+      "/pages/images/figures/Figures_tex/lac_gele.html"
     ]
   }
 ]

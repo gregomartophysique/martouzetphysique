@@ -15,7 +15,7 @@ title: "Logiciels et sites web"
 import requests
 import numpy as np
 
-Temp = [-33, -20? -10, 0, 20, 30,] #np.arange( -50, 150, 10)
+Temp = [-33, -20, -10, 0, 20, 30] 
 
 for T in Temp:
     print( T )

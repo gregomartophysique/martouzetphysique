@@ -1,0 +1,12 @@
+{
+  "hash": "da0bfb2ec1b596398a79ece58fb094c4",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Figures\"\nlisting:\n  id: figures\n  contents:\n    - \"../images/figures/Figures_tex/*.qmd\"\n  type: grid\n  categories: true\n  fields: [image, title, categories]\n  filter-ui: true\n---\n\nCette page rassemble une partie des figures que j'ai réalisées dans le cadre de mon enseignement : illustrations de cours, exercices, travaux pratiques, etc. Certaines figures sont inspirées de ressources existantes, notamment :\n\n- [TikZ.net](https://tikz.net/) ;\n- des galeries de figures TikZ ;\n- des sites web de collègues et des banques d'exercices ;\n- des sujets de concours.\n\nMême lorsque l'idée ou le design original provient d'une autre source, toutes les figures ont été recodées par mes soins, sans recours à l'intelligence artificielle. Elles ont ainsi pu être adaptées à mes besoins pédagogiques et à ma propre charte graphique.\n\n**Compilation des figures**\n\nLa compilation nécessite au minimum le package **TikZ**, ainsi qu'un package personnel regroupant les fonctions, commandes et macros que j'utilise régulièrement.\n\nCe package personnel se charge également d'importer les dépendances communes à l'ensemble des figures, notamment `tikz`, `pgfplots` et les autres packages LaTeX nécessaires. Il suffit donc de charger cet unique package.\n\n```{html}\n<a href=\"../fichiers/tikzGM.sty\">\n  <div style=\"background-color:#C3C3C3; color:black; text-align:center; padding:20px; border-radius:8px; width:60%;margin:auto;\">\n      Télécharger mon package tikzGM.sty\n  </div>\n</a>\n```\n\n::: {#figures}\n:::\n\n",
+    "supporting": [
+      "Figures_tex_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

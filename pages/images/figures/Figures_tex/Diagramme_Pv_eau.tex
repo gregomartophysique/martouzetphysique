@@ -1,0 +1,43 @@
+\documentclass{standalone}
+
+\usepackage{tikzGM}
+\usepackage{siunitx}
+
+\begin{document}
+
+\begin{tikzpicture}
+	\begin{loglogaxis}[
+		width=0.95\linewidth,
+		height=10.5cm,
+		xmin=5e-4, xmax=1e2,
+		ymin=1e-2, ymax=50,
+		grid = both,
+		grid style={thin, gray!50},
+		xlabel = {$v$ (\si{\meter\cubed\per\kg})},
+		ylabel = {$P$ (\si{\mega\pascal})},
+		]
+		\addplot[thick, blue, smooth] table {data_pv_eau/saturation-eau.txt};
+		
+		\coordinate (O) at (1e-2, 1e-2);
+		
+		\tikzstyle{label} = [fill=white, fill opacity=0.7, text opacity=1 ]
+		
+		\addplot[] table {data_pv_eau/istherme-eau-T=60.txt} coordinate[pos=0.4] (A);
+		\node[label] at (A-|O) {\scriptsize \SI{60}{\degreeCelsius}};
+		\addplot[] table {data_pv_eau/istherme-eau-T=100.txt} coordinate[pos=0.4] (A);
+		\node[label] at (A-|O) {\scriptsize \SI{100}{\degreeCelsius}};
+		\addplot[] table {data_pv_eau/istherme-eau-T=200.txt} coordinate[pos=0.6] (A);
+		\node[label] at (A-|O) {\scriptsize \SI{200}{\degreeCelsius}};
+		\addplot[] table {data_pv_eau/istherme-eau-T=374.txt};
+		\addplot[] table {data_pv_eau/istherme-eau-T=500.txt} node[pos=0.9, sloped, label] {\scriptsize \SI{500}{\degreeCelsius}};
+		\addplot[] table {data_pv_eau/istherme-eau-T=600.txt} node[pos=0.8, sloped, label] {\scriptsize \SI{600}{\degreeCelsius}};
+		
+		\draw (0.0036, 22) node[below, label] {\scriptsize \SI{374}{\degreeCelsius}};
+		
+		\node[draw, fill=white, below left] at (90, 40) {Diagramme $(P,v)$ de l'eau};
+		
+	\end{loglogaxis}
+\end{tikzpicture}
+
+
+\end{document}

@@ -110,6 +110,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -172,13 +201,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false">
  <span class="menu-text">Methodes</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/methodes/Euler.html" class="sidebar-item-text sidebar-link">
@@ -195,13 +224,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false">
  <span class="menu-text">Publications</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/publications/Article_Pédagogique.html" class="sidebar-item-text sidebar-link">
@@ -218,13 +247,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false">
  <span class="menu-text">Outils</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../pages/outils/Figures_tex.html" class="sidebar-item-text sidebar-link">
@@ -281,14 +310,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="c590417d-bc0d-4ad3-a847-157c0e581d5f" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Ul <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="fl">0.998</span>,<span class="fl">1.783</span>,<span class="fl">1.86</span>,<span class="fl">1.8995</span>,<span class="fl">1.919</span>,<span class="fl">1.94</span>,<span class="fl">1.958</span>,<span class="fl">1.974</span>,<span class="fl">1.989</span>,<span class="fl">2.003</span>,<span class="op">-</span><span class="fl">0.98</span>,<span class="fl">1.494</span>,<span class="fl">1.677</span>,<span class="fl">1.732</span>,<span class="fl">1.762</span>,<span class="fl">1.796</span>])</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Il <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>,<span class="fl">0.19</span>,<span class="fl">1.08</span>,<span class="fl">2.02</span>,<span class="fl">2.96</span>,<span class="fl">3.91</span>,<span class="fl">4.86</span>,<span class="fl">5.81</span>,<span class="fl">6.76</span>,<span class="fl">7.71</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.12</span>,<span class="fl">0.27</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+</section>
+<section id="méthode-points-par-points" class="level2">
+<h2 class="anchored" data-anchor-id="méthode-points-par-points">Méthode points par points</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/Figure_elec_continu-1.png" class="img-fluid figure-img"></p>
+<figcaption>Montage</figcaption>
+</figure>
 </div>
-<div id="7d8f2cc8-da79-4eb9-a352-11cbacc20fda" class="cell" data-execution_count="4">
+<div id="c590417d-bc0d-4ad3-a847-157c0e581d5f" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Ul <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="fl">0.998</span>,<span class="fl">1.783</span>,<span class="fl">1.86</span>,<span class="fl">1.8995</span>,<span class="fl">1.919</span>,<span class="fl">1.94</span>,<span class="fl">1.958</span>,<span class="fl">1.974</span>,<span class="fl">1.989</span>,<span class="fl">2.003</span>,<span class="op">-</span><span class="fl">0.98</span>,<span class="fl">1.494</span>,<span class="fl">1.677</span>,<span class="fl">1.732</span>,<span class="fl">1.762</span>,<span class="fl">1.796</span>])</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Il <span class="op">=</span> <span class="fl">1e-3</span><span class="op">*</span>np.array([<span class="dv">0</span>, <span class="dv">0</span>,<span class="fl">0.19</span>,<span class="fl">1.08</span>,<span class="fl">2.02</span>,<span class="fl">2.96</span>,<span class="fl">3.91</span>,<span class="fl">4.86</span>,<span class="fl">5.81</span>,<span class="fl">6.76</span>,<span class="fl">7.71</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.01</span>,<span class="fl">0.05</span>,<span class="fl">0.12</span>,<span class="fl">0.27</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="7d8f2cc8-da79-4eb9-a352-11cbacc20fda" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>plt.plot( Ul, Il, <span class="st">'+'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$U_l$ (V)'</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$I_l$ (mA)'</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$I_l$ (A)'</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
@@ -298,8 +338,141 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</section>
+<section id="méthode-automatique-avec-latispro" class="level2">
+<h2 class="anchored" data-anchor-id="méthode-automatique-avec-latispro">Méthode “automatique” avec LatisPro</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../images/figures/Figure_elec_continu-2.png" class="img-fluid figure-img"></p>
+<figcaption>Montage</figcaption>
+</figure>
+</div>
+<p>Les données sont ensuites importées en utilisant</p>
+<div id="0674068c-d76c-4d9d-a24e-26dd229c47ca" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> importLTP <span class="im">import</span> ReadLTP</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>nom <span class="op">=</span> <span class="st">'Caracteristique_DEL.ltp'</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> ReadLTP( nom, info<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">1e3</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>Ud <span class="op">=</span> data.courbe( <span class="dv">0</span> )[<span class="st">'y'</span>][<span class="dv">10</span>:]</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>Ur <span class="op">=</span> data.courbe( <span class="dv">1</span> )[<span class="st">'y'</span>][<span class="dv">10</span>:]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Ur<span class="op">/</span>R</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>plt.plot( Ud, I)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>plt.plot( Ul, Il, <span class="st">'+'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$U_l$ (V)'</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$I_l$ (A)'</span>)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP_caracteristique_dipole_files/figure-html/cell-6-output-1.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exploitation" class="level2">
+<h2 class="anchored" data-anchor-id="exploitation">Exploitation</h2>
+<section id="equation-de-shockley" class="level3">
+<h3 class="anchored" data-anchor-id="equation-de-shockley">Equation de Shockley</h3>
+<p>Le courant <span class="math inline">\(I\)</span> qui traverse la DEL s’obtient par l’<a href="https://fr.wikipedia.org/wiki/Diode#Caract%C3%A9ristique_r%C3%A9elle">équation de Shockley</a> : <span class="math display">\[
+    I = I_0 \left( \exp\left(
+     \frac{U_d}{n*V_{\text{th}}}
+    \right)
+    -1
+    \right)
+\]</span> où :</p>
+<ul>
+<li><span class="math inline">\(U_d\)</span> est la tension aux bornes de la diode;</li>
+<li><span class="math inline">\(V_\text{th}\)</span> (appelé « tension thermique ») est égal à <span class="math inline">\(\frac{k_\mathrm B\,T}{e}\)</span> où <span class="math inline">\(k_B\)</span> est la constante de Boltzmann, <span class="math inline">\(T\)</span> la température absolue de la jonction et <span class="math inline">\(−e\)</span> la charge d’un électron.</li>
+<li><span class="math inline">\(n\)</span> est le facteur de qualité de la diode, généralement compris entre 1 et 2;</li>
+<li><span class="math inline">\(I_0\)</span> est la constante spécifique au type de diode considéré, homogène à un courant. Cette constante est aussi appelée « courant de saturation » de la diode.</li>
+</ul>
+<div id="b8caefc6-ec2c-4290-af40-0dbb4782e8ca" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">1e3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>Ud <span class="op">=</span> data.courbe( <span class="dv">0</span> )[<span class="st">'y'</span>][<span class="dv">10</span>:]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>Ur <span class="op">=</span> data.courbe( <span class="dv">1</span> )[<span class="st">'y'</span>][<span class="dv">10</span>:]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Ur<span class="op">/</span>R</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> I[np.where( Ud<span class="op">&gt;</span><span class="dv">0</span>)]</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Ud <span class="op">=</span> Ud[np.where( Ud<span class="op">&gt;</span><span class="dv">0</span>)]</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>fct <span class="op">=</span> <span class="kw">lambda</span> x, A, Vs : A<span class="op">*</span>(np.exp( x<span class="op">/</span>Vs )<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>popt, pcov <span class="op">=</span> curve_fit(fct , Ud, I, p0<span class="op">=</span>(<span class="dv">1</span>, <span class="dv">1</span>) )</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( popt )</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>plt.plot( Ud, I, <span class="st">'.'</span> )</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>plt.plot( Ud, fct(Ud, <span class="op">*</span>popt) )</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$I$ (A)'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$U_d$ (V)'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1.93639225e-14 7.50143993e-02]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP_caracteristique_dipole_files/figure-html/cell-7-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="tension-de-seuil-et-énergie-de-gap" class="level3">
+<h3 class="anchored" data-anchor-id="tension-de-seuil-et-énergie-de-gap">Tension de seuil et énergie de gap</h3>
+<div id="2a0268c0-181e-40ef-8aa0-a9ed85de5521" class="cell" data-execution_count="58">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> <span class="fl">1e3</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>Ud <span class="op">=</span> data.courbe( <span class="dv">0</span> )[<span class="st">'y'</span>][<span class="dv">10</span>:]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>Ur <span class="op">=</span> data.courbe( <span class="dv">1</span> )[<span class="st">'y'</span>][<span class="dv">10</span>:]</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> Ur<span class="op">/</span>R</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>I_c <span class="op">=</span> I[np.where( Ud<span class="op">&gt;</span><span class="fl">1.9</span>)]</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>Ud_c <span class="op">=</span> Ud[np.where( Ud<span class="op">&gt;</span><span class="fl">1.9</span>)]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>coef <span class="op">=</span> np.polyfit( Ud_c, I_c, deg<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>( coef )</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>plt.plot( Ud, I, <span class="st">'.'</span> )</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>plt.plot( Ud, coef[<span class="dv">0</span>]<span class="op">*</span>Ud<span class="op">+</span>coef[<span class="dv">1</span>] )</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'$I$ (A)'</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'$U_d$ (V)'</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="fl">1e-4</span>, <span class="fl">6e-3</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0.04510787 -0.08398033]</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="TP_caracteristique_dipole_files/figure-html/cell-8-output-2.png" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<div id="395b7623-c5ec-4924-99a4-94ac2cd1f52b" class="cell" data-execution_count="59">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="op">-</span>coef[<span class="dv">1</span>]<span class="op">/</span>coef[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<pre><code>np.float64(1.8617666792625476)</code></pre>
+</div>
+</div>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

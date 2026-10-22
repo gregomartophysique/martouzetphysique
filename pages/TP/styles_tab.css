@@ -1,0 +1,13 @@
+table {
+  margin: 0px auto;
+}
+
+table, th, td {
+  border: 1px solid;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.objectif {
+  
+}

@@ -1,0 +1,13 @@
+---
+categories: 
+  - Mécanique
+  - Incertitude
+title: "Chute d'une balle et incertitude"
+image: ../chute_balle_incertitude.png
+---
+
+![Chute d'une balle et incertitude](../chute_balle_incertitude.png){fig-align="center" width="50%"}
+
+``` tex
+{{< include chute_balle_incertitude.tex >}}
+```
